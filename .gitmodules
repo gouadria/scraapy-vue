@@ -1,0 +1,3 @@
+[submodule "external/vue-library"]
+	path = external/vue-library
+	url = ssh://git@gitlab.hq.uzdsolutions.com:2222/uzdsolutions/vue-library.git
