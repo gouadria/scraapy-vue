@@ -12,6 +12,36 @@ const router = createRouter({
       component: () => import('@/views/PortfolioView.vue')
     },
     {
+      path: '/about',
+      name: 'about',
+      component: () => import('@/views/AboutUsView.vue')
+    },
+    {
+      path: '/partner',
+      name: 'partner',
+      component: () => import('@/views/BecomeOurPartnerView.vue')
+    },
+    {
+      path: '/career',
+      name: 'career',
+      component: () => import('@/views/CareerView.vue')
+    },
+    {
+      path: '/materials_policy',
+      name: 'materials_policy',
+      component: () => import('@/views/MaterialsTheftPolicyView.vue')
+    },
+    {
+      path: '/return_policy',
+      name: 'return_policy',
+      component: () => import('@/views/ReturnRefundPolicyView.vue')
+    },
+    {
+      path: '/privacy_policy',
+      name: 'privacy_policy',
+      component: () => import('@/views/PrivacyPolicyView.vue')
+    },
+    {
       path: '/marketplace',
       name: 'marketplace',
       component: () => import('@/views/HomeView.vue')

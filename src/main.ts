@@ -1,6 +1,7 @@
 import './assets/main.css'
 
 import { createApp } from 'vue'
+import { createPinia } from 'pinia'
 import App from '@/App.vue'
 import router from '@/router'
 import axios from '@/axios'
@@ -15,8 +16,10 @@ import Markdown from 'vue3-markdown-it'
 import 'highlight.js/styles/monokai.css'
 
 import 'vue3-easy-data-table/dist/style.css'
+const pinia = createPinia()
 const app = createApp(App)
 
+app.use(pinia)
 app.config.globalProperties.$axios = axios
 app.config.globalProperties.$userStore = User
 

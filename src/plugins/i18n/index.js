@@ -180,7 +180,10 @@ const messages = {
       security: 'Security',
       address: 'ELAA9179 Building 91792571 Dammam Street, Dhahran 34512 Kingdom of Saudi Arabia',
       crVat: 'CR: 2050180292 | VAT: 310567108900003',
-      poweredBy: 'Powered by'
+      poweredBy: 'Powered by',
+      partner: 'Partner',
+      materials: 'Materials',
+      return: 'Return & Refund'
     },
     auth: {
       Individual: 'Individual',
@@ -188,9 +191,15 @@ const messages = {
       businessName: 'Enter the name of your business',
       loginTitle: 'Login to your account',
       signupTitle: 'Create an account',
+      createBusinessAccount: 'Create Business Account',
+      chooseTypeAccount: 'Choose your account type to get started',
+      pleaseSelectType: 'Please select an account type to continue',
+      businessType: 'Business Type',
       welcomeBack: 'Welcome back! Please enter your details',
       email: 'Enter your email address',
+      email_or_phone: 'Enter your email or phone',
       password: 'Password',
+      phone: 'Phone',
       EnterPassword: 'Enter your password',
       confirmPassword: 'Confirm Password',
       rememberMe: 'Remember me?',
@@ -256,8 +265,9 @@ const messages = {
       sendResetLink: 'Send Reset Link',
       backToLogin: 'Back to Login',
       businessInfo: 'Business Info',
-      verify: 'verify',
+      verify: 'Verify',
       loginError: 'Invalid email or password',
+      phoneError: 'Phone or email is not registered',
       OpenEmailApp: 'Open email app',
       vendorSignup: 'Vendor Registration',
       vendorSignupSubtitle: 'Please confim your commercial registration number',
@@ -265,7 +275,12 @@ const messages = {
       PasswordResetSuccessful: 'Reset Successful',
       PasswordResetSuccessfulText:
         'Your password has been successfully reset. Click below to log in.',
-      close: 'Continue to login'
+      close: 'Continue to login',
+      select: 'Select',
+      verificationCode: 'Verification Code',
+      verification: 'Verification',
+      WeveSentverificationCodeTo: "We've sent a verification code to",
+      DidntReceiveTheCode: "Didn't receive the code?"
     },
 
     terms: {
@@ -1484,7 +1499,10 @@ const messages = {
       address:
         'ELAA9179 ، شارع الدمام 624، مبنى 9179، الرقم الإضافي 2571، الظهران 34512  المملكة العربية السعودية',
       crVat: 'السجل التجاري: 2050180292 | ضريبة القيمة المضافة: 310567108900003',
-      poweredBy: 'تطوير'
+      poweredBy: 'تطوير',
+      partner: 'كن شريكنا',
+      materials: 'المواد',
+      return: 'الإرجاع والاسترداد'
     },
     qoutes: {
       performance: 'عزز أداءك بالإستفادة من أدوات تحليل البيانات عالية الدقة',
@@ -1499,9 +1517,15 @@ const messages = {
       linkSentToEmail: 'تم إرسال رابط التحقق إلى البريد الإلكتروني الخاص بك',
       loginTitle: 'تسجيل الدخول إلى حسابك',
       signupTitle: 'إنشاء حساب',
+      createBusinessAccount: 'إنشاء حساب تجاري',
+      chooseTypeAccount: 'اختر نوع حسابك للبدء',
+      pleaseSelectType: 'الرجاء تحديد نوع الحساب للمتابعة',
+      businessType: 'نوع العمل',
       welcomeBack: 'مرحبًا بعودتك! الرجاء إدخال التفاصيل الخاصة بك',
       email: 'البريد الإلكتروني',
+      email_or_phone: 'البريد الإلكتروني أو رقم الجوال',
       password: 'كلمة المرور',
+      phone: 'رقم الجوال',
       confirmPassword: 'تأكيد كلمة المرور',
       rememberMe: 'تذكرني؟',
       forgotPassword: 'نسيت كلمة المرور؟',
@@ -1565,6 +1589,7 @@ const messages = {
       businessInfo: 'معلومات الشركة',
       verify: 'تحقق',
       loginError: 'البريد الإلكتروني أو كلمة المرور غير صحيحة',
+      phoneError: 'رقم الجوال أو البريد الإلكتروني غير مسجل',
       OpenEmailApp: 'افتح تطبيق البريد الإلكتروني',
       vendorSignup: 'تسجيل البائعين',
       vendorSignupSubtitle: 'يرجى إكمال التسجيل عبر إدخال سجلك التجاري للتحقق',
@@ -1572,7 +1597,12 @@ const messages = {
       PasswordResetSuccessful: 'تم إعادة تعيين كلمة المرور بنجاح',
       PasswordResetSuccessfulText:
         'تمت إعادة تعيين كلمة المرور الخاصة بك بنجاح. اضغط أدناه لتسجيل الدخول',
-      close: 'تسجيل الدخول'
+      close: 'تسجيل الدخول',
+      select: 'اختر',
+      verificationCode: 'رمز التحقق',
+      verification: 'التحقق',
+      WeveSentverificationCodeTo: "لقد أرسلنا رمز التحقق إلى",
+      DidntReceiveTheCode: "لم تستلم الرمز؟"
     },
     invoice: {
       invoice: 'فاتورة',

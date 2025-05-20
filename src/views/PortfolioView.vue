@@ -17,7 +17,7 @@ export default {
   },
   mounted() {
     this.$router.push({
-      name: 'marketplace',
+      name: 'home',
     })
   },
 }

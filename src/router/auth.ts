@@ -6,6 +6,12 @@ export default [
       component: () => import('@/views/auth/LoginView.vue'),
     },
     {
+      path: '/auth/otp',
+      name: 'otp',
+      meta: { noAuth: true },
+      component: () => import('@/views/auth/OtpView.vue'),
+    },
+    {
       path: '/auth/google/callback',
       name: 'googleCallback',
       meta: { noAuth: true },

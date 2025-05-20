@@ -186,6 +186,9 @@ const instance = createStore({
         commit('startInterval')
       })
     },
+    async login2({ commit }, { email_or_phone }) {
+      await axios.post('/api/otp/login/', { email_or_phone })
+    },
     async logout({ commit }) {
       await axios.post('/api/users/token/logout/').then(() => {
         commit('clearState')
@@ -207,8 +210,16 @@ const instance = createStore({
         commit('startInterval')
       })
     },
-    async registerUser({ commit }, { name, email, password, user_type }) {
-      await axios.post('/api/users/', { name, email, password, user_type })
+    // async registerUser({ commit }, { name, email, password, user_type }) {
+    //   await axios.post('/api/users/', { name, email, password, user_type })
+    // },
+    async registerUser({ commit }, { name, email, contact_number, password, user_type }) {
+      await axios.post('/api/users/', { name, email, contact_number, password, user_type })
+    },
+    async verify({ commit }, { phone, otp }) {
+      await axios.post('/api/otp/verify/', { phone, otp }).then((response) => {
+        //
+      })
     },
     // async registerBusinessProfile({ commit }, { cr_number }) {
     //   await axios.post('/api/users/business-profile/cr_number', { cr_number }).then((response) => {

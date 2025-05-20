@@ -56,13 +56,19 @@ export default {
             <div class="footer-header">{{ $t('footer.company') }}</div>
             <ul class="footer-column">
               <li class="footer-item">
-                <a href="#about">{{ $t('footer.about') }}</a>
+                <router-link :to="{ name: 'about' }">
+                  {{ $t('footer.about') }}
+                </router-link>
               </li>
               <li class="footer-item">
-                <a href="#blog">{{ $t('footer.blog') }}</a>
+                <router-link :to="{ name: 'partner' }">
+                  {{ $t('footer.partner') }}
+                </router-link>
               </li>
               <li class="footer-item">
-                <a href="#careers">{{ $t('footer.careers') }}</a>
+                <router-link :to="{ name: 'career' }">
+                  {{ $t('footer.careers') }}
+                </router-link>
               </li>
               <li class="footer-item">
                 <a href="#contact">{{ $t('footer.contact') }}</a>
@@ -90,13 +96,22 @@ export default {
             <div class="footer-header">{{ $t('footer.legal') }}</div>
             <ul class="footer-column">
               <li class="footer-item">
-                <a href="#privacy">{{ $t('footer.privacy') }}</a>
+                <router-link :to="{ name: 'privacy_policy' }">
+                  {{ $t('footer.privacy') }}
+                </router-link>
               </li>
               <li class="footer-item">
                 <a href="#terms">{{ $t('footer.terms') }}</a>
               </li>
               <li class="footer-item">
-                <a href="#security">{{ $t('footer.security') }}</a>
+                <router-link :to="{ name: 'return_policy' }">
+                  {{ $t('footer.return') }}
+                </router-link>
+              </li>
+              <li class="footer-item">
+                <router-link :to="{ name: 'materials_policy' }">
+                  {{ $t('footer.materials') }}
+                </router-link>
               </li>
             </ul>
           </div>

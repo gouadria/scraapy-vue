@@ -1,364 +1,113 @@
-<script lang="ts">
-import { defineComponent } from 'vue'
-import AuthView from '@/views/AuthView.vue'
-import { useVuelidate } from '@vuelidate/core'
-import { required, email, minLength, sameAs, helpers } from '@vuelidate/validators'
-import inputField from '@/components/UIElements/inputField.vue'
-import MainBtn from '@/components/UIElements/MainBtn.vue'
-import userTypeToggle from '@/components/UIElements/userTypeToggle.vue'
-import progressBar from '@/components/UIElements/progressBar.vue'
-import Terms from '@/views/auth/Terms.vue'
+<script setup lang="ts">
+import { ref, reactive, computed } from 'vue'
+import { useRouter } from 'vue-router'
+import { useAuthStore, UserType } from '@/store/auth'
+import { useForm } from 'vee-validate'
+import * as yup from 'yup'
+import UserTypeTabs from '@/components/new/auth/UserTypeTabs.vue'
+import IndividualForm from '@/components/new/auth/IndividualForm.vue'
+import BusinessForm from '@/components/new/auth/BusinessForm.vue'
+import Button from '@/components/new/ui/Button.vue'
 
-export default defineComponent({
-  name: 'RegisterView',
-  components: {
-    AuthView,
-    inputField,
-    MainBtn,
-    userTypeToggle,
-    progressBar,
-    Terms
-  },
-  setup() {
-    return { v$: useVuelidate() }
-  },
-  data() {
-    return {
-      showTerms: false,
-      step: 0,
-      stepTitles: [
-        this.$t('auth.basicInfo'),
-        this.$t('auth.emailVerification'),
-        this.$t('auth.complete')
-      ],
-      stepTitlesBusiness: [
-        this.$t('auth.basicInfo'),
-        this.$t('auth.emailVerification'),
-        this.$t('auth.businessInfo'),
-        this.$t('auth.complete')
-      ],
-      selectedType: 0,
-      registerTypes: [this.$t('auth.Individual'), this.$t('auth.Business')],
-      name: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
-      terms: false,
-      serverError: ''
-    }
-  },
+const router = useRouter()
+const authStore = useAuthStore()
 
-  validations() {
-    return {
-      name: {
-        required: helpers.withMessage(() => this.$t('validations.requiredField'), required),
-        minLength: helpers.withMessage(
-          () => this.$t('validations.minLength', { min: 3 }),
-          minLength(3)
-        )
-      },
-      email: {
-        required: helpers.withMessage(() => this.$t('validations.requiredField'), required),
-        email: helpers.withMessage(() => this.$t('validations.email'), email)
-      },
-      password: {
-        required: helpers.withMessage(() => this.$t('validations.requiredField'), required),
-        minLength: helpers.withMessage(
-          () => this.$t('validations.minLength', { min: 8 }),
-          minLength(8)
-        )
-      },
-      confirmPassword: {
-        required: helpers.withMessage(() => this.$t('validations.requiredField'), required),
-        sameAsPassword: helpers.withMessage(
-          () => this.$t('validations.sameAsPassword'),
-          sameAs(this.password)
-        )
-      },
-      terms: {
-        sameAs: helpers.withMessage(() => this.$t('validations.terms'), sameAs(true))
-      }
-    }
-  },
-  computed: {
-    isPasswordLength() {
-      return this.password.length >= 8
-    },
-    isPasswordSpecial() {
-      return /[!@#$%^&*(),.?":{}|<>]/.test(this.password)
-    }
-  },
-  methods: {
-    handleUpdate(field, value) {
-      this.v$[field].$touch()
-      this[field] = value
-    },
-    async validateEmail() {
-      try {
-        await this.$userStore.dispatch('registerUser', {
-          user_type: this.selectedType ? 'business' : 'individual',
-          name: this.name,
-          email: this.email,
-          password: '' // Empty password
-        })
-        // Registration should not succeed with empty password
-        this.serverError = 'Unexpected success during email validation.'
-      } catch (error) {
-        if (error.response && error.response.status === 400) {
-          const errors = error.response.data.errors || error.response.data
+const userType = ref<UserType>('individual')
+const isRegistering = ref(false)
+const registrationError = ref('')
+const showForm = ref(false)
 
-          if (errors.email) {
-            // Email already exists
-            this.serverError = 'Email already exists'
-            // Optionally, keep the user on the same step
-          } else if (errors.password) {
-            // Password validation error, which is expected
-            // Proceed to next step
-            this.serverError = ''
-            this.step++
-          } else {
-            // Other validation errors
-            this.serverError = 'Validation error: ' + JSON.stringify(errors)
-          }
-        } else {
-          console.error('Failed to validate email', error)
-          this.serverError = 'An error occurred while validating the email.'
-        }
-      }
-    },
-    async postRegister() {
-      await this.$userStore
-        .dispatch('registerUser', {
-          user_type: this.selectedType ? 'business' : 'individual',
-          name: this.name,
-          email: this.email,
-          password: this.password
-        })
-        .then(() => {
-          this.step++
-        })
-        .catch((error) => {
-          if (error.response && error.response.status === 400) {
-            const errors = error.response.data.errors || error.response.data
-            if (errors.email) {
-              this.serverError = 'Email already exists'
-              this.step = 0
-            } else {
-              this.serverError = 'Registration error: ' + JSON.stringify(errors)
-            }
-          } else {
-            console.error('Failed to register', error)
-          }
-        })
-    },
-    async nextStep() {
-      if (this.step === 0) {
-        this.v$.name.$touch()
-        this.v$.email.$touch()
-        this.v$.terms.$touch()
+// Handle user type change
+function changeUserType(type: UserType) {
+  userType.value = type
+  showForm.value = true
+}
 
-        if (!this.v$.name.$invalid && !this.v$.email.$invalid && !this.v$.terms.$invalid) {
-          await this.validateEmail()
-        }
-      } else if (this.step === 1) {
-        this.v$.password.$touch()
-        this.v$.confirmPassword.$touch()
-        if (!this.v$.password.$invalid && !this.v$.confirmPassword.$invalid) {
-          this.postRegister()
-        }
-      }
+// Handle form submission
+async function handleRegistration(formData: any) {
+  try {
+    isRegistering.value = true
+    registrationError.value = ''
+    
+    // Set registration data in store
+    authStore.setRegistration({
+      userType: userType.value,
+      ...formData
+    })
+    
+    // Register user
+    const success = await authStore.registerUser()
+    console.log(success)
+    if (success) {
+      // Redirect to login
+      router.push('/auth/login')
+    } else {
+      registrationError.value = 'Registration failed. Please try again.'
     }
+  } catch (error) {
+    console.error('Registration error:', error)
+    registrationError.value = 'An error occurred during registration. Please try again.'
+  } finally {
+    isRegistering.value = false
   }
-})
+}
 </script>
+
 <template>
-  <Terms :show="showTerms" @close="showTerms = false" @acceptTerms="() => {
-    showTerms = false
-    terms = true
-  }
-    " />
-  <AuthView>
-    <template v-slot:title>{{ $t('auth.signupTitle') }}</template>
-    <template v-slot:subtitle>{{ $t('auth.signupTitle') }}</template>
-    <template v-slot:content>
-      <transition name="slide-fade">
-        <userTypeToggle :types="registerTypes" :selected="selectedType" @selected="selectedType = $event"
-          v-if="step == 0" />
-        <div class="signupStep" v-else>
-          <progressBar :currentStep="step - 1" :steps="selectedType === 0 ? stepTitles : stepTitlesBusiness" />
-        </div>
-      </transition>
+  <div class="auth-container">
+    <div class="auth-card">
+      <button 
+        @click="router.push('/auth/login')" 
+        class="flex items-center text-neutral-600 hover:text-neutral-900 mb-4 transition-colors"
+      >
 
-      <transition name="slide-fade">
-        <div class="signupStep" v-if="step == 0">
-          <inputField :label="selectedType === 0 ? $t('auth.fullName') : $t('auth.fullBusinessName')"
-            :error="v$.name.$errors[0]?.$message" :value="name" @update="handleUpdate('name', $event)" type="text"
-            :placeholder="selectedType === 0 ? $t('auth.fullName') : $t('auth.businessName')" required />
-          <inputField :label="$t('auth.email')" :error="v$.email.$errors[0]?.$message || serverError" :value="email"
-            @update="handleUpdate('email', $event)" type="email" :placeholder="$t('auth.email')" required />
-          <div class="terms">
-            <div class="terms-error" v-if="v$.terms.$errors[0]?.$message">
-              <span class="error">{{ $t('validations.terms') }}</span>
-            </div>
-            <div class="terms-link-wrapper">
-              <div class="checkbox-input-wrapper">
-                <inputField type="checkbox" :value="terms" @update="handleUpdate('terms', $event)" />
-              </div>
-              <div class="terms-link">
-                <p>{{ $t('auth.accept') }}</p>
-                &nbsp;
-                <a @click="showTerms = true">{{ $t('auth.terms') }}</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="signupStep" v-else-if="step == 1">
-          <inputField :label="$t('auth.password')" :error="v$.password.$errors[0]?.$message" :value="password"
-            @update="handleUpdate('password', $event)" type="password" :placeholder="$t('auth.EnterPassword')"
-            required />
-          <inputField :label="$t('auth.confirmPassword')" :error="v$.confirmPassword.$errors[0]?.$message"
-            :value="confirmPassword" @update="handleUpdate('confirmPassword', $event)" type="password"
-            :placeholder="$t('auth.ReenterPassword')" required />
-          <div class="password-conditions">
-            <div :class="['condition', { valid: isPasswordLength }]">
-              <img src="@/assets/svg-icons/check-grey.svg?url" alt="check" />
-              <span>
-                {{ $t('auth.passwordCondition8Chars') }}
-              </span>
-            </div>
-            <div :class="['condition', { valid: isPasswordSpecial }]">
-              <img src="@/assets/svg-icons/check-grey.svg?url" alt="check" />
-              <span>
-                {{ $t('auth.passwordConditionSpecial') }}
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="signupStep check-email" v-else-if="step == 2">
-          <h1>
-            {{ $t('auth.Checkyouremail') }}
-          </h1>
-          <span>
-            {{ $t('auth.linkSentToEmail') }}
-          </span>
-        </div>
-      </transition>
-
-      <div class="button-group" v-if="step < 2">
-        <MainBtn type="green" @click="nextStep">{{ $t('auth.Next') }}</MainBtn>
+        <svg v-if="this.$i18n.locale == 'en'" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-1">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
+        <svg v-if="this.$i18n.locale == 'ar'" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 ml-1">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 19.5L15.75 12 8.25 4.5" />
+        </svg>
+        {{ $t('auth.BackToLogin') }}
+      </button>
+      
+      <div class="auth-header">
+        <h1 class="auth-title">{{ $t('auth.signupTitle') }}</h1>
+        <p class="auth-subtitle">{{ $t('auth.chooseTypeAccount') }}</p>
       </div>
-      <div class="auth-prompt" v-if="step == 0">
-        <p>{{ $t('auth.alreadyHaveAccount') }}</p>
-        <div class="link" @click="$router.push({ name: 'login' })">
-          {{ $t('auth.login') }}
+      
+      <UserTypeTabs
+        :selected-type="userType"
+        @change="changeUserType"
+      />
+      
+      <div v-if="showForm" class="transition-all duration-300">
+        <IndividualForm 
+          v-if="userType === 'individual'"
+          @submit="handleRegistration"
+          :is-submitting="isRegistering"
+        />
+        
+        <BusinessForm
+          v-else
+          @submit="handleRegistration"
+          :is-submitting="isRegistering"
+        />
+        
+        <div v-if="registrationError" class="mt-4 text-center text-error-500 text-sm">
+          {{ registrationError }}
+        </div>
+        
+        <div class="auth-footer">
+          <p>
+            {{ $t('auth.alreadyHaveAccount') }}
+            <router-link to="/auth/login" class="auth-footer-link">{{ $t('auth.login') }}</router-link>
+          </p>
         </div>
       </div>
-    </template>
-  </AuthView>
+      
+      <div v-else class="text-center text-neutral-500 mt-6">
+        {{ $t('auth.pleaseSelectType') }}
+      </div>
+    </div>
+  </div>
 </template>
-
-<style scoped>
-.green-btn {
-  width: 100%;
-}
-
-.signupStep {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.check-email {
-  justify-content: center;
-  align-items: center;
-}
-
-.check-email h1 {
-  color: var(--Dark-950, #121212);
-  font-size: 30px;
-  font-weight: 600;
-  line-height: 38px;
-}
-
-.check-email span {
-  color: var(--Dark-700, #4f4f4f);
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-}
-
-.password-conditions {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.condition {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-
-.condition.valid img {
-  filter: invert(20%) sepia(100%) saturate(3673%) hue-rotate(101deg) brightness(97%) contrast(104%);
-}
-
-.error {
-  color: var(--Error-500, var(--error, #f04438));
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-}
-
-.auth-prompt {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-}
-
-.terms {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-}
-
-.terms-link-wrapper {
-  display: flex;
-  gap: 12px;
-}
-
-.checkbox-input-wrapper {
-  display: flex;
-  align-items: center;
-}
-
-.terms-link {
-  display: flex;
-  align-items: center;
-}
-
-.terms-link a {
-  color: var(--Dark-700, #4f4f4f);
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  text-decoration-line: underline;
-  cursor: pointer;
-}
-
-.slide-fade-enter-active,
-.slide-fade-leave-active {
-  transition: all 0.25s ease-in-out;
-}
-
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-  transform: translateX(-20px);
-  opacity: 0;
-}
-</style>
