@@ -69,7 +69,7 @@ async function verifyOtp() {
     
     if (success) {
       // Navigate to home or dashboard (for demo, we'll go back to login)
-      router.push('/')
+      router.push('/marketplace')
     } else {
       verificationError.value = 'Invalid verification code. Please try again.'
     }

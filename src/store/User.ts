@@ -221,6 +221,15 @@ const instance = createStore({
         //
       })
     },
+    async verify_otp({ commit }, { phone, otp }) {
+      await axios.post('/api/otp/verify-otp-token/', { phone, otp }).then((response) => {
+        commit('setToken', response.data.token)
+        commit('setExpiry', response.data.expiry)
+        commit('setUser', response.data.user)
+        console.log(response.data.user)
+        commit('startInterval')
+      })
+    },
     // async registerBusinessProfile({ commit }, { cr_number }) {
     //   await axios.post('/api/users/business-profile/cr_number', { cr_number }).then((response) => {
     //     commit('setUser', response.data)
