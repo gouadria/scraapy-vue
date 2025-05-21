@@ -182,6 +182,8 @@ const instance = createStore({
         commit('setToken', response.data.token)
         commit('setExpiry', response.data.expiry)
         commit('setUser', response.data.user)
+        console.log(response.data.token)
+        console.log(response.data.expiry)
         console.log(response.data.user)
         commit('startInterval')
       })
