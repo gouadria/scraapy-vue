@@ -36,10 +36,14 @@ export default {
             <div class="footer-header">{{ $t('footer.product') }}</div>
             <ul class="footer-column">
               <li class="footer-item">
-                <a href="#scrap">{{ $t('footer.scrapMarketplace') }}</a>
+                <router-link to="/service_providers">
+                  {{ $t('footer.service_providers') }}
+                </router-link>
               </li>
               <li class="footer-item">
-                <a href="#services">{{ $t('footer.services') }}</a>
+                <router-link to="/subscriptions">
+                  {{ $t('footer.subscriptions') }}
+                </router-link>
               </li>
               <li class="footer-item">
                 <a href="#renting">{{ $t('footer.rentingEquipment') }}</a>
@@ -56,7 +60,7 @@ export default {
             <div class="footer-header">{{ $t('footer.company') }}</div>
             <ul class="footer-column">
               <li class="footer-item">
-                <router-link :to="{ name: 'about' }">
+                <router-link to="/about">
                   {{ $t('footer.about') }}
                 </router-link>
               </li>
@@ -101,7 +105,9 @@ export default {
                 </router-link>
               </li>
               <li class="footer-item">
-                <a href="#terms">{{ $t('footer.terms') }}</a>
+                <router-link to="/terms">
+                  {{ $t('footer.terms') }}
+                </router-link>
               </li>
               <li class="footer-item">
                 <router-link :to="{ name: 'return_policy' }">

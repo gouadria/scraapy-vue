@@ -42,6 +42,21 @@ const router = createRouter({
       component: () => import('@/views/PrivacyPolicyView.vue')
     },
     {
+      path: '/service_providers',
+      name: 'service_providers',
+      component: () => import('@/views/ServiceProvidersView.vue')
+    },
+    {
+      path: '/terms',
+      name: 'terms',
+      component: () => import('@/views/TermsView.vue')
+    },
+    {
+      path: '/subscriptions',
+      name: 'subscriptions',
+      component: () => import('@/views/SubscriptionsView.vue')
+    },
+    {
       path: '/marketplace',
       name: 'marketplace',
       component: () => import('@/views/HomeView.vue')

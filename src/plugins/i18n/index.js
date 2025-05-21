@@ -183,7 +183,9 @@ const messages = {
       poweredBy: 'Powered by',
       partner: 'Partner',
       materials: 'Materials',
-      return: 'Return & Refund'
+      return: 'Return & Refund',
+      service_providers: 'Service Providers',
+      subscriptions: 'Subscriptions'
     },
     auth: {
       Individual: 'Individual',
@@ -1502,7 +1504,9 @@ const messages = {
       poweredBy: 'تطوير',
       partner: 'كن شريكنا',
       materials: 'المواد',
-      return: 'الإرجاع والاسترداد'
+      return: 'الإرجاع والاسترداد',
+      service_providers: 'مقدمي الخدمات المساندة',
+      subscriptions: 'الاشتراكات'
     },
     qoutes: {
       performance: 'عزز أداءك بالإستفادة من أدوات تحليل البيانات عالية الدقة',
