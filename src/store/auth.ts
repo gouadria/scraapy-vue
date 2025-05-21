@@ -79,7 +79,8 @@ export const useAuthStore = defineStore('auth', () => {
         email: registration.value.email,
         contact_number: registration.value.phone,
         password: '123456789',
-        user_type: registration.value.userType
+        user_type: registration.value.userType,
+        business_sub_type: registration.value.businessType
       })
 
       console.log('Register response:', response)

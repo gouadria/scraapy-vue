@@ -8,6 +8,7 @@ import UserTypeTabs from '@/components/new/auth/UserTypeTabs.vue'
 import IndividualForm from '@/components/new/auth/IndividualForm.vue'
 import BusinessForm from '@/components/new/auth/BusinessForm.vue'
 import Button from '@/components/new/ui/Button.vue'
+import { useI18n } from 'vue-i18n'
 
 const router = useRouter()
 const authStore = useAuthStore()
@@ -16,6 +17,7 @@ const userType = ref<UserType>('individual')
 const isRegistering = ref(false)
 const registrationError = ref('')
 const showForm = ref(false)
+const { t } = useI18n()
 
 // Handle user type change
 function changeUserType(type: UserType) {
