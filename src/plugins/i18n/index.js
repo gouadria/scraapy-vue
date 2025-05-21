@@ -22,7 +22,6 @@ const messages = {
       sellScrap: 'Sell Scrap',
       search: 'Search'
     },
-
     welcome: {
       hala: 'Hala!',
       welcomeMessage: 'You can do a lot more in scraapy if you are logged in.'
@@ -188,6 +187,7 @@ const messages = {
       subscriptions: 'Subscriptions'
     },
     auth: {
+      lang: 'en',
       Individual: 'Individual',
       Business: 'Business',
       businessName: 'Enter the name of your business',
@@ -284,7 +284,6 @@ const messages = {
       WeveSentverificationCodeTo: "We've sent a verification code to",
       DidntReceiveTheCode: "Didn't receive the code?"
     },
-
     terms: {
       title: 'Terms & Conditions',
       accept: `Accept and continue`,
@@ -1513,6 +1512,7 @@ const messages = {
       Monitoring: 'تمكنك لوحات المراقبة على الإطلاع على جميع المقاييس الأساسية لشركتك في مكان واحد.'
     },
     auth: {
+      lang: 'ar',
       Individual: 'فرد',
       Business: 'عمل تجاري',
       businessName: 'الإسم التجاري',
