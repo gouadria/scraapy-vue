@@ -80,7 +80,7 @@ export default defineComponent({
         // Update the Notifications array if you need to render them elsewhere
         // Here, we only store notifications that have not been shown before.
         this.Notifications = newNotifications
-        console.log('Displayed Notifications:', this.Notifications)
+        // console.log('Displayed Notifications:', this.Notifications)
       } catch (error) {
         console.error('Failed to fetch notifications:', error)
         toast.error('Failed to load notifications')
