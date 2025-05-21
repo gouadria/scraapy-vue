@@ -94,7 +94,6 @@ window.onload = () => setTab('products');
               <button
                 className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 rounded-full font-medium text-lg transition-colors flex items-center gap-2">
                 تعرف علينا
-                <ArrowLeft size={20} />
               </button>
               <button
                 className="bg-white hover:bg-gray-50 text-teal-600 border-2 border-teal-600 px-8 py-3 rounded-full font-medium text-lg transition-colors">
@@ -105,7 +104,7 @@ window.onload = () => setTab('products');
 
           <div className="md:w-1/2 order-1 md:order-2">
             <img
-              src="https://images.pexels.com/photos/4482900/pexels-photo-4482900.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              src="@/assets/home-register.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
               alt="خدمات السكراب" className="w-full h-auto rounded-xl shadow-xl" />
           </div>
         </div>
