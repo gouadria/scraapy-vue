@@ -87,7 +87,7 @@ window.onload = () => setTab('products');
             </h1>
 
             <p className="text-gray-600 text-lg md:text-xl mb-8">
-              منصة متكاملة لخدمات السكراب، تقدم حلول مبتكرة للمنتجات والخدمات وتأجير المعدات بكل سهولة وأمان
+              منصة متكاملة لعالم التدوير (بيع - شراء - خدمات مساندة) بكل سهولة وأمان
             </p>
 
             <div className="flex flex-wrap gap-4 justify-center md:justify-center">

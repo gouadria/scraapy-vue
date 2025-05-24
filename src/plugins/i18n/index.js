@@ -84,12 +84,12 @@ const messages = {
     },
     heroSection: {
       title: 'Vendor Registration is Now Open!',
-      description:
-        'Join Scraapy as a trusted vendor and connect with customers seeking reliable and efficient scrap services. Start your journey towards a more sustainable future today.',
+      description: 'An integrated platform for the world of recycling (buying, selling, and supporting services) with ease and security',
       cta: 'Sign Up Now',
       listings: 'Go to Listings',
       signupBusiness: 'Signup as a Business',
-      trustedBy: 'Trusted by Kingdom’s largest companies'
+      trustedBy: 'Trusted by Kingdom’s largest companies',
+      knowUs: 'Get to know us'
     },
     landingSection1: {
       headerSpan: 'Sell with ease',
@@ -177,7 +177,7 @@ const messages = {
       privacy: 'Privacy',
       terms: 'Terms',
       security: 'Security',
-      address: 'ELAA9179 Building 91792571 Dammam Street, Dhahran 34512 Kingdom of Saudi Arabia',
+      address: 'ELAA9179 Dammam , Kingdom of Saudi Arabia',
       crVat: 'CR: 2050180292 | VAT: 310567108900003',
       poweredBy: 'Powered by',
       partner: 'Partner',
@@ -1410,12 +1410,12 @@ const messages = {
     },
     heroSection: {
       title: 'تم إطلاق تسجيل البائعين!',
-      description:
-        'انضم إلى سكرابي كبائع موثوق وتواصل مع العملاء الباحثين عن الخدمات والمنتجات في سوق إعادة التدوير. ابدأ رحلتك نحو مستقبل أكثر استدامة اليوم.',
+      description:'منصة متكاملة لعالم التدوير (بيع - شراء - خدمات مساندة) بكل سهولة وأمان',
       cta: 'سجل الآن',
       listings: 'الانتقال إلى القوائم',
       signupBusiness: 'الشركات',
-      trustedBy: 'شركائنا فى المملكة'
+      trustedBy: 'شركائنا فى المملكة',
+      knowUs: 'تعرف علينا'
     },
     landingSection1: {
       headerSpan: 'بع بسهولة',
@@ -1484,7 +1484,7 @@ const messages = {
       offers: 'العروض',
       bedding: 'المزادات',
       company: 'الشركة',
-      about: 'حول',
+      about: 'من نحن',
       blog: 'مدونة',
       careers: 'وظائف',
       contact: 'اتصل',
@@ -1494,16 +1494,15 @@ const messages = {
       guides: 'أدلة',
       faqs: 'الأسئلة الشائعة',
       legal: 'القانوني',
-      privacy: 'الخصوصية',
-      terms: 'الشروط',
+      privacy: 'سياسة الخصوصية',
+      terms: 'الشروط والأحكام',
       security: 'الأمان',
-      address:
-        'ELAA9179 ، شارع الدمام 624، مبنى 9179، الرقم الإضافي 2571، الظهران 34512  المملكة العربية السعودية',
+      address: 'ELAA9179 ، الدمام ، المملكة العربية السعودية',
       crVat: 'السجل التجاري: 2050180292 | ضريبة القيمة المضافة: 310567108900003',
       poweredBy: 'تطوير',
       partner: 'كن شريكنا',
-      materials: 'المواد',
-      return: 'الإرجاع والاسترداد',
+      materials: 'المواد المجهولة',
+      return: 'سياسة الإرجاع والاسترداد',
       service_providers: 'مقدمي الخدمات المساندة',
       subscriptions: 'الاشتراكات'
     },

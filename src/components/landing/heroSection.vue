@@ -44,7 +44,7 @@ window.addEventListener('load', () => {
       <div class="hero-cta">
         <div class="hero-cta-wrapper">
           <div class="hero-cta-text">
-            <h1>{{ $t('heroSection.title') }}</h1>
+            <h1>{{ $t('listings.scraapy') }}</h1>
             <h3>
               {{ $t('heroSection.description') }}
             </h3>
@@ -52,17 +52,15 @@ window.addEventListener('load', () => {
           <div class="cta-buttons">
             <MainBtn
               type="green"
-              @click="$router.push({ name: 'listings' })"
-              v-if="$userStore.getters.isAuthenticated"
+              @click="$router.push({ name: 'about' })"
             >
-              {{ $t('heroSection.listings') }}
+              {{ $t('heroSection.knowUs') }}
             </MainBtn>
             <MainBtn
-              v-else
               type="green"
-              @click="$router.push({ name: 'register' })"
+              @click="$router.push({ name: 'marketplace' })"
             >
-              {{ $t('heroSection.cta') }}
+              {{ $t('footer.services') }}
             </MainBtn>
           </div>
         </div>

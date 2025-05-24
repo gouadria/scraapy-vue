@@ -46,13 +46,10 @@ export default {
                 </router-link>
               </li>
               <li class="footer-item">
-                <a href="#renting">{{ $t('footer.rentingEquipment') }}</a>
+                <a href="#renting">اعمال الهدم</a>
               </li>
               <li class="footer-item">
-                <a href="#offers">{{ $t('footer.offers') }}</a>
-              </li>
-              <li class="footer-item">
-                <a href="#bedding">{{ $t('footer.bedding') }}</a>
+                <a href="#offers">الامتياز التجاري</a>
               </li>
             </ul>
           </div>
@@ -80,23 +77,6 @@ export default {
             </ul>
           </div>
           <div class="footer-column">
-            <div class="footer-header">{{ $t('footer.resources') }}</div>
-            <ul class="footer-column">
-              <li class="footer-item">
-                <a href="#examples">{{ $t('footer.examples') }}</a>
-              </li>
-              <li class="footer-item">
-                <a href="#community">{{ $t('footer.community') }}</a>
-              </li>
-              <li class="footer-item">
-                <a href="#guides">{{ $t('footer.guides') }}</a>
-              </li>
-              <li class="footer-item">
-                <a href="#faqs">{{ $t('footer.faqs') }}</a>
-              </li>
-            </ul>
-          </div>
-          <div class="footer-column">
             <div class="footer-header">{{ $t('footer.legal') }}</div>
             <ul class="footer-column">
               <li class="footer-item">
@@ -117,6 +97,11 @@ export default {
               <li class="footer-item">
                 <router-link :to="{ name: 'materials_policy' }">
                   {{ $t('footer.materials') }}
+                </router-link>
+              </li>
+              <li class="footer-item">
+                <router-link :to="{ name: 'materials_policy' }">
+                  سياسة الجودة
                 </router-link>
               </li>
             </ul>
