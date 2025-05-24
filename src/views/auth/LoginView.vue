@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { useVuelidate } from '@vuelidate/core'
-import { required, email, minLength, helpers } from '@vuelidate/validators'
+import { required, minLength, helpers } from '@vuelidate/validators'
 import AuthView from '@/views/AuthView.vue'
 import MainBtn from '@/components/UIElements/MainBtn.vue'
 import inputField from '@/components/UIElements/inputField.vue'
@@ -16,7 +16,8 @@ export default defineComponent({
     OTP
   },
   setup() {
-    return { v$: useVuelidate() }
+    const v$ = useVuelidate()
+    return { v$ }
   },
   data() {
     return {
@@ -34,35 +35,35 @@ export default defineComponent({
   },
   computed: {
     loginMethodText() {
-      return this.isPasswordLogin ? this.$t('auth.loginWithSSO') : this.$t('auth.loginWithPassword')
+      return this.isPasswordLogin
+        ? this.$t('auth.loginWithSSO')
+        : this.$t('auth.loginWithPassword')
     },
     formatTime() {
       const minutes = Math.floor(this.otp_timeout_seconds / 60)
       const seconds = this.otp_timeout_seconds % 60
-      return '' + minutes + ':' + (seconds < 10 ? '0' + seconds : seconds)
+      return `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`
     }
   },
   validations() {
     return {
       email_or_phone: {
-        required: helpers.withMessage(() => this.$t('validations.requiredField'), required),
-        // email: helpers.withMessage(() => this.$t('validations.email'), email)
+        required: helpers.withMessage(
+          () => this.$t('validations.requiredField'),
+          required
+        )
       },
-      // password: {
-      //   required: helpers.withMessage(() => this.$t('validations.requiredField'), required),
-      //   minLength: helpers.withMessage(
-      //     () => this.$t('validations.minLength', { min: 8 }),
-      //     minLength(8)
-      //   )
-      // },
-      otp: { 
-        // required,
-        // numeric,
-        minLength: minLength(6),
-        // maxLength: maxLength(6)
+      otp: {
+        minLength: helpers.withMessage(
+          () => this.$t('validations.minLength', { min: 6 }),
+          minLength(6)
+        )
       },
       otps: {
-        minLength: minLength(6),
+        minLength: helpers.withMessage(
+          () => this.$t('validations.minLength', { min: 6 }),
+          minLength(6)
+        )
       }
     }
   },
@@ -74,14 +75,14 @@ export default defineComponent({
       this.isPasswordLogin = !this.isPasswordLogin
       this.step = 1
     },
-    handleUpdate(field, value) {
-      this.v$[field].$touch()
+    handleUpdate(field: string, value: string) {
+      this.v$[field]?.$touch()
       this[field] = value
     },
     startCountdown() {
-      const contdown_time_sec = 120
+      const countdownTimeSec = 120
+      this.otp_timeout_seconds = countdownTimeSec
 
-      this.otp_timeout_seconds = contdown_time_sec
       const interval = setInterval(() => {
         if (this.otp_timeout_seconds > 0) {
           this.otp_timeout_seconds--
@@ -90,83 +91,66 @@ export default defineComponent({
         }
       }, 1000)
     },
-    handleOtpUpdate(newOtp) {
-      this.otp = newOtp.slice(0, 6); // Limit to 6 digits
+    handleOtpUpdate(newOtp: string) {
+      this.otp = newOtp.slice(0, 6)
     },
-    handleSingleInput(event) {
-      // Ensure only one digit per input
-      if (event.target.value.length > 1) {
-        event.target.value = event.target.value.slice(-1);
+    handleSingleInput(event: Event) {
+      const target = event.target as HTMLInputElement
+      if (target.value.length > 1) {
+        target.value = target.value.slice(-1)
       }
     },
     nextStep() {
-      this.step = 2
-        this.startCountdown()
       if (this.isPasswordLogin) {
         this.v$.email_or_phone.$touch()
-        // this.v$.password.$touch()
         if (!this.v$.email_or_phone.$invalid) {
           this.postLogin()
         }
-        return
-      }
-      // OTP login
-      if (this.step === 1) {
-        this.step = 2
-        this.startCountdown()
       } else {
-        this.$router.push({ name: 'home' })
+        if (this.step === 1) {
+          this.step = 2
+          this.startCountdown()
+        } else {
+          this.$router.push({ name: 'home' })
+        }
       }
     },
     verifyStep() {
-      console.log(this.$data.otps)
-      // this.step = 2
-      //   this.startCountdown()
-      // if (this.otp) {
-        // console.log(this.otp)
-        // this.v$.otp.$touch()
-        // this.v$.password.$touch()
-          this.postVerify()
-        // return
-      // }
+      if (this.otps.length >= 6) {
+        this.postVerify()
+      } else {
+        this.v$.otps.$touch()
+      }
     },
     async postLogin() {
-      await this.$userStore
-        .dispatch('login2', {
+      try {
+        await this.$userStore.dispatch('login2', {
           email_or_phone: this.email_or_phone,
         })
-        .then(() => {
-          this.isOtpButton = true
-          this.step = 2
-          this.startCountdown()
-          // this.$router.push({ name: 'marketplace' })
-        })
-        .catch((error) => {
-          this.loginError = true
-          console.log('error:', error )
-        })
+        this.isOtpButton = true
+        this.step = 2
+        this.startCountdown()
+      } catch (error) {
+        this.loginError = true
+        console.error('Login error:', error)
+      }
     },
     async postVerify() {
-      await this.$userStore
-        .dispatch('verify_otp', {
+      try {
+        await this.$userStore.dispatch('verify_otp', {
           phone: this.email_or_phone,
           otp: this.otps
         })
-        .then(() => {
-          this.$router.push({ name: 'marketplace' })
-          // this.isOtpButton = true
-          // this.step = 2
-          // this.startCountdown()
-          // this.$router.push({ name: 'marketplace' })
-        })
-        .catch((error) => {
-          this.loginError = true
-          console.log('error:', error )
-        })
+        this.$router.push({ name: 'marketplace' })
+      } catch (error) {
+        this.loginError = true
+        console.error('OTP verification error:', error)
+      }
     }
   }
 })
 </script>
+
 
 <template>
   <AuthView>

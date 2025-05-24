@@ -44,7 +44,7 @@ window.addEventListener('load', () => {
       <div class="hero-cta">
         <div class="hero-cta-wrapper">
           <div class="hero-cta-text">
-            <h1>{{ $t('listings.scraapy') }}</h1>
+            <h1>{{ $t('heroSection.scraapy') }}</h1>
             <h3>
               {{ $t('heroSection.description') }}
             </h3>
@@ -60,38 +60,14 @@ window.addEventListener('load', () => {
               type="green"
               @click="$router.push({ name: 'marketplace' })"
             >
-              {{ $t('footer.services') }}
+              {{ $t('heroSection.services') }}
             </MainBtn>
           </div>
         </div>
       </div>
-      <div class="hero-art btn_none">
-        <div class="hero-art-top">
-          <img src="@/assets/wings-2.png" alt="windmill illustration" />
-          <img src="@/assets/wings-1.png" alt="windmill illustration" />
-          <img src="@/assets/tree-1.png" alt="windmill illustration" />
-          <img src="@/assets/tree-2.png" alt="windmill illustration" />
-          <img src="@/assets/tree-3.png" alt="windmill illustration" />
-        </div>
-        <div class="hero-art-mid">
-          <img src="@/assets/windmill-1.png" alt="windmill illustration" />
-          <img src="@/assets/windmill-2.png" alt="windmill illustration" />
-        </div>
-        <div class="hero-art-bot">
-          <img src="@/assets/hero-art-recycle.png" alt="Recycle illustration" />
-        </div>
-
-        <div class="hero-art-background">
-          <img
-            class="hero-art-city"
-            src="@/assets/hero-art-city.webp"
-            alt="Green city illustration"
-          />
-        </div>
-      </div>
 
       <div class="new_hero">
-        <img src="@/assets/newhero.png" alt="logo" class="hero_logo" />
+        <img src="@/assets/home-v.gif" alt="logo" class="hero_logo" />
       </div>
     </div>
 
@@ -391,6 +367,7 @@ html[dir='rtl'] .hero-art-city.loaded {
 }
 .hero_logo {
   width: 100%;
+  padding: 30px;
 }
 .new_hero {
   display: flex;

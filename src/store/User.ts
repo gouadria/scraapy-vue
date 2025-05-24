@@ -66,7 +66,7 @@ const instance = createStore({
   } as State,
   getters: {
     isAuthenticated(state) {
-      return state.token !== null && state.expiry !== null && Date.now() < Date.parse(state.expiry)
+     return state.token !== null
     },
     isIndividual(state, getters) {
       return getters.isAuthenticated && state.user?.user_type === 'individual'
@@ -84,16 +84,15 @@ const instance = createStore({
   mutations: {
     setUser(state, user: User) {
       state.user = user
-      // console.log(user)
       state.user_timestamp = Date.now()
-      // if (state.expiry !== null) {
-        // const expiry = Date.parse(state.expiry)
-        // const now = Date.now()
-        // const timeLeft = expiry - now
-        // if (timeLeft < tokenTTL) {
-          // state.expiry = new Date(now + tokenTTL).toISOString()
-        // }
-      // }
+      if (state.expiry !== null) {
+        const expiry = Date.parse(state.expiry)
+        const now = Date.now()
+        const timeLeft = expiry - now
+        if (timeLeft < tokenTTL) {
+          state.expiry = new Date(now + tokenTTL).toISOString()
+        }
+      }
     },
     setBusinessProfile(state: State, user: User) {
       if (state.user) {
@@ -181,7 +180,7 @@ const instance = createStore({
     async login({ commit }, { email, password }) {
       await axios.post('/api/users/token/login/', { email, password }).then((response) => {
         commit('setToken', response.data.token)
-        // commit('setExpiry', response.data.expiry)
+        commit('setExpiry', response.data.expiry)
         commit('setUser', response.data.user)
         console.log(response.data.token)
         console.log(response.data.expiry)
@@ -228,28 +227,11 @@ const instance = createStore({
       await axios.post('/api/otp/verify-otp-token/', { phone, otp }).then((response) => {
         commit('setToken', response.data.token)
         commit('setExpiry', response.data.expiry)
-        // commit('setUser', {
-        //   name: "anis",
-        //   email: "anis@j.com",
-        //   business_profile: null,
-        //   user_type: "business",
-        //   contact_number: "+966557780674"
-        // })
         commit('setUser', response.data.user)
-        // console.log(response.data.token)
-        // console.log(response.data.expiry)
-        // console.log(response.data.user)
-        console.log('commit token ' + commit('setToken', response.data.token))
-        console.log('commit user ' + commit('setUser', {
-          name: "anis",
-          email: "anis@j.com",
-          business_profile: null,
-          user_type: "business",
-          contact_number: "+966557780674"
-        }))
+        console.log(response.data.token)
+        console.log(response.data.expiry)
+        console.log(response.data.user)
         commit('startInterval')
-      }).catch(error => {
-        console.error(error);
       })
     },
     // async registerBusinessProfile({ commit }, { cr_number }) {
@@ -333,7 +315,6 @@ const instance = createStore({
     async patchUser({ commit }, { user }) {
       await axios.patch('/api/users/me/', user).then((response) => {
         commit('setUser', response.data)
-        console.log(response.data)
       })
     },
     async updatePassword({ commit }, { new_password, current_password }) {
@@ -347,7 +328,6 @@ const instance = createStore({
     async getUser({ commit }) {
       await axios.get('/api/users/me/').then((response) => {
         commit('setUser', response.data)
-        console.log(response.data)
       })
     },
     async clearCart({ commit }) {

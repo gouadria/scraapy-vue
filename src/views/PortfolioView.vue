@@ -9,60 +9,51 @@ export default {
     heroSection,
     footerComponant,
   },
+  data() {
+    return {
+      activeTab: 'products',
+      services: {
+        products: [
+          {
+            icon: '🛍️',
+            title: "سكراب الحديد",
+            description: "تداول وبيع وشراء سكراب الحديد بمختلف أنواعه",
+            image: "https://images.pexels.com/photos/2881762/pexels-photo-2881762.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2 "
+          },
+          {
+            icon: '📦',
+            title: "سكراب الألمنيوم",
+            description: "تداول الألمنيوم المعاد تدويره بأسعار تنافسية",
+            image: "https://images.pexels.com/photos/5793929/pexels-photo-5793929.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2 "
+          }
+        ],
+        services: [
+          {
+            icon: '🔄',
+            title: "إعادة تدوير المعادن",
+            description: "خدمة متكاملة لإعادة تدوير المعادن بطرق صديقة للبيئة",
+            image: "https://images.pexels.com/photos/5558536/pexels-photo-5558536.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2 "
+          },
+          {
+            icon: '🚚',
+            title: "خدمة النقل والتوصيل",
+            description: "نقل السكراب من وإلى أي مكان بسرعة وأمان",
+            image: "https://images.pexels.com/photos/2199293/pexels-photo-2199293.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2 "
+          }
+        ]
+      }
+    };
+  },
   mounted() {
     this.$router.push({
       name: 'home',
     })
   },
-}
-
-const services = {
-  products: [
-    {
-      icon: '🛍️',
-      title: "سكراب الحديد",
-      description: "تداول وبيع وشراء سكراب الحديد بمختلف أنواعه",
-      image: "https://images.pexels.com/photos/2881762/pexels-photo-2881762.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2 "
-    },
-    {
-      icon: '📦',
-      title: "سكراب الألمنيوم",
-      description: "تداول الألمنيوم المعاد تدويره بأسعار تنافسية",
-      image: "https://images.pexels.com/photos/5793929/pexels-photo-5793929.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2 "
+  computed: {
+      currentServices() {
+        return this.services[this.activeTab];
+      }
     }
-  ],
-  services: [
-    {
-      icon: '🔄',
-      title: "إعادة تدوير المعادن",
-      description: "خدمة متكاملة لإعادة تدوير المعادن بطرق صديقة للبيئة",
-      image: "https://images.pexels.com/photos/5558536/pexels-photo-5558536.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2 "
-    },
-    {
-      icon: '🚚',
-      title: "خدمة النقل والتوصيل",
-      description: "نقل السكراب من وإلى أي مكان بسرعة وأمان",
-      image: "https://images.pexels.com/photos/2199293/pexels-photo-2199293.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2 "
-    }
-  ]
-};
-
-function setTab(tab) {
-  const container = document.getElementById("service-cards");
-  container.innerHTML = "";
-
-  services[tab].forEach(service => {
-    container.innerHTML += `
-            <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105">
-              <img src="${service.image}" alt="${service.title}" class="w-full h-48 object-cover" />
-              <div class="p-6">
-                <div class="text-teal-600 mb-4 text-2xl">${service.icon}</div>
-                <h3 class="text-xl font-semibold text-gray-800 mb-2">${service.title}</h3>
-                <p class="text-gray-600">${service.description}</p>
-              </div>
-            </div>
-          `;
-  });
 }
 
 // تحميل الافتراضي عند بدء الصفحة
@@ -84,7 +75,7 @@ window.onload = () => setTab('products');
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div
-            class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow flex items-start gap-4 text-right">
+            class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow flex items-start gap-4">
             <div class="p-3 bg-primary-100 rounded-full text-teal-600">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -97,12 +88,12 @@ window.onload = () => setTab('products');
               </svg>
             </div>
             <div>
-              <h3 class="font-semibold text-xl mb-1 text-gray-800">خدمة توصيل سريعة</h3>
-              <p class="text-gray-600">نقل وتوصيل المنتجات بكفاءة عالية</p>
+              <h3 class="font-semibold text-xl mb-1 text-gray-800">{{ $t('portfolio.feature1') }}</h3>
+              <p class="text-gray-600">{{ $t('portfolio.dFeature1') }}</p>
             </div>
           </div>
           <div
-            class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow flex items-start gap-4 text-right">
+            class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow flex items-start gap-4">
             <div class="p-3 bg-primary-100 rounded-full text-teal-600"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                 height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users ">
@@ -112,20 +103,20 @@ window.onload = () => setTab('products');
                 <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
               </svg></div>
             <div>
-              <h3 class="font-semibold text-xl mb-1 text-gray-800">ثقة وأمان</h3>
-              <p class="text-gray-600">نضمن سلامة المعاملات</p>
+              <h3 class="font-semibold text-xl mb-1 text-gray-800">{{ $t('portfolio.feature2') }}</h3>
+              <p class="text-gray-600">{{ $t('portfolio.dFeature2') }}</p>
             </div>
           </div>
           <div
-            class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow flex items-start gap-4 text-right">
+            class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow flex items-start gap-4">
             <div class="p-3 bg-primary-100 rounded-full text-teal-600"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                 height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap ">
                 <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
               </svg></div>
             <div>
-              <h3 class="font-semibold text-xl mb-1 text-gray-800">خدمة متكاملة</h3>
-              <p class="text-gray-600">منتجات وخدمات وتأجير معدات في مكان واحد</p>
+              <h3 class="font-semibold text-xl mb-1 text-gray-800">{{ $t('portfolio.feature3') }}</h3>
+              <p class="text-gray-600">{{ $t('portfolio.dFeature3') }}</p>
             </div>
           </div>
         </div>
@@ -137,38 +128,46 @@ window.onload = () => setTab('products');
       <div class="container mx-auto px-4 md:px-8">
         <!-- عنوان القسم -->
         <div class="text-center mb-12">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">خدماتنا المتميزة</h2>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">{{ $t('portfolio.ourSservices') }}</h2>
           <p class="text-gray-600 max-w-3xl mx-auto">
-            نقدم مجموعة متكاملة من المنتجات والخدمات وخيارات تأجير المعدات لتلبية جميع احتياجاتك في مجال إدارة النفايات
-            الخطرة والغير خطرة
+            {{ $t('portfolio.dOurSservices') }}
           </p>
         </div>
 
         <!-- علامات التبويب -->
         <div class="flex justify-center gap-4 mb-10">
-          <button onclick="setTab('products')"
-            class="px-6 py-3 rounded-full font-medium transition-colors bg-primary text-white">المنتجات</button>
-          <button onclick="setTab('services')"
-            class="px-6 py-3 rounded-full font-medium transition-colors bg-white text-gray-700 hover:bg-gray-100">الخدمات</button>
-          <button onclick="setTab('equipment')"
-            class="px-6 py-3 rounded-full font-medium transition-colors bg-white text-gray-700 hover:bg-gray-100">تأجير
-            المعدات</button>
+          <button @click="activeTab = 'products'" :class="['px-6 py-3 rounded-full font-medium transition-colors', activeTab === 'products' ? 'bg-primary text-white' : 'bg-white text-gray-700 hover:bg-gray-100']">
+            المنتجات
+          </button>
+          <button @click="activeTab = 'services'" :class="['px-6 py-3 rounded-full font-medium transition-colors', activeTab === 'services' ? 'bg-primary text-white' : 'bg-white text-gray-700 hover:bg-gray-100']">
+            الخدمات
+          </button>
+          <button @click="activeTab = 'equipment'" :class="['px-6 py-3 rounded-full font-medium transition-colors', activeTab === 'equipment' ? 'bg-primary text-white' : 'bg-white text-gray-700 hover:bg-gray-100']">
+            تأجير المعدات
+          </button>
         </div>
 
         <!-- بطاقات الخدمات -->
         <div id="service-cards" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- سيتم تحديث هذه البطاقات ديناميكيًا -->
+          <div v-for="service in currentServices" :key="service.title" class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105">
+              <img :src="service.image" :alt="service.title" class="w-full h-48 object-cover" />
+              <div class="p-6">
+                <div class="text-teal-600 mb-4 text-2xl">{{ service.icon }}</div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">{{ service.title }}</h3>
+                <p class="text-gray-600">{{ service.description }}</p>
+              </div>
+            </div>
         </div>
       </div>
     </section>
 
     <!-- how it work -->
-    <section id="كيف نعمل" className="py-16 bg-white">
+    <section className="py-16 bg-white">
       <div className="container mx-auto px-4 md:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">كيف تعمل منصة سكرابي؟</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">{{ $t('portfolio.howWork') }}</h2>
           <p className="text-gray-600 max-w-3xl mx-auto">
-            خطوات بسيطة وسهلة للتعامل مع منصتنا في مجال إدارة النفايات الخطرة والغير خطرة
+            {{ $t('portfolio.dHowWork') }}
           </p>
         </div>
 
@@ -183,8 +182,8 @@ window.onload = () => setTab('products');
                 <line x1="19" x2="19" y1="8" y2="14"></line>
                 <line x1="22" x2="16" y1="11" y2="11"></line>
               </svg></div>
-            <h3 class="font-bold text-xl mb-2 text-gray-800">إنشاء حساب</h3>
-            <p class="text-gray-600 text-center text-sm">قم بالتسجيل كفرد أو عمل تجاري بخطوات بسيطة</p>
+            <h3 class="font-bold text-xl mb-2 text-gray-800">{{ $t('portfolio.step1') }}</h3>
+            <p class="text-gray-600 text-center text-sm">{{ $t('portfolio.dStep1') }}</p>
           </div>
           <div class="flex flex-col items-center w-[calc(100%/5)]">
             <div class="bg-purple-50 text-purple-600 p-4 rounded-full mb-4"><svg xmlns="http://www.w3.org/2000/svg"
@@ -193,8 +192,8 @@ window.onload = () => setTab('products');
                 <circle cx="11" cy="11" r="8"></circle>
                 <path d="m21 21-4.3-4.3"></path>
               </svg></div>
-            <h3 class="font-bold text-xl mb-2 text-gray-800">تصفح الخدمات</h3>
-            <p class="text-gray-600 text-center text-sm">ابحث عن المنتجات والخدمات التي تناسب احتياجاتك</p>
+            <h3 class="font-bold text-xl mb-2 text-gray-800">{{ $t('portfolio.step2') }}</h3>
+            <p class="text-gray-600 text-center text-sm">{{ $t('portfolio.dStep2') }}</p>
           </div>
           <div class="flex flex-col items-center w-[calc(100%/5)]">
             <div class="bg-orange-50 text-orange-600 p-4 rounded-full mb-4"><svg xmlns="http://www.w3.org/2000/svg"
@@ -208,8 +207,8 @@ window.onload = () => setTab('products');
                 <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"></path>
                 <path d="M3 4h8"></path>
               </svg></div>
-            <h3 class="font-bold text-xl mb-2 text-gray-800">طلب شراء</h3>
-            <p class="text-gray-600 text-center text-sm">خدمة - منتج - تاجير</p>
+            <h3 class="font-bold text-xl mb-2 text-gray-800">{{ $t('portfolio.step3') }}</h3>
+            <p class="text-gray-600 text-center text-sm">{{ $t('portfolio.dStep3') }}</p>
           </div>
           <div class="flex flex-col items-center w-[calc(100%/5)]">
             <div class="bg-green-50 text-green-600 p-4 rounded-full mb-4"><svg xmlns="http://www.w3.org/2000/svg"
@@ -221,8 +220,8 @@ window.onload = () => setTab('products');
                 <circle cx="17" cy="18" r="2"></circle>
                 <circle cx="7" cy="18" r="2"></circle>
               </svg></div>
-            <h3 class="font-bold text-xl mb-2 text-gray-800">إتمام العملية</h3>
-            <p class="text-gray-600 text-center text-sm">أتمم عملية البيع أو الشراء بكل سهولة ويسر</p>
+            <h3 class="font-bold text-xl mb-2 text-gray-800">{{ $t('portfolio.step4') }}</h3>
+            <p class="text-gray-600 text-center text-sm">{{ $t('portfolio.dStep4') }}</p>
           </div>
           <div class="flex flex-col items-center w-[calc(100%/5)]">
             <div class="bg-primary-100 text-teal-600 p-4 rounded-full mb-4"><svg xmlns="http://www.w3.org/2000/svg"
@@ -231,8 +230,8 @@ window.onload = () => setTab('products');
                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                 <path d="m9 11 3 3L22 4"></path>
               </svg></div>
-            <h3 class="font-bold text-xl mb-2 text-gray-800">استلام الخدمة</h3>
-            <p class="text-gray-600 text-center text-sm">استلم منتجاتك أو خدماتك واستمتع بتجربة متميزة</p>
+            <h3 class="font-bold text-xl mb-2 text-gray-800">{{ $t('portfolio.step5') }}</h3>
+            <p class="text-gray-600 text-center text-sm">{{ $t('portfolio.dStep5') }}</p>
           </div>
         </div>
 
@@ -247,8 +246,8 @@ window.onload = () => setTab('products');
                 <line x1="22" x2="16" y1="11" y2="11"></line>
               </svg></div>
             <div>
-              <h3 class="font-bold text-xl mb-1 text-gray-800">إنشاء حساب</h3>
-              <p class="text-gray-600">قم بالتسجيل كبائع أو مشتري بخطوات بسيطة</p>
+              <h3 class="font-bold text-xl mb-1 text-gray-800">{{ $t('portfolio.step1') }}</h3>
+              <p class="text-gray-600">{{ $t('portfolio.dStep1') }}</p>
             </div>
           </div>
           <div class="flex items-start gap-4">
@@ -260,8 +259,8 @@ window.onload = () => setTab('products');
                 <path d="m21 21-4.3-4.3"></path>
               </svg></div>
             <div>
-              <h3 class="font-bold text-xl mb-1 text-gray-800">تصفح الخدمات</h3>
-              <p class="text-gray-600">ابحث عن المنتجات والخدمات التي تناسب احتياجاتك</p>
+              <h3 class="font-bold text-xl mb-1 text-gray-800">{{ $t('portfolio.step2') }}</h3>
+              <p class="text-gray-600">{{ $t('portfolio.dStep2') }}</p>
             </div>
           </div>
           <div class="flex items-start gap-4">
@@ -278,8 +277,8 @@ window.onload = () => setTab('products');
                 <path d="M3 4h8"></path>
               </svg></div>
             <div>
-              <h3 class="font-bold text-xl mb-1 text-gray-800">تواصل وتفاوض</h3>
-              <p class="text-gray-600">تواصل مباشرة مع البائعين أو المشترين وتفاوض على الأسعار</p>
+              <h3 class="font-bold text-xl mb-1 text-gray-800">{{ $t('portfolio.step3') }}</h3>
+              <p class="text-gray-600">{{ $t('portfolio.dStep3') }}</p>
             </div>
           </div>
           <div class="flex items-start gap-4">
@@ -294,8 +293,8 @@ window.onload = () => setTab('products');
                 <circle cx="7" cy="18" r="2"></circle>
               </svg></div>
             <div>
-              <h3 class="font-bold text-xl mb-1 text-gray-800">إتمام العملية</h3>
-              <p class="text-gray-600">أتمم عملية البيع أو الشراء بكل سهولة ويسر</p>
+              <h3 class="font-bold text-xl mb-1 text-gray-800">{{ $t('portfolio.step4') }}</h3>
+              <p class="text-gray-600">{{ $t('portfolio.dStep4') }}</p>
             </div>
           </div>
           <div class="flex items-start gap-4">
@@ -306,31 +305,31 @@ window.onload = () => setTab('products');
                 <path d="m9 11 3 3L22 4"></path>
               </svg></div>
             <div>
-              <h3 class="font-bold text-xl mb-1 text-gray-800">استلام الخدمة</h3>
-              <p class="text-gray-600">استلم منتجاتك أو خدماتك واستمتع بتجربة متميزة</p>
+              <h3 class="font-bold text-xl mb-1 text-gray-800">{{ $t('portfolio.step5') }}</h3>
+              <p class="text-gray-600">{{ $t('portfolio.dStep5') }}</p>
             </div>
           </div>
         </div>
 
         <div className="mt-16 text-center">
           <p className="text-gray-700 text-lg mb-6">
-            انضم إلى آلاف المستخدمين المستفيدين من خدماتنا واستمتع بتجربة متميزة
+            {{ $t('portfolio.join') }}
           </p>
           <button
-            className="bg-primary hover:bg-teal-700 text-white px-8 py-3 rounded-full font-medium text-lg transition-colors">
-            سجل الآن واستفد من خدماتنا
+            className="bg-primary hover:bg-secondary text-white px-8 py-3 rounded-full font-medium text-lg transition-colors">
+            {{ $t('portfolio.joinBtn') }}
           </button>
         </div>
       </div>
     </section>
 
     <!-- Testimonial -->
-    <section className="py-16 bg-primary-100">
+    <section className="py-16 bg-secondary-m">
       <div className="container mx-auto px-4 md:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">ماذا يقول عملاؤنا</h2>
-          <p className="text-gray-600 max-w-3xl mx-auto">
-            نفخر بثقة عملائنا وتقييماتهم الإيجابية لخدماتنا وتجربتهم مع منصة سكرابي
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{{ $t('portfolio.whatSay') }}</h2>
+          <p className="text-white max-w-3xl mx-auto">
+            {{ $t('portfolio.dWhatSay') }}
           </p>
         </div>
 
@@ -354,54 +353,54 @@ window.onload = () => setTab('products');
 
     <!-- Contact -->
 
-    <section id="تواصل معنا" className="py-16 bg-white">
+    <section className="py-16 bg-white">
       <div className="container mx-auto px-4 md:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">تواصل معنا</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">{{ $t('portfolio.contactUs') }}</h2>
           <p className="text-gray-600 max-w-3xl mx-auto">
-            نحن هنا لمساعدتك والإجابة على جميع استفساراتك. يمكنك التواصل معنا من خلال أي من الطرق التالية
+            {{ $t('portfolio.dContactUs') }}
           </p>
         </div>
 
         <div className="flex flex-col md:flex-row gap-8">
 
           <div className="md:w-7/12 bg-white p-8 rounded-xl shadow-md">
-            <h3 className="text-2xl font-bold text-gray-800 mb-6">ارسل لنا رسالة</h3>
+            <h3 className="text-2xl font-bold text-gray-800 mb-6">{{ $t('portfolio.sendUsMsg') }}</h3>
 
             <form className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-gray-700 font-medium mb-2">الاسم</label>
+                  <label htmlFor="name" className="block text-gray-700 font-medium mb-2">{{ $t('portfolio.name') }}</label>
                   <input type="text" id="name"
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 transition"
-                    placeholder="أدخل اسمك" />
+                    :placeholder="$t('portfolio.enterName')" />
                 </div>
                 <div>
-                  <label htmlFor="phone" className="block text-gray-700 font-medium mb-2">الرقم</label>
+                  <label htmlFor="phone" className="block text-gray-700 font-medium mb-2">{{ $t('portfolio.number') }}</label>
                   <input type="tel" id="phone"
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 transition"
-                    placeholder="أدخل رقمك" />
+                    :placeholder="$t('portfolio.enterNumber')" />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="subject" className="block text-gray-700 font-medium mb-2">الموضوع</label>
+                <label htmlFor="subject" className="block text-gray-700 font-medium mb-2">{{ $t('portfolio.subject') }}</label>
                 <input type="text" id="subject"
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 transition"
-                  placeholder="موضوع الرسالة" />
+                  :placeholder="$t('portfolio.enterSubject')" />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-gray-700 font-medium mb-2">الرسالة</label>
+                <label htmlFor="message" className="block text-gray-700 font-medium mb-2">{{ $t('portfolio.msg') }}</label>
                 <textarea id="message" rows={4}
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 transition"
-                  placeholder="اكتب رسالتك هنا..."></textarea>
+                  :placeholder="$t('portfolio.enterMsg')"></textarea>
               </div>
 
               <div>
                 <button type="submit"
-                  className="bg-primary hover:bg-teal-700 text-white px-6 py-3 rounded-lg font-medium transition-colors w-full">
-                  إرسال الرسالة
+                  className="bg-primary hover:bg-secondary text-white px-6 py-3 rounded-lg font-medium transition-colors w-full">
+                  {{ $t('portfolio.sendMsg') }}
                 </button>
               </div>
             </form>
@@ -409,7 +408,7 @@ window.onload = () => setTab('products');
 
           <div className="md:w-5/12">
             <div className="bg-primary-m text-white p-8 rounded-xl shadow-md mb-8">
-              <h3 className="text-2xl font-bold mb-6">معلومات التواصل</h3>
+              <h3 className="text-2xl font-bold mb-6">{{ $t('portfolio.contactInformation') }}</h3>
 
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
@@ -422,8 +421,8 @@ window.onload = () => setTab('products');
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-lg">العنوان</h4>
-                    <p>الصناعية، الدمام، المملكة العربية السعودية</p>
+                    <h4 className="font-semibold text-lg">{{ $t('portfolio.address') }}</h4>
+                    <p>{{ $t('portfolio.dAddress') }}</p>
                   </div>
                 </div>
 
@@ -438,8 +437,8 @@ window.onload = () => setTab('products');
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-lg">الهاتف</h4>
-                    <p>+966547909060</p>
+                    <h4 className="font-semibold text-lg">{{ $t('portfolio.phone') }}</h4>
+                    <p>+966561203390</p>
                   </div>
                 </div>
 
@@ -453,7 +452,7 @@ window.onload = () => setTab('products');
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-lg">البريد الإلكتروني</h4>
+                    <h4 className="font-semibold text-lg">{{ $t('portfolio.email') }}</h4>
                     <p>info@scraapy.sa</p>
                   </div>
                 </div>
@@ -468,20 +467,20 @@ window.onload = () => setTab('products');
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-lg">ساعات العمل</h4>
-                    <p>من الأحد إلى الخميس: 8 صباحاً - 6 مساءً</p>
-                    <p>الجمعة والسبت: مغلق</p>
+                    <h4 className="font-semibold text-lg">{{ $t('portfolio.workingHours') }}</h4>
+                    <p>{{ $t('portfolio.dWorkingHours') }}</p>
+                    <p>{{ $t('portfolio.dWorkingHours2') }}</p>
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="bg-gray-100 p-8 rounded-xl text-center">
-              <h3 className="text-xl font-bold text-gray-800 mb-3">هل أنت مستعد للبدء؟</h3>
-              <p className="text-gray-600 mb-6">سجل الآن واستفد من خدماتنا المتميزة في عالم السكراب</p>
+              <h3 className="text-xl font-bold text-gray-800 mb-3">{{ $t('portfolio.readyStarted') }}</h3>
+              <p className="text-gray-600 mb-6">{{ $t('portfolio.dReadyStarted') }}</p>
               <button
-                className="bg-primary hover:bg-teal-700 text-white px-6 py-3 rounded-lg font-medium transition-colors w-full">
-                انضم إلينا الآن
+                className="bg-primary hover:bg-secondary text-white px-6 py-3 rounded-lg font-medium transition-colors w-full">
+                {{ $t('portfolio.readyStartedBtn') }}
               </button>
             </div>
           </div>
@@ -1494,6 +1493,10 @@ video {
   background-color: #15B377;
 }
 
+.bg-secondary-m {
+  background: linear-gradient(0deg, #0b3241 0%, #1c80a7 115.59%);
+}
+
 .bg-secondary {
   background-color: #0B3241;
 }
@@ -1895,6 +1898,11 @@ video {
 
 .last\:border-0:last-child {
   border-width: 0px;
+}
+
+.hover\:bg-secondary:hover {
+  --tw-bg-opacity: 1;
+  background-color: #0B3241;
 }
 
 .hover\:bg-gray-100:hover {

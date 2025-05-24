@@ -113,7 +113,7 @@ export default {
     <div class="footer-legal max-width">
       <div class="address">
         <p>{{ $t('footer.address') }}</p>
-        <p>{{ $t('footer.crVat') }}</p>
+        <p>{{ $t('footer.cr') }} | {{ $t('footer.vat') }}</p>
       </div>
     </div>
     <div class="footer-art"></div>

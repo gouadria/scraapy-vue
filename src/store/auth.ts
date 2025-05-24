@@ -1,7 +1,5 @@
-import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import type { ActionContext } from 'vuex'
 import axios from '@/axios'
-import { computed } from 'vue'
 
 export type UserType = 'individual' | 'business'
 
@@ -19,49 +17,79 @@ export interface UserRegistration {
   businessType?: string
 }
 
-export const useAuthStore = defineStore('auth', () => {
-  // State
-  const credentials = ref<AuthCredentials | null>(null)
-  const otp = ref<string>('')
-  const registration = ref<UserRegistration>({
+export interface Login2State {
+  credentials: AuthCredentials | null
+  otp: string
+  registration: UserRegistration
+  token: string | null
+  user: any | null
+  expiry: string | null
+}
+
+const state: Login2State = {
+  credentials: null,
+  otp: '',
+  registration: {
     userType: 'individual',
     email: '',
     phone: '',
-  })
-  const token = ref<string | null>(null)
-  const user = ref<any | null>(null)
-  const expiry = ref<string | null>(null)
+  },
+  token: null,
+  user: null,
+  expiry: null,
+}
 
-  // Simulated getters
-  const isLoggedIn = computed(() => !!token.value)
-  
-  // Actions
-  async function setCredentials(newCredentials: AuthCredentials) {
-    credentials.value = newCredentials
+const getters = {
+  isLoggedIn: (state: Login2State) => !!state.token,
+}
+
+const mutations = {
+  SET_CREDENTIALS(state: Login2State, payload: AuthCredentials) {
+    state.credentials = payload
+  },
+  SET_OTP(state: Login2State, otp: string) {
+    state.otp = otp
+  },
+  SET_REGISTRATION(state: Login2State, data: Partial<UserRegistration>) {
+    state.registration = { ...state.registration, ...data }
+  },
+  SET_TOKEN(state: Login2State, token: string) {
+    state.token = token
+  },
+  SET_USER(state: Login2State, user: any) {
+    state.user = user
+  },
+  SET_EXPIRY(state: Login2State, expiry: string) {
+    state.expiry = expiry
+  },
+}
+
+const actions = {
+  async setCredentials({ commit }: ActionContext<Login2State, any>, newCredentials: AuthCredentials) {
+    commit('SET_CREDENTIALS', newCredentials)
     await axios.post('/api/otp/login/', { email_or_phone: newCredentials.emailOrPhone })
-  }
-  
-  function setOtp(newOtp: string) {
-    otp.value = newOtp
-  }
-  
-  function setRegistration(data: Partial<UserRegistration>) {
-    registration.value = { ...registration.value, ...data }
-  }
+  },
 
-  async function verifyOtp() {
+  setOtp({ commit }: ActionContext<Login2State, any>, newOtp: string) {
+    commit('SET_OTP', newOtp)
+  },
+
+  setRegistration({ commit }: ActionContext<Login2State, any>, data: Partial<UserRegistration>) {
+    commit('SET_REGISTRATION', data)
+  },
+
+  async verifyOtp({ commit, state }: ActionContext<Login2State, any>) {
     try {
       const response = await axios.post('/api/otp/verify-otp-token/', {
-        phone: credentials.value?.emailOrPhone,
-        otp: otp.value
+        phone: state.credentials?.emailOrPhone,
+        otp: state.otp,
       })
 
       if (response.status === 200) {
-        // ✅ Update state directly instead of using commit
-        token.value = response.data.token
-        expiry.value = response.data.expiry
-        user.value = response.data.user
-        console.log('Token:', token.value)
+        commit('SET_TOKEN', response.data.token)
+        commit('SET_EXPIRY', response.data.expiry)
+        commit('SET_USER', response.data.user)
+        console.log('Token:', response.data.token)
         return true
       }
 
@@ -70,17 +98,16 @@ export const useAuthStore = defineStore('auth', () => {
       console.error('Error:', error)
       return false
     }
-  }
-  
-  async function registerUser(): Promise<boolean> {
+  },
+
+  async registerUser({ state }: ActionContext<Login2State, any>): Promise<boolean> {
     try {
       const response = await axios.post('/api/users/', {
-        name: registration.value.userType === 'business' ? registration.value.businessName : registration.value.fullName,
-        email: registration.value.email,
-        contact_number: registration.value.phone,
-        password: '123456789',
-        user_type: registration.value.userType,
-        business_sub_type: registration.value.businessType
+        name: state.registration.userType === 'business' ? state.registration.businessName : state.registration.fullName,
+        email: state.registration.email,
+        contact_number: state.registration.phone,
+        password: '11111111',
+        user_type: state.registration.userType,
       })
 
       console.log('Register response:', response)
@@ -89,26 +116,18 @@ export const useAuthStore = defineStore('auth', () => {
       console.error('Registration failed:', error)
       return false
     }
-  }
-  
-  async function requestOtp(): Promise<boolean> {
-    console.log('OTP requested for:', credentials.value)
+  },
+
+  async requestOtp({ state }: ActionContext<Login2State, any>): Promise<boolean> {
+    console.log('OTP requested for:', state.credentials)
     return true
-  }
-  
-  return {
-    credentials,
-    otp,
-    registration,
-    isLoggedIn,
-    token,
-    user,
-    expiry,
-    setCredentials,
-    setOtp,
-    setRegistration,
-    verifyOtp,
-    registerUser,
-    requestOtp
-  }
-})
+  },
+}
+
+export default {
+  namespaced: true,
+  state,
+  getters,
+  mutations,
+  actions,
+}
