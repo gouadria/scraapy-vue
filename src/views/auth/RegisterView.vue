@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, reactive, computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { useAuthStore, UserType } from '@/store/auth'
 import { useForm } from 'vee-validate'
 import * as yup from 'yup'
 import UserTypeTabs from '@/components/new/auth/UserTypeTabs.vue'
@@ -11,7 +10,6 @@ import Button from '@/components/new/ui/Button.vue'
 import { useI18n } from 'vue-i18n'
 
 const router = useRouter()
-const authStore = useAuthStore()
 
 const userType = ref<UserType>('individual')
 const isRegistering = ref(false)
@@ -32,20 +30,20 @@ async function handleRegistration(formData: any) {
     registrationError.value = ''
     
     // Set registration data in store
-    authStore.setRegistration({
-      userType: userType.value,
-      ...formData
-    })
+    // authStore.setRegistration({
+    //   userType: userType.value,
+    //   ...formData
+    // })
     
     // Register user
-    const success = await authStore.registerUser()
-    console.log(success)
-    if (success) {
-      // Redirect to login
-      router.push('/auth/login')
-    } else {
-      registrationError.value = 'Registration failed. Please try again.'
-    }
+    // const success = await authStore.registerUser()
+    // console.log(success)
+    // if (success) {
+    //   // Redirect to login
+    //   router.push('/auth/login')
+    // } else {
+    //   registrationError.value = 'Registration failed. Please try again.'
+    // }
   } catch (error) {
     console.error('Registration error:', error)
     registrationError.value = 'An error occurred during registration. Please try again.'

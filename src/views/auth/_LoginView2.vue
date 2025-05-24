@@ -3,7 +3,6 @@
 import '@/style.css'
 import { ref, reactive, computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { useAuthStore } from '@/store/auth'
 import { useField, useForm } from 'vee-validate'
 import * as yup from 'yup'
 import LoginMethodTabs from '@/components/new/auth/LoginMethodTabs.vue'
@@ -11,7 +10,6 @@ import TextInput from '@/components/new/ui/TextInput.vue'
 import Button from '@/components/new/ui/Button.vue'
 
 const router = useRouter()
-const authStore = useAuthStore()
 
 const loginMethod = ref<'email' | 'phone'>('email')
 
@@ -50,17 +48,17 @@ const onSubmit = handleSubmit(async (values) => {
     isLoading.value = true
     
     // Set credentials in store
-    authStore.setCredentials({
-      emailOrPhone: loginMethod.value === 'email' ? values.email : values.phone,
-      isEmail: loginMethod.value === 'email'
-    }).then(async () => {
-        // Request OTP
-        await authStore.requestOtp()
+    // authStore.setCredentials({
+    //   emailOrPhone: loginMethod.value === 'email' ? values.email : values.phone,
+    //   isEmail: loginMethod.value === 'email'
+    // }).then(async () => {
+    //     // Request OTP
+    //     await authStore.requestOtp()
     
     
-        // Navigate to verification page
-        router.push('/auth/otp')
-    })
+    //     // Navigate to verification page
+    //     router.push('/auth/otp')
+    // })
   } catch (error) {
     console.error('Login error:', error)
   } finally {

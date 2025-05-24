@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { useAuthStore } from '@/store/auth'
 import Button from '@/components/new/ui/Button.vue'
 import OtpInput from '@/components/new/auth/OtpInput.vue'
 
 const router = useRouter()
-const authStore = useAuthStore()
 
 // Redirect if no credentials
 onMounted(() => {
