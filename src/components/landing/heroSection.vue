@@ -368,6 +368,7 @@ html[dir='rtl'] .hero-art-city.loaded {
 .hero_logo {
   width: 100%;
   padding: 30px;
+  border-radius: 2.5rem;
 }
 .new_hero {
   display: flex;
@@ -398,6 +399,8 @@ html[dir='rtl'] .hero-art-city.loaded {
   }
   .hero_logo {
     width: 100%;
+    padding: 30px;
+    border-radius: 2.5rem;
   }
   .sponsors {
     gap: 10px;

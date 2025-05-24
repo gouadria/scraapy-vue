@@ -106,7 +106,7 @@
   
   <style scoped>
   .subscriptions-page {
-    font-family: Arial, sans-serif;
+    font-family: Inter, Zain;
     line-height: 1.6;
     padding: 20px;
     max-width: 1200px;
