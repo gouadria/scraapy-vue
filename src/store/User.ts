@@ -1,6 +1,7 @@
 import { createStore } from 'vuex'
 import VuexPersistence from 'vuex-persist'
 import axios from '@/axios'
+import SuccessMessageVue from '@/components/modals/SuccessMessage.vue'
 
 const refreshInterval = 15 * 60 * 1000
 const tokenTTL = 11 * 60 * 60 * 1000
@@ -189,7 +190,34 @@ const instance = createStore({
       })
     },
     async login2({ commit }, { email_or_phone }) {
-      await axios.post('/api/otp/login/', { email_or_phone })
+      try {
+        const response = await axios.post('/api/otp/login/', { email_or_phone })
+    
+        // ✅ Return structured result
+        return {
+          success: true,
+          phone: response.data.phone
+        }
+      } catch (error) {
+        if (error.response) {
+          // Server responded with status code 400
+          // console.error('Server responded with:', error.response.data)
+          if(error.response.status === 400){
+            throw new Error('400')
+          }else{
+            throw new Error('500')
+          }
+        } else if (error.request) {
+          // No response received
+          // console.error('No response received:', error.request)
+          throw new Error('No response from server')
+        } else {
+          // Something else happened
+          // console.error('Error:', error.message)
+          throw new Error('An unknown error occurred')
+        }
+      }
+      
     },
     async logout({ commit }) {
       await axios.post('/api/users/token/logout/').then(() => {
@@ -218,21 +246,47 @@ const instance = createStore({
     async registerUser({ commit }, { name, email, contact_number, password, user_type }) {
       await axios.post('/api/users/', { name, email, contact_number, password, user_type })
     },
+    async sendOtp({ commit }, { phone }) {
+      await axios.post('/api/otp/send/', { phone })
+    
+        // ✅ Return structured result
+        return {
+          success: true,
+        }
+    },
     async verify({ commit }, { phone, otp }) {
-      await axios.post('/api/otp/verify/', { phone, otp }).then((response) => {
-        //
-      })
+      await axios.post('/api/otp/verify/', { phone, otp })
     },
     async verify_otp({ commit }, { phone, otp }) {
-      await axios.post('/api/otp/verify-otp-token/', { phone, otp }).then((response) => {
-        commit('setToken', response.data.token)
-        commit('setExpiry', response.data.expiry)
-        commit('setUser', response.data.user)
-        console.log(response.data.token)
-        console.log(response.data.expiry)
-        console.log(response.data.user)
-        commit('startInterval')
-      })
+      try {
+        await axios.post('/api/otp/verify-otp-token/', { phone, otp }).then((response) => {
+          commit('setToken', response.data.token)
+          commit('setExpiry', response.data.expiry)
+          commit('setUser', response.data.user)
+          // console.log(response.data.token)
+          // console.log(response.data.expiry)
+          // console.log(response.data.user)
+          commit('startInterval')
+        })
+      } catch (error) {
+        if (error.response) {
+          // Server responded with status code 400
+          // console.error('Server responded with:', error.response.data)
+          if(error.response.status === 404){
+            throw new Error('404')
+          }else{
+            throw new Error('500')
+          }
+        } else if (error.request) {
+          // No response received
+          // console.error('No response received:', error.request)
+          throw new Error('No response from server')
+        } else {
+          // Something else happened
+          // console.error('Error:', error.message)
+          throw new Error('An unknown error occurred')
+        }
+      }
     },
     // async registerBusinessProfile({ commit }, { cr_number }) {
     //   await axios.post('/api/users/business-profile/cr_number', { cr_number }).then((response) => {

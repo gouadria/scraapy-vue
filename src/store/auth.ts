@@ -1,4 +1,5 @@
-import type { ActionContext } from 'vuex'
+import { defineStore } from 'pinia'
+import { ref, computed } from 'vue'
 import axios from '@/axios'
 
 export type UserType = 'individual' | 'business'
@@ -17,117 +18,77 @@ export interface UserRegistration {
   businessType?: string
 }
 
-export interface Login2State {
-  credentials: AuthCredentials | null
-  otp: string
-  registration: UserRegistration
-  token: string | null
-  user: any | null
-  expiry: string | null
-}
-
-const state: Login2State = {
-  credentials: null,
-  otp: '',
-  registration: {
+export const useAuthStore = defineStore('auth', () => {
+  // State
+  const credentials = ref<AuthCredentials | null>(null)
+  const otp = ref<string>('')
+  const registration = ref<UserRegistration>({
     userType: 'individual',
     email: '',
     phone: '',
-  },
-  token: null,
-  user: null,
-  expiry: null,
-}
-
-const getters = {
-  isLoggedIn: (state: Login2State) => !!state.token,
-}
-
-const mutations = {
-  SET_CREDENTIALS(state: Login2State, payload: AuthCredentials) {
-    state.credentials = payload
-  },
-  SET_OTP(state: Login2State, otp: string) {
-    state.otp = otp
-  },
-  SET_REGISTRATION(state: Login2State, data: Partial<UserRegistration>) {
-    state.registration = { ...state.registration, ...data }
-  },
-  SET_TOKEN(state: Login2State, token: string) {
-    state.token = token
-  },
-  SET_USER(state: Login2State, user: any) {
-    state.user = user
-  },
-  SET_EXPIRY(state: Login2State, expiry: string) {
-    state.expiry = expiry
-  },
-}
-
-const actions = {
-  async setCredentials({ commit }: ActionContext<Login2State, any>, newCredentials: AuthCredentials) {
-    commit('SET_CREDENTIALS', newCredentials)
-    await axios.post('/api/otp/login/', { email_or_phone: newCredentials.emailOrPhone })
-  },
-
-  setOtp({ commit }: ActionContext<Login2State, any>, newOtp: string) {
-    commit('SET_OTP', newOtp)
-  },
-
-  setRegistration({ commit }: ActionContext<Login2State, any>, data: Partial<UserRegistration>) {
-    commit('SET_REGISTRATION', data)
-  },
-
-  async verifyOtp({ commit, state }: ActionContext<Login2State, any>) {
-    try {
-      const response = await axios.post('/api/otp/verify-otp-token/', {
-        phone: state.credentials?.emailOrPhone,
-        otp: state.otp,
-      })
-
-      if (response.status === 200) {
-        commit('SET_TOKEN', response.data.token)
-        commit('SET_EXPIRY', response.data.expiry)
-        commit('SET_USER', response.data.user)
-        console.log('Token:', response.data.token)
-        return true
-      }
-
-      return false
-    } catch (error) {
-      console.error('Error:', error)
-      return false
-    }
-  },
-
-  async registerUser({ state }: ActionContext<Login2State, any>): Promise<boolean> {
+  })
+  
+  // Getters
+  const isLoggedIn = computed(() => false) // This would connect to actual auth state
+  const credentialType = computed(() => credentials.value?.isEmail ? 'email' : 'phone')
+  
+  // Actions
+  function setCredentials(newCredentials: AuthCredentials) {
+    credentials.value = newCredentials
+  }
+  
+  function setOtp(newOtp: string) {
+    otp.value = newOtp
+  }
+  
+  function setRegistration(data: Partial<UserRegistration>) {
+    registration.value = { ...registration.value, ...data }
+  }
+  
+  // In a real app, these would connect to an API
+  async function verifyOtp(): Promise<boolean> {
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1000))
+    return otp.value === '123456' // For demonstration - in a real app this would verify with backend
+  }
+  
+  async function registerUser(): Promise<boolean> {
     try {
       const response = await axios.post('/api/users/', {
-        name: state.registration.userType === 'business' ? state.registration.businessName : state.registration.fullName,
-        email: state.registration.email,
-        contact_number: state.registration.phone,
-        password: '11111111',
-        user_type: state.registration.userType,
+        "name": registration.value.userType === 'business' ? registration.value.businessName : registration.value.fullName,
+        "email": registration.value.email,
+        "contact_number": registration.value.phone,
+        "password": "11111111",
+        "user_type": registration.value.userType,
+        "business_sub_type": registration.value.businessType
       })
 
-      console.log('Register response:', response)
+      // console.log('Register response:', response)
       return response.status === 201
     } catch (error) {
       console.error('Registration failed:', error)
       return false
     }
-  },
-
-  async requestOtp({ state }: ActionContext<Login2State, any>): Promise<boolean> {
-    console.log('OTP requested for:', state.credentials)
+  }
+  
+  async function requestOtp(): Promise<boolean> {
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1000))
+    console.log('OTP requested for:', credentials.value)
     return true
-  },
-}
-
-export default {
-  namespaced: true,
-  state,
-  getters,
-  mutations,
-  actions,
-}
+  }
+  
+  return {
+    credentials,
+    otp,
+    registration,
+    isLoggedIn,
+    credentialType,
+    setCredentials,
+    setOtp,
+    setRegistration,
+    verifyOtp,
+    registerUser,
+    requestOtp
+  }
+})

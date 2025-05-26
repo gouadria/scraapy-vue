@@ -6,6 +6,7 @@ defineProps<{
   type?: string
   error?: string
   autocomplete?: string
+  maxlength?: string
 }>()
 
 const emit = defineEmits<{
@@ -24,6 +25,7 @@ const emit = defineEmits<{
       :autocomplete="autocomplete"
       class="form-input"
       :class="{ 'border-error-500 focus:border-error-500 focus:ring-error-100': error }"
+      :maxlength="maxlength"
     />
     <p v-if="error" class="form-error">{{ error }}</p>
   </div>

@@ -524,17 +524,17 @@ video {
 }
 .btn-primary {
   --tw-bg-opacity: 1;
-  background-color: rgb(34 197 94 / var(--tw-bg-opacity, 1));
+  background-color: #15B377;
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 .btn-primary:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(22 163 74 / var(--tw-bg-opacity, 1));
+  background-color: #0B3241;
 }
 .btn-primary:focus {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(34 197 94 / var(--tw-ring-opacity, 1));
+  --tw-ring-color: #0B3241;
 }
 .btn-outline {
   border-radius: 0.5rem;
@@ -570,7 +570,7 @@ video {
 }
 .btn-outline:focus {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(34 197 94 / var(--tw-ring-opacity, 1));
+  --tw-ring-color: #0B3241;
 }
 .btn-secondary {
   border-radius: 0.5rem;
@@ -633,7 +633,7 @@ video {
 }
 .form-input:focus {
   --tw-border-opacity: 1;
-  border-color: rgb(34 197 94 / var(--tw-border-opacity, 1));
+  border-color: #0B3241;
   outline: 2px solid transparent;
   outline-offset: 2px;
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
@@ -730,17 +730,17 @@ video {
 .auth-footer-link {
   font-weight: 500;
   --tw-text-opacity: 1;
-  color: rgb(34 197 94 / var(--tw-text-opacity, 1));
+  color: #15B377;
 }
 .auth-footer-link:hover {
   --tw-text-opacity: 1;
-  color: rgb(22 163 74 / var(--tw-text-opacity, 1));
+  color: #0B3241;
 }
 .otp-input-container {
   display: flex;
   justify-content: space-between;
 }
-.otp-input-container > :not([hidden]) ~ :not([hidden]) {
+.otp-input-container > :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.5rem * var(--tw-space-x-reverse));
   margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
@@ -769,7 +769,7 @@ video {
 }
 .otp-input:focus {
   --tw-border-opacity: 1;
-  border-color: rgb(34 197 94 / var(--tw-border-opacity, 1));
+  border-color: #0B3241;
   outline: 2px solid transparent;
   outline-offset: 2px;
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
@@ -843,6 +843,9 @@ video {
 }
 .mr-2 {
   margin-right: 0.5rem;
+}
+.ml-2 {
+  margin-left: 0.5rem;
 }
 .mt-4 {
   margin-top: 1rem;
@@ -924,7 +927,7 @@ video {
 }
 .text-primary-500 {
   --tw-text-opacity: 1;
-  color: rgb(34 197 94 / var(--tw-text-opacity, 1));
+  color: #0B3241;
 }
 .opacity-25 {
   opacity: 0.25;

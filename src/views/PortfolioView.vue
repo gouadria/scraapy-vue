@@ -56,8 +56,6 @@ export default {
     }
 }
 
-// تحميل الافتراضي عند بدء الصفحة
-window.onload = () => setTab('products');
 </script>
 <template>
   <navBar />
@@ -124,7 +122,7 @@ window.onload = () => setTab('products');
       </div>
     </section>
     <!-- services -->
-    <section id="خدماتنا" class="py-16 bg-gray-50">
+    <section class="py-16 bg-gray-50">
       <div class="container mx-auto px-4 md:px-8">
         <!-- عنوان القسم -->
         <div class="text-center mb-12">
@@ -137,13 +135,13 @@ window.onload = () => setTab('products');
         <!-- علامات التبويب -->
         <div class="flex justify-center gap-4 mb-10">
           <button @click="activeTab = 'products'" :class="['px-6 py-3 rounded-full font-medium transition-colors', activeTab === 'products' ? 'bg-primary text-white' : 'bg-white text-gray-700 hover:bg-gray-100']">
-            المنتجات
+            {{ $t('portfolio.products') }}
           </button>
           <button @click="activeTab = 'services'" :class="['px-6 py-3 rounded-full font-medium transition-colors', activeTab === 'services' ? 'bg-primary text-white' : 'bg-white text-gray-700 hover:bg-gray-100']">
-            الخدمات
+            {{ $t('portfolio.services') }}
           </button>
-          <button @click="activeTab = 'equipment'" :class="['px-6 py-3 rounded-full font-medium transition-colors', activeTab === 'equipment' ? 'bg-primary text-white' : 'bg-white text-gray-700 hover:bg-gray-100']">
-            تأجير المعدات
+          <button @click="activeTab = 'rental'" :class="['px-6 py-3 rounded-full font-medium transition-colors', activeTab === 'rental' ? 'bg-primary text-white' : 'bg-white text-gray-700 hover:bg-gray-100']">
+            {{ $t('portfolio.rental') }}
           </button>
         </div>
 

@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { ref, reactive, computed } from 'vue'
+import '@/assets/style-auth.css'
+import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useForm } from 'vee-validate'
 import * as yup from 'yup'
+import { useAuthStore, UserType } from '@/store/auth'
 import UserTypeTabs from '@/components/new/auth/UserTypeTabs.vue'
 import IndividualForm from '@/components/new/auth/IndividualForm.vue'
 import BusinessForm from '@/components/new/auth/BusinessForm.vue'
@@ -10,6 +12,7 @@ import Button from '@/components/new/ui/Button.vue'
 import { useI18n } from 'vue-i18n'
 
 const router = useRouter()
+const authStore = useAuthStore()
 
 const userType = ref<UserType>('individual')
 const isRegistering = ref(false)
@@ -30,20 +33,20 @@ async function handleRegistration(formData: any) {
     registrationError.value = ''
     
     // Set registration data in store
-    // authStore.setRegistration({
-    //   userType: userType.value,
-    //   ...formData
-    // })
+    authStore.setRegistration({
+      userType: userType.value,
+      ...formData
+    })
     
     // Register user
-    // const success = await authStore.registerUser()
-    // console.log(success)
-    // if (success) {
-    //   // Redirect to login
-    //   router.push('/auth/login')
-    // } else {
-    //   registrationError.value = 'Registration failed. Please try again.'
-    // }
+    const success = await authStore.registerUser()
+    console.log(success)
+    if (success) {
+      // Redirect to login
+      router.push('/auth/login')
+    } else {
+      registrationError.value = 'Registration failed. Please try again.'
+    }
   } catch (error) {
     console.error('Registration error:', error)
     registrationError.value = 'An error occurred during registration. Please try again.'
@@ -54,7 +57,10 @@ async function handleRegistration(formData: any) {
 </script>
 
 <template>
-  <div class="auth-container">
+  <div>
+    <div style="margin-left: auto; margin-right: auto; width: 100%; max-width: 10rem; margin-top: 35px; margin-bottom: 20px;">
+      <img @click="router.push({ name: 'home' })" src="@/assets/logo.svg?url" alt="logo" style="width: 160px; height: 66px;" />
+    </div>
     <div class="auth-card">
       <button 
         @click="router.push('/auth/login')" 
