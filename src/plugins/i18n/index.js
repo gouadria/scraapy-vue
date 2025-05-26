@@ -1437,7 +1437,7 @@ const messages = {
     },
     welcome: {
       hala: 'أهلاََ !',
-      welcomeMessage: 'حياك الله ضيفنا العزيز, الكثير ينتضرك بعد تسجيل دخولك.'
+      welcomeMessage: 'حياك الله ضيفنا العزيز, الكثير ينتظرك بعد تسجيل دخولك.'
     },
     scrapTypes: {
       iron: 'حديد',
