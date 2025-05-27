@@ -1660,7 +1660,7 @@ const messages = {
       ResetSuccessfulText: 'تمت إعادة تعيين كلمة المرور الخاصة بك بنجاح. اضغط أدناه لتسجيل الدخول',
       Continue: 'متابعة',
       vendorsignup: 'اشتراك البائعين',
-      fullBusinessName: 'الاسم الكامل لشركتك*',
+      fullBusinessName: 'الاسم الكامل لشركتك',
       vendorPass: 'أضف كلمة مرور',
       emailsent: 'انقر على الرابط المرسل إلى',
       proceedsignup: 'لمتابعة عملية الاشتراك',
