@@ -211,7 +211,7 @@ window.onload = () => setTab('products');
                 <line x1="22" x2="16" y1="11" y2="11"></line>
               </svg></div>
             <h3 class="font-bold text-xl mb-2 text-gray-800">إنشاء حساب</h3>
-            <p class="text-gray-600 text-center text-sm">قم بالتسجيل كفرد أو عمل تجاري بخطوات بسيطة</p>
+            <p class="text-gray-600 text-center text-sm">قم بالتسجيل كفرد أو عميل تجاري بخطوات بسيطة</p>
           </div>
           <div class="flex flex-col items-center w-[calc(100%/5)]">
             <div class="bg-purple-50 text-purple-600 p-4 rounded-full mb-4"><svg xmlns="http://www.w3.org/2000/svg"
