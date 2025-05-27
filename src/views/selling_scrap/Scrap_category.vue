@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import NavBar from '@/components/UIElements/NavBar.vue';
+import NavBar from '@/components/UIElements/navBar.vue'
 import ScrapSelection from '@/components/selling_scrap/ScrapSelection.vue';
 import AppFooter from '@/components/UIElements/footerComponant.vue';
 </script>
