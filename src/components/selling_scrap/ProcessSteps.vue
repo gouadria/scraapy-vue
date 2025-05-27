@@ -29,7 +29,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { ProcessStep } from '../types';
+import { ProcessStep } from '@/types';
 
 const steps = ref<ProcessStep[]>([
   {

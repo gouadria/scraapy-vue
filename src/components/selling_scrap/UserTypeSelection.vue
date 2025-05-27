@@ -63,7 +63,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { UserType } from '../types';
+import { UserType } from '@/types';
 import { useRouter } from 'vue-router';
 
 

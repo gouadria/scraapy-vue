@@ -148,6 +148,11 @@ export default defineComponent({
           label: this.$t('burger.services'),
           value: 'service',
           route: { name: 'marketplace', query: { tab: 'service' } }
+        },
+        {
+          label: this.$t('burger.services'),
+          value: 'selling_scrap',
+          route: { name: 'ScrapSelect', query: { tab: 'selling_scrap' } }
         }
       ]
     }
@@ -226,6 +231,9 @@ export default defineComponent({
           {{ $t('burger.rental') }}
         </router-link>
         <router-link :to="{ name: 'marketplace', query: { tab: 'service' } }"  class="link" :class="{ active: activeTab === 'service' }">
+          {{ $t('burger.services') }}
+        </router-link>
+        <router-link :to="{ name: 'ScrapSelect', query: { tab: 'selling_scrap' } }"  class="link" :class="{ active: activeTab === 'selling_scrap' }">
           {{ $t('burger.services') }}
         </router-link>
       </div>

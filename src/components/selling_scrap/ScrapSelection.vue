@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import ScrapTypeCard from '@/components/selling_scrap/ScrapTypeCard.vue';
-import ScrapItem from '@/views/sselling_scrap/ScrapItem.vue';
+import ScrapItem from '@/views/selling_scrap/ScrapItem.vue';
 import { ref, onMounted } from 'vue';
 
 interface ScrapType {
