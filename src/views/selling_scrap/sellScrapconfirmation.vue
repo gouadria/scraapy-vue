@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import NavBar from '@/components/UIElements/NavBar.vue';
+import NavBar from '@/components/UIElements/navBar.vue';
 import SellScrapForm from '@/components/selling_scrap/SellForm.vue';
 import AppFooter from '@/components/UIElements/footerComponant.vue';
 

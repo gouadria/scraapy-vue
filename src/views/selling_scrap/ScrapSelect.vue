@@ -13,7 +13,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-import NavBar from '@/components/UIElements/NavBar.vue';
+import NavBar from '@/components/UIElements/navBar.vue';
 import RatesTicker from '@/components/selling_scrap/RatesTicker.vue';
 import UserTypeSelection from '@/components/selling_scrap/UserTypeSelection.vue';
 import ProcessSteps from '@/components/selling_scrap/ProcessSteps.vue';
