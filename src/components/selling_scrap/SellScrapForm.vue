@@ -45,11 +45,6 @@ const goToNext = () => {
 </script>
 
 <template>
-  <div class="sell-scrap-container">
-    <h1 class="page-title">Sell Scrap</h1>
-    
-    <ProgressBar :progress="progress" />
-    
     <div class="form-card">
       <div class="form-header">
         <div class="iban-icon">
@@ -90,18 +85,8 @@ const goToNext = () => {
             autocomplete="off"
           />
         </div>
-        
-        <div class="form-actions">
-          <button type="button" class="button-secondary" @click="goToPrevious">
-            <span class="icon">←</span> Previous
-          </button>
-          <button type="submit" class="button-primary">
-            Next
-          </button>
-        </div>
       </form>
     </div>
-  </div>
 </template>
 
 
@@ -152,6 +137,9 @@ const goToNext = () => {
   margin-bottom: 20px;
 }
 
+form {
+  max-width: 550px;
+}
 label {
   display: block;
   font-size: 14px;
@@ -166,6 +154,7 @@ input, select {
   border: 1px solid var(--neutral-300);
   border-radius: 8px;
   font-size: 15px;
+  border: 1px solid gainsboro;
 }
 
 .select-wrapper {
@@ -186,6 +175,7 @@ select {
   appearance: none;
   padding-right: 40px;
   background-color: white;
+  border: 1px solid gainsboro;
 }
 
 .form-actions {

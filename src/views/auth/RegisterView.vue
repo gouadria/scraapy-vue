@@ -9,9 +9,11 @@ import UserTypeTabs from '@/components/new/auth/UserTypeTabs.vue'
 import IndividualForm from '@/components/new/auth/IndividualForm.vue'
 import BusinessForm from '@/components/new/auth/BusinessForm.vue'
 import Button from '@/components/new/ui/Button.vue'
+import User from '@/store/User'
 import { useI18n } from 'vue-i18n'
 
 const router = useRouter()
+const userStore = User
 const authStore = useAuthStore()
 
 const userType = ref<UserType>('individual')
@@ -40,6 +42,7 @@ async function handleRegistration(formData: any) {
     
     // Register user
     const success = await authStore.registerUser()
+    await userStore.dispatch('registerBusinessProfile', { cr_number: '8647964678' })
     console.log(success)
     if (success) {
       // Redirect to login

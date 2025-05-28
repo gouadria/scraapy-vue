@@ -141,6 +141,7 @@ const useCurrentLocation = () => {
 <style scoped>
 .location-picker {
   margin-bottom: 24px;
+  max-width: 550px;
 }
 
 .location-header {

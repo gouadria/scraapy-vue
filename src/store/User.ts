@@ -263,7 +263,7 @@ const instance = createStore({
           commit('setToken', response.data.token)
           commit('setExpiry', response.data.expiry)
           commit('setUser', response.data.user)
-          // console.log(response.data.token)
+          console.log(response.data.token)
           // console.log(response.data.expiry)
           // console.log(response.data.user)
           commit('startInterval')
@@ -367,22 +367,22 @@ const instance = createStore({
     // console.log(formData)
     // Send the request
     async patchUser({ commit }, { user }) {
-      await axios.patch('/api/users/me/', user).then((response) => {
-        commit('setUser', response.data)
-      })
+      // await axios.patch('/api/users/me/', user).then((response) => {
+      //   commit('setUser', response.data)
+      // })
     },
     async updatePassword({ commit }, { new_password, current_password }) {
       await axios.post('/api/users/set_password/', { new_password, current_password })
     },
     async deleteAccount({ commit }, { current_password }) {
-      await axios.delete('/api/users/me/', { data: { current_password } }).then(() => {
-        commit('clearState')
-      })
+      // await axios.delete('/api/users/me/', { data: { current_password } }).then(() => {
+      //   commit('clearState')
+      // })
     },
     async getUser({ commit }) {
-      await axios.get('/api/users/me/').then((response) => {
-        commit('setUser', response.data)
-      })
+      // await axios.get('/api/users/me/').then((response) => {
+      //   commit('setUser', response.data)
+      // })
     },
     async clearCart({ commit }) {
       await commit('clearCart')

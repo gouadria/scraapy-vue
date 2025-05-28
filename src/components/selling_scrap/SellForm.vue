@@ -1,14 +1,5 @@
 <template>
-  <div class="sell-scrap">
-    <h1>Sell Scrap</h1>
-    
-    <div class="progress-container">
-      <div class="progress-bar">
-        <div class="progress-fill" :style="{ width: progressPercent }"></div>
-      </div>
-      <div class="progress-text">{{ progressPercent }}</div>
-    </div>
-    
+  <form @submit.prevent="submitForm" class="registration-form">  
     <div class="content-card">
       <div class="success-indicator">
         <div class="checkmark-circle">✓</div>
@@ -21,65 +12,67 @@
         </p>
       </div>
       
-      <form @submit.prevent="submitForm" class="registration-form">
-        <div class="form-group">
-          <label for="fullName">Full Name*</label>
-          <div class="input-wrapper">
-            <span class="input-icon">👤</span>
-            <input 
-              type="text" 
-              id="fullName" 
-              v-model="formData.fullName" 
-              placeholder="Enter your name"
-              :class="{ 'error': formErrors.fullName }"
-            />
-          </div>
-          <span v-if="formErrors.fullName" class="error-message">{{ formErrors.fullName }}</span>
-        </div>
-        
-        <div class="form-group">
-          <label for="email">Email*</label>
-          <div class="input-wrapper">
-            <span class="input-icon">✉️</span>
-            <input 
-              type="email" 
-              id="email" 
-              v-model="formData.email" 
-              placeholder="Enter your email"
-              :class="{ 'error': formErrors.email }"
-            />
-          </div>
-          <span v-if="formErrors.email" class="error-message">{{ formErrors.email }}</span>
-        </div>
-        
-        <div class="form-group checkbox">
+      <div class="form-group">
+        <label for="fullName">Full Name*</label>
+        <div class="input-wrapper">
+          <span class="input-icon">👤</span>
           <input 
-            type="checkbox" 
-            id="terms" 
-            v-model="formData.termsAccepted"
-            :class="{ 'error': formErrors.termsAccepted }"
+            type="text" 
+            id="fullName" 
+            v-model="formData.fullName" 
+            placeholder="Enter your name"
+            :class="{ 'error': formErrors.fullName }"
           />
-          <label for="terms">Accept <a href="#" class="terms-link">Terms & Conditions</a></label>
-          <span v-if="formErrors.termsAccepted" class="error-message">{{ formErrors.termsAccepted }}</span>
         </div>
-        
-        <div class="navigation-buttons">
-          <button type="button" class="nav-button prev-button" @click="goToPrevious">
-            ← Previous
-          </button>
-          <button type="submit" class="nav-button next-button">
-            Next →
-          </button>
+        <span v-if="formErrors.fullName" class="error-message">{{ formErrors.fullName }}</span>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email*</label>
+        <div class="input-wrapper">
+          <span class="input-icon">✉️</span>
+          <input 
+            type="email" 
+            id="email" 
+            v-model="formData.email" 
+            placeholder="Enter your email"
+            :class="{ 'error': formErrors.email }"
+          />
         </div>
-      </form>
+        <span v-if="formErrors.email" class="error-message">{{ formErrors.email }}</span>
+      </div>
+      
+      <div class="form-group checkbox">
+        <input 
+          type="checkbox" 
+          id="terms" 
+          v-model="formData.termsAccepted"
+          :class="{ 'error': formErrors.termsAccepted }"
+        />
+        <label for="terms">Accept <a href="#" class="terms-link">Terms & Conditions</a></label>
+        <span v-if="formErrors.termsAccepted" class="error-message">{{ formErrors.termsAccepted }}</span>
+      </div>
     </div>
-  </div>
+
+    <div class="nav-buttons">
+      <button class="button button-previous" @click="goToPrevious">
+        <span v-if="t('auth.lang') == 'en'" class="button-icon">←</span>
+        <span v-if="t('auth.lang') == 'ar'" class="button-icon">→</span>
+        {{ t('selling_scrap.previous') }}
+      </button>
+      <button type="submit" class="button button-next">
+        {{ t('selling_scrap.next') }}
+      </button>
+    </div>
+  </form>
 </template>
 
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 
 const emit = defineEmits(['submit']);
 
@@ -271,8 +264,6 @@ h1 {
 }
 
 .input-icon {
-  position: absolute;
-  left: 12px;
   color: var(--secondary-text);
   font-size: 16px;
 }
@@ -280,7 +271,7 @@ h1 {
 .form-group input[type="text"],
 .form-group input[type="email"] {
   width: 100%;
-  padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+  padding: 0.75rem 0.75rem 0.75rem 0.75rem;
   border-radius: 4px;
   border: 2px solid var(--border-color);
   outline: none;
@@ -370,4 +361,44 @@ h1 {
     flex-direction: column;
   }
 }
+
+.nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: 32px 0;
+  }
+
+  .button {
+    display: flex;
+    align-items: center;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .button-previous {
+    background-color: white;
+    color: #333;
+    border: 1px solid #ddd;
+  }
+
+  .button-previous:hover {
+    background-color: #f5f5f5;
+  }
+
+  .button-next {
+    background-color: #18A77A;
+    color: white;
+    border: none;
+  }
+
+  .button-next:hover {
+    background-color: #148f68;
+  }
+
+  .button-icon {
+    margin: 0 4px;
+  }
 </style>

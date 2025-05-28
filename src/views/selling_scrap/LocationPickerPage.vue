@@ -13,6 +13,8 @@ const currentProgress = ref(70);
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 
+const progress = ref(70);
+
 const goBack = () => {
   router.go(-1); // revenir à la page précédente
 };
