@@ -41,14 +41,13 @@ const goNext = () => {
         <ScheduleSelector />
 
         <div class="nav-buttons">
-          <button class="button button-previous" @click="handlePrevious">
+          <button class="button button-previous" @click="goBack">
             <span v-if="t('auth.lang') == 'en'" class="button-icon">←</span>
             <span v-if="t('auth.lang') == 'ar'" class="button-icon">→</span>
             {{ t('selling_scrap.previous') }}
           </button>
-          <button class="button button-next" :disabled="!isOtpComplete" 
-              :class="{ disabled: !isOtpComplete }"
-              @click="handleNext">
+          <button class="button button-next"
+              @click="goNext">
             {{ t('selling_scrap.next') }}
           </button>
         </div>
