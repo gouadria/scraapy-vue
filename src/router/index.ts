@@ -70,7 +70,6 @@ const router = createRouter({
       path: '/scrap-select',
       name: 'ScrapSelect',
       component: () => import('@/views/selling_scrap/ScrapSelect.vue'),
-      meta: { noAuth: true },
     },
     {
       path: '/scrap-phone',
