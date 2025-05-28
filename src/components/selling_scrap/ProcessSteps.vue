@@ -4,7 +4,7 @@
       <div class="process-bg">
         <h2 class="process-title">It's as Easy as 1, 2, 3</h2>
         <p class="process-subtitle">Get Paid for Your Scrap in Minutes.</p>
-        <div class="process-graphic"></div>
+        
       </div>
       
       <div class="process-steps">
@@ -53,10 +53,11 @@ const steps = ref<ProcessStep[]>([
 <style scoped>
 .right-section {
   width: 50%;
-  background-color: var(--primary-teal);
+  background-color: #edfdfe;
   border-radius: 14px;
   position: relative;
   overflow: hidden;
+  padding: 50px 80px;
 }
 
 .process-container {
@@ -66,7 +67,8 @@ const steps = ref<ProcessStep[]>([
 }
 
 .process-bg {
-  background-color: var(--primary-dark);
+  background-color: #0C3241;
+  color: white;
   border-radius: 14px;
   padding: 58px;
   position: relative;

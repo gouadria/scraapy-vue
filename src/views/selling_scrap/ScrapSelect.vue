@@ -1,6 +1,5 @@
 <template>
   <div class="app-container">
-    <RatesTicker :rates="todaysRates" />
     <NavBar />
     <main class="main-container">
       <UserTypeSelection @user-type-selected="handleUserTypeSelection" />
@@ -14,7 +13,6 @@
 import { ref } from 'vue';
 
 import NavBar from '@/components/UIElements/navBar.vue';
-import RatesTicker from '@/components/selling_scrap/RatesTicker.vue';
 import UserTypeSelection from '@/components/selling_scrap/UserTypeSelection.vue';
 import ProcessSteps from '@/components/selling_scrap/ProcessSteps.vue';
 import AppFooter from '@/components/UIElements/footerComponant.vue';
@@ -49,7 +47,6 @@ const handleUserTypeSelection = (userType: UserType) => {
 
 .main-container {
   display: flex;
-  padding: 50px 80px;
 }
 
 @media (max-width: 1200px) {

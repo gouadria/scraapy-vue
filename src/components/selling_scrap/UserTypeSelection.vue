@@ -26,25 +26,6 @@
       </div>
     </div>
     
-    <div 
-      class="option-card" 
-      :class="selectedType === 'business' ? 'selected' : 'unselected'"
-      @click="selectType('business')"
-    >
-      <div class="option-icon">🏢</div>
-      <span 
-        class="option-text"
-        :class="selectedType === 'business' ? 'selected' : 'unselected'"
-      >
-        I represent a Business
-      </span>
-      <div 
-        class="checkbox"
-        :class="selectedType === 'business' ? 'selected' : 'unselected'"
-      >
-        <span v-if="selectedType === 'business'" class="check-icon">✓</span>
-      </div>
-    </div>
     
    <button 
   class="next-button" 
@@ -99,7 +80,8 @@ const handleNextClick = () => {
 <style scoped>
 .left-section {
   width: 50%;
-  padding-right: 50px;
+  padding: 50px 80px;
+  /* padding-right: 50px; */
 }
 
 .page-title {
@@ -128,16 +110,17 @@ const handleNextClick = () => {
   margin-bottom: 14px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  border: 1px solid 
 }
 
 .option-card.selected {
-  background-color: var(--light-green);
-  border: 1px solid var(--primary-green);
+  border: 1px solid #16b277;
+  background-color: #edfcf3;
 }
 
 .option-card.unselected {
-  background-color: var(--background);
-  border: 1px solid var(--border-color);
+  background-color: white;
+  border: 1px solid gainsboro;
 }
 
 .option-card.unselected:hover {
@@ -171,16 +154,17 @@ const handleNextClick = () => {
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid gainsboro
 }
 
 .checkbox.selected {
-  background-color: var(--primary-green);
-  border: 1px solid var(--primary-green);
+  background-color: #16b277;
+  border: 1px solid #16b277;
   color: white;
 }
 
 .checkbox.unselected {
-  border: 1px solid var(--border-color);
+  border: 1px solid gainsboro;
 }
 
 .check-icon {
@@ -189,8 +173,8 @@ const handleNextClick = () => {
 }
 
 .next-button {
-  background-color: var(--primary-green);
-  border: 1px solid var(--primary-green);
+  background-color: #16b277;
+  border: 1px solid #16b277;
   border-radius: 8px;
   height: 44px;
   width: 99px;
@@ -211,12 +195,12 @@ const handleNextClick = () => {
   font-size: 16px;
   font-weight: 700;
   line-height: 20px;
-  color: var(--text-light);
+  color: white;
   margin-right: 8px;
 }
 
 .next-icon {
-  color: var(--text-light);
+  color: white;
 }
 
 .error-message {
@@ -255,8 +239,8 @@ const handleNextClick = () => {
 }
 
 .next-button.active {
-  background-color: var(--primary-green);
-  border: 1px solid var(--primary-green);
+  background-color: #16b277;
+  border: 1px solid #16b277;
 }
 
 </style>

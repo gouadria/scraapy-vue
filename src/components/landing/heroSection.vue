@@ -67,7 +67,7 @@ window.addEventListener('load', () => {
       </div>
 
       <div class="new_hero">
-        <img src="@/assets/end2.gif" alt="logo" class="hero_logo" />
+        <img src="@/assets/01-ph.gif" alt="logo" class="hero_logo" />
       </div>
     </div>
 

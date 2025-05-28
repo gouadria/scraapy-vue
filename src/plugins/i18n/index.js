@@ -461,7 +461,8 @@ const messages = {
       contactUs: 'Contact Us',
       marketPlace: 'Market Place',
       rental: 'Rental',
-      services: 'Services'
+      services: 'Services',
+      sell_scrap: 'Sell Scrap'
     },
     profileDropdown: {
       myListings: 'My Listings',
@@ -1416,6 +1417,9 @@ const messages = {
       readyStarted: 'Ready to get started?',
       dReadyStarted: 'Register now and benefit from our distinguished services in the scrap world',
       readyStartedBtn: 'Join us now'
+    },
+    selling_scrap: {
+      sell_scrap: 'Sell Scrap'
     }
   },
   ar: {
@@ -1891,7 +1895,8 @@ const messages = {
       contactUs: 'اتصل بنا',
       marketPlace: 'السوق',
       rental: 'إيجار',
-      services: 'خدمات'
+      services: 'خدمات',
+      sell_scrap: 'بيع سكرابك'
     },
     profileDropdown: {
       myListings: 'قوائمي',
@@ -2763,6 +2768,9 @@ const messages = {
       readyStarted: 'هل أنت مستعد للبدء؟',
       dReadyStarted: 'سجل الآن واستفد من خدماتنا المتميزة في عالم السكراب',
       readyStartedBtn: 'انضم إلينا الآن'
+    },
+    selling_scrap: {
+      sell_scrap: 'بيع سكرابك'
     }
   }
 }
