@@ -1,26 +1,27 @@
 <template>
   <div class="left-section">
-    <h1 class="page-title">Let's Get to Know You Better</h1>
-    <p class="page-description">
-      By letting us know you, we can provide you with a more personalized 
-      experience and ensure the pricing fits your specific needs.
-    </p>
+    <h1 class="page-title">{{ t('selling_scrap.knowYouBetter') }}</h1>
+    <p class="page-description">{{ t('selling_scrap.dKnowYouBetter') }}</p>
     
     <div 
       class="option-card" 
       :class="selectedType === 'individual' ? 'selected' : 'unselected'"
       @click="selectType('individual')"
     >
-      <div class="option-icon">👤</div>
+      <div class="option-icon" :class="t('auth.lang') == 'ar' ? 'margin-left11' : 'margin-right11'">👤</div>
       <span 
         class="option-text"
         :class="selectedType === 'individual' ? 'selected' : 'unselected'"
       >
-        I am an Individual
+        {{ t('selling_scrap.individual') }}
       </span>
       <div 
         class="checkbox"
-        :class="selectedType === 'individual' ? 'selected' : 'unselected'"
+        :class="[
+          selectedType === 'individual' ? 'selected' : 'unselected',
+          { 'margin-right' : $t('auth.lang') === 'ar' },
+          { 'margin-left' : $t('auth.lang') !== 'ar' }
+        ]"
       >
         <span v-if="selectedType === 'individual'" class="check-icon">✓</span>
       </div>
@@ -33,8 +34,9 @@
   :disabled="!selectedType"
   @click="handleNextClick"
 >
-  <span class="next-button-text">Next</span>
-  <span class="next-icon">→</span>
+  <span class="next-button-text" :class="t('auth.lang') == 'ar' ? 'margin-left8' : 'margin-right8'">{{ t('selling_scrap.next') }}</span>
+  <span class="next-icon" v-if="t('auth.lang') == 'en'">→</span>
+  <span class="next-icon" v-if="t('auth.lang') == 'ar'">←</span>
 </button>
 
     
@@ -46,6 +48,9 @@
 import { ref } from 'vue';
 import { UserType } from '@/types';
 import { useRouter } from 'vue-router';
+
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 
 
 const router = useRouter();
@@ -80,8 +85,7 @@ const handleNextClick = () => {
 <style scoped>
 .left-section {
   width: 50%;
-  padding: 50px 80px;
-  /* padding-right: 50px; */
+  padding: 50px 130px 50px 80px
 }
 
 .page-title {
@@ -128,7 +132,6 @@ const handleNextClick = () => {
 }
 
 .option-icon {
-  margin-right: 11px;
   font-size: 20px;
 }
 
@@ -150,11 +153,34 @@ const handleNextClick = () => {
   width: 22px;
   height: 22px;
   border-radius: 6px;
-  margin-left: auto;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid gainsboro
+}
+
+.margin-left{
+  margin-left: auto;
+}
+
+.margin-right{
+  margin-right: auto;
+}
+
+.margin-left8{
+  margin-left: 8px;
+}
+
+.margin-right8{
+  margin-right: 8px;
+}
+
+.margin-left11{
+  margin-left: 11px;
+}
+
+.margin-right11{
+  margin-right: 11px;
 }
 
 .checkbox.selected {

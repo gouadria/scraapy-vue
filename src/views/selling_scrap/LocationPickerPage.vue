@@ -10,6 +10,9 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 const currentProgress = ref(70);
 
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+
 const goBack = () => {
   router.go(-1); // revenir à la page précédente
 };
@@ -20,92 +23,206 @@ const goNext = () => {
 </script>
 
 <template>
-  <div class="location-picker-page">
-    <NavBar />
-    
-    <main>
-      <div class="container">
-        <h1>Sell Scrap</h1>
-        
-        <ProgressBar :progress="currentProgress" />
-        
-        <div class="content-card">
-          <LocationPicker />
-          <ScheduleSelector />
-
-          <!-- Boutons de navigation ajoutés ici -->
-          <div class="navigation-buttons">
-            <button @click="goBack" class="nav-button previous">Previous</button>
-            <button @click="goNext" class="nav-button next">Next</button>
+  <div class="app">
+    <navBar />
+    <main class="main-content">
+      <div class="scrap-selection">
+        <div class="selection-header">
+          <h1 class="selection-title">{{ t('selling_scrap.sell_scrap') }}</h1>
+          <div class="progress-container">
+            <div class="progress-bar">
+              <div class="progress-fill" :style="{ width: progress + '%' }"></div>
+            </div>
+            <span class="progress-text">{{ progress }}%</span>
           </div>
         </div>
+
+        <LocationPicker />
+        <ScheduleSelector />
+
+        <div class="nav-buttons">
+          <button class="button button-previous" @click="handlePrevious">
+            <span v-if="t('auth.lang') == 'en'" class="button-icon">←</span>
+            <span v-if="t('auth.lang') == 'ar'" class="button-icon">→</span>
+            {{ t('selling_scrap.previous') }}
+          </button>
+          <button class="button button-next" :disabled="!isOtpComplete" 
+              :class="{ disabled: !isOtpComplete }"
+              @click="handleNext">
+            {{ t('selling_scrap.next') }}
+          </button>
+        </div>
+        
       </div>
     </main>
-    <AppFooter />
+    <footerComponant />
   </div>
 </template>
 
-<style scoped>
-.location-picker-page {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background-color: #f5f7fa;
-}
+<style>
+.scrap-selection {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
 
-main {
-  flex: 1;
-  padding: 24px;
-}
+  .selection-header {
+    padding: 24px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-}
+  .selection-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+  }
 
-h1 {
-  margin-bottom: 24px;
-  font-size: 1.8rem;
-}
+  .progress-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
 
-.content-card {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  padding: 24px;
-  margin-top: 24px;
-}
+  .progress-bar {
+    width: 200px;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+  }
 
-.navigation-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 24px;
-}
+  .progress-fill {
+    height: 100%;
+    background-color: #16b277;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+  }
 
-.nav-button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background-color 0.3s;
-}
+  .progress-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+  }
 
-.previous {
-  background-color: #f0f0f0;
-  color: #333;
-}
+  .selection-content {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 32px;
+  }
 
-.previous:hover {
-  background-color: #e0e0e0;
-}
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
 
-.next {
-  background-color: #00A67E;
-  color: white;
-}
+  .step-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #16b277;
+    color: white;
+  }
 
-.next:hover {
-  background-color: #008c6a;
-}
+  .step-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+  }
+
+  .accent {
+    color: #16b277;
+  }
+
+  .scrap-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  @media (max-width: 992px) {
+    .scrap-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .scrap-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .progress-bar {
+      width: 150px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .scrap-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .selection-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    
+    .progress-container {
+      width: 100%;
+    }
+    
+    .progress-bar {
+      flex: 1;
+    }
+  }
+
+  .nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: 32px 0;
+  }
+
+  .button {
+    display: flex;
+    align-items: center;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .button-previous {
+    background-color: white;
+    color: #333;
+    border: 1px solid #ddd;
+  }
+
+  .button-previous:hover {
+    background-color: #f5f5f5;
+  }
+
+  .button-next {
+    background-color: #18A77A;
+    color: white;
+    border: none;
+  }
+
+  .button-next:hover {
+    background-color: #148f68;
+  }
+
+  .button-icon {
+    margin: 0 4px;
+  }
+
 </style>

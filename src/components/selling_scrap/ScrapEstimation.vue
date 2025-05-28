@@ -3,6 +3,8 @@ import { ref, onMounted } from 'vue'
 import { watch } from 'vue'
 import { useRouter } from 'vue-router'
 
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 
 const estimatedAmount = ref(0)
 const currency = ref('SAR')
@@ -65,16 +67,16 @@ watch(estimatedAmount, (newVal) => {
   <div class="estimation-container">
     <div class="estimation-header">
       <div class="estimation-icon">💰</div>
-      <div class="estimation-label">Estimated amount of <span class="money-text">Money</span> you will receive</div>
+      <div class="estimation-label">{{ t('selling_scrap.moneyWillReceive') }}<span class="money-text"></span></div>
     </div>
     
     <div class="amount-container">
-      <div class="currency">{{ currency }}</div>
       <div class="amount">{{ estimatedAmount.toLocaleString() }}</div>
+      <img src="@/assets/svg-icons/sar.svg?url" width="30" height="30"/>
     </div>
     
     <div class="disclaimer">
-      This is an estimation based on the information you have provided, actual amount will be known when the pickup driver weighs the scrap.
+      {{ t('selling_scrap.dMoneyWillReceive') }}
     </div>
   </div>
 </template>

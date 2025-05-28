@@ -2,8 +2,8 @@
   <div class="right-section">
     <div class="process-container">
       <div class="process-bg">
-        <h2 class="process-title">It's as Easy as 1, 2, 3</h2>
-        <p class="process-subtitle">Get Paid for Your Scrap in Minutes.</p>
+        <h2 class="process-title">{{ t('selling_scrap.itEasy') }}</h2>
+        <p class="process-subtitle">{{ t('selling_scrap.dItEasy') }}</p>
         
       </div>
       
@@ -18,8 +18,8 @@
             <div v-if="step.number < steps.length" class="step-line"></div>
           </div>
           <div class="step-content">
-            <h3 class="step-title">{{ step.title }}</h3>
-            <p class="step-description">{{ step.description }}</p>
+            <h3 class="step-title">{{ t('selling_scrap.'+ step.title) }}</h3>
+            <p class="step-description">{{ t('selling_scrap.'+ step.description) }}</p>
           </div>
         </div>
       </div>
@@ -31,21 +31,24 @@
 import { ref } from 'vue';
 import { ProcessStep } from '@/types';
 
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+
 const steps = ref<ProcessStep[]>([
   {
     number: 1,
-    title: 'Share What You\'ve Got',
-    description: 'Give us the details about your scrap, and we\'ll provide you with a fair offer.'
+    title: 'step1',
+    description: 'dStep1'
   },
   {
     number: 2,
-    title: 'We\'ll Pick It Up',
-    description: 'A driver will collect your scrap right from your doorstep—just like your favorite food delivery.'
+    title: 'step2',
+    description: 'dStep2'
   },
   {
     number: 3,
-    title: 'Get Paid Instantly',
-    description: 'Receive your payment directly into your e-wallet or bank account, hassle-free.'
+    title: 'step3',
+    description: 'dStep3'
   }
 ]);
 </script>

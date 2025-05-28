@@ -16,7 +16,7 @@ import AppFooter from '@/components/UIElements/footerComponant.vue';
 
 <style>
 :root {
-  --primary: #057970;
+  --primary: #16b277;
   --primary-dark: #046258;
   --primary-light: #e0f2f1;
   --secondary: #05393a;

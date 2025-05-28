@@ -92,7 +92,7 @@ watch(() => otpInputRefs.value.length, (newLength) => {
 <style>
 .otp-container {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   gap: 12px;
   margin: 24px 0;
 }

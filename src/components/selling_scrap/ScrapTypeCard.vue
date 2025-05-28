@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+
 defineProps<{
   type: {
     id: string;
@@ -15,7 +18,7 @@ defineProps<{
       <img :src="type.icon" alt="icon" width="36" height="36" />
     </div>
     <div class="card-content">
-      <h3 class="card-title">{{ type.name }}</h3>
+      <h3 class="card-title">{{ t('auth.lang') == 'en' ? type.name : type.name_ar }}</h3>
       <p class="card-description">{{ type.description }}</p>
     </div>
   </div>

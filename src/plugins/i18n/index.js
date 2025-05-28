@@ -1419,7 +1419,25 @@ const messages = {
       readyStartedBtn: 'Join us now'
     },
     selling_scrap: {
-      sell_scrap: 'Sell Scrap'
+      sell_scrap: 'Sell Scrap',
+      knowYouBetter: 'Let\'s Get to Know You Better',
+      dKnowYouBetter: 'By letting us know you, we can provide you with a more personalized experience and ensure the pricing fits your specific needs.',
+      individual: 'I am an Individual',
+      next: 'Next',
+      previous: 'Previous',
+      itEasy: 'It\'s as Easy as 1, 2, 3',
+      dItEasy: 'Get Paid for Your Scrap in Minutes.',
+      step1: 'Share What You\'ve Got',
+      dStep1: 'Give us the details about your scrap, and we\'ll provide you with a fair offer.',
+      step2: 'We\'ll Pick It Up',
+      dStep2: 'A driver will collect your scrap right from your doorstep just like your favorite product delivery.',
+      step3: 'Get Paid Instantly',
+      dStep3: 'Receive your payment directly into your e-wallet or bank account, hassle-free.',
+      choose: 'Choose',
+      scrap: 'Scrap',
+      type: 'Type',
+      moneyWillReceive: 'Estimated amount of Money you will receive',
+      dMoneyWillReceive: 'This is an estimation based on the information you have provided, actual amount will be known when the pickup driver weighs the scrap.'
     }
   },
   ar: {
@@ -2770,7 +2788,26 @@ const messages = {
       readyStartedBtn: 'انضم إلينا الآن'
     },
     selling_scrap: {
-      sell_scrap: 'بيع سكرابك'
+      sell_scrap: 'بيع سكرابك',
+      knowYouBetter: 'لخدمتك بشكل أفضل',
+      dKnowYouBetter: 'دعنا ننعرف عليك بشكل أفضل على احتياجتك لكى نقدم لك تجربة أكثر تخصيصًا ونضمن أن الأسعار تناسب احتياجاتك المحددة',
+      individual: 'أنا فرد',
+      next: 'التالي',
+      previous: 'السابق',
+      itEasy: 'تعاملك سهل مثل 1، 2، 3',
+      dItEasy: 'يمكنك تحويل سكرابك الى أموال في دقائق.',
+      step1: 'عطنا اخبارك',
+      dStep1: 'ادخل تفاصيل سكرابك واحصل عرضًا فوريًا مناسبًا',
+      step2: 'وصلت خير',
+      dStep2: 'اجمع سكرابك وسيقوم السائق باستلامه من باب منزلك تمامًا كما لو كنت تطلب منتجك المفضل',
+      step3: 'فلوسك في حسابك',
+      dStep3: 'استلم دفعتك مباشرةً في محفظتك الإلكترونية أو حسابك المصرفي، بكل سهولة ويسر',
+      choose: 'اختر',
+      scrap: 'سكرابك',
+      type: 'نوع',
+      //
+      moneyWillReceive: 'المبلغ المقدر',
+      dMoneyWillReceive: 'هذا تقدير يعتمد على المعلومات التي قدمتها، وسيتم معرفة المبلغ الفعلي عندما يقوم سائق الشاحنة بوزن سكرابك.'
     }
   }
 }
