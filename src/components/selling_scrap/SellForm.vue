@@ -2,7 +2,7 @@
   <form @submit.prevent="submitForm" class="registration-form">  
     <div class="content-card">
       <div class="success-indicator">
-        <div class="checkmark-circle">✓</div>
+        <span class="checkmark-circle">✓</span>
         <h2>{{ t('selling_scrap.scrapPickupRequested') }}</h2>
       </div>
       
@@ -206,16 +206,17 @@ h1 {
 
 .success-indicator {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  align-items: start;
   margin-bottom: 1.5rem;
+  max-width: 500px;
 }
 
 .checkmark-circle {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background-color: var(--success);
+  background-color: green;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -228,10 +229,13 @@ h1 {
   font-size: 1.4rem;
   color: var(--text-color);
   text-align: center;
+  margin-inline: 20px;
+
 }
 
 .message {
   margin-bottom: 2rem;
+  max-width: 500px;
 }
 
 .message p {
