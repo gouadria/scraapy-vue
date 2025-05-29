@@ -2861,7 +2861,7 @@ const messages = {
       type: 'نوع',
       detailsScrap: 'تفاصيل سكرابك',
       scrapName: 'سكرابك',
-      size: 'النوع',
+      size: 'الحجم',
       quantity: 'الكمية',
       addScrap: 'اضف سكراب',
       delete: 'حذف',
