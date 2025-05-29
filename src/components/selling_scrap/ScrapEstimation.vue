@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue'
 import { watch } from 'vue'
 import { useRouter } from 'vue-router'
+import sarIcon from '@/assets/svg-icons/SAR.svg'
 
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
@@ -49,16 +50,12 @@ const calculateEstimatedAmount = async () => {
   estimatedAmount.value = total
 }
 
-
 onMounted(() => {
   calculateEstimatedAmount()
 })
 watch(estimatedAmount, (newVal) => {
   localStorage.setItem('estimatedAmount', newVal.toString())
 })
-
-
-
 </script>
 
 
@@ -72,7 +69,6 @@ watch(estimatedAmount, (newVal) => {
     
     <div class="amount-container">
       <div class="amount">{{ estimatedAmount.toLocaleString() }}</div>
-      <img src="@/assets/svg-icons/sar.svg?url" class="input-icon" style="width: 30px; height: 30px;"/>
     </div>
     
     <div class="disclaimer">
