@@ -10,6 +10,9 @@ const map = ref<L.Map | null>(null);
 const marker = ref<L.Marker | null>(null);
 const { coords } = useGeolocation();
 
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+
 // Fix for Leaflet icon issue
 delete (L.Icon.Default.prototype as any)._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -116,22 +119,23 @@ const useCurrentLocation = () => {
   <div class="location-picker">
     <div class="location-header">
       <div class="location-icon">📍</div>
-      <h2>Please provide pickup location</h2>
+      <h2>{{ t('selling_scrap.pleaseProvidePickupLocation') }}</h2>
     </div>
 
-    <p class="instruction">Press and hold to place the marker on your location.</p>
+    <p class="instruction">{{ t('selling_scrap.dPleaseProvidePickupLocation') }}</p>
 
     <div class="map-container" ref="mapContainer" style="height: 400px;"></div>
 
     <div class="address-container">
       <input
         type="text"
+        style="display: none"
         v-model="addressInput"
-        placeholder="Enter your address..."
+        :placeholder="t('selling_scrap.enterYourAddress')"
         class="address-input"
       />
-      <button class="location-button" @click="useCurrentLocation">
-        Use current location
+      <button class="location-button" @click="useCurrentLocation" style="display: none">
+        {{ t('selling_scrap.useCurrentLocation') }}
       </button>
     </div>
   </div>

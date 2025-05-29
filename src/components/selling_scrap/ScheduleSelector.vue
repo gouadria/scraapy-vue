@@ -3,6 +3,9 @@ import { ref } from 'vue';
 
 const selectedOption = ref('now');
 
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+
 const selectOption = (option: string) => {
   selectedOption.value = option;
 };
@@ -12,7 +15,7 @@ const selectOption = (option: string) => {
   <div class="schedule-selector">
     <div class="schedule-header">
       <div class="schedule-icon">🕒</div>
-      <h2>What time should we pick it up</h2>
+      <h2>{{ t('selling_scrap.whatTimeShould') }}</h2>
     </div>
     
     <div class="schedule-options">
@@ -21,7 +24,7 @@ const selectOption = (option: string) => {
         :class="{ active: selectedOption === 'now' }"
         @click="selectOption('now')"
       >
-        Now
+        {{ t('selling_scrap.now') }}
       </button>
       
       <button 
@@ -29,18 +32,18 @@ const selectOption = (option: string) => {
         :class="{ active: selectedOption === 'later' }"
         @click="selectOption('later')"
       >
-        Schedule for later
+        {{ t('selling_scrap.scheduleForLater') }}
       </button>
     </div>
     
     <div v-if="selectedOption === 'later'" class="date-time-picker">
       <div class="date-picker">
-        <label for="date">Date</label>
+        <label for="date">{{ t('selling_scrap.date') }}</label>
         <input type="date" id="date" min="2025-01-01" />
       </div>
       
       <div class="time-picker">
-        <label for="time">Time</label>
+        <label for="time">{{ t('selling_scrap.time') }}</label>
         <input type="time" id="time" />
       </div>
     </div>
@@ -95,6 +98,7 @@ h2 {
 .date-time-picker {
   display: flex;
   gap: 16px;
+  max-width: 550px;
   animation: fadeIn 0.3s ease;
 }
 

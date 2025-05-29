@@ -157,7 +157,7 @@ function submitNewItem() {
 
         <div class="selection-content">
           <section class="card">
-            <h2>{{ t('selling_scrap.detailsScrap') }} {{ categoryName }}</h2>
+            <h2>{{ t('selling_scrap.detailsScrap') }} {{ t('auth.lang') == 'en' ? categoryName : categoryName}}</h2>
 
             <table class="scrap-table">
               <thead>
@@ -183,10 +183,10 @@ function submitNewItem() {
             <button @click="showAddForm = true" class="add-btn">+ {{ t('selling_scrap.addScrap') }}</button>
 
             <section class="section">
-              <h2>Pictures</h2>
+              <h2>{{ t('selling_scrap.pictures') }}</h2>
               <div class="button-group">
-                <button @click="triggerUpload">Upload</button>
-                <button @click="captureNow">Capture Now</button>
+                <button @click="triggerUpload">{{ t('selling_scrap.upload') }}</button>
+                <button @click="captureNow">{{ t('selling_scrap.captureNow') }}</button>
                 <input
                   type="file"
                   accept="image/*"
@@ -204,9 +204,9 @@ function submitNewItem() {
             </section>
 
             <section class="section">
-              <h2>Description</h2>
-              <textarea v-model="description" maxlength="500" placeholder="Type here..." required></textarea>
-              <div class="char-limit">Character limit: {{ description.length }}/500</div>
+              <h2>{{ t('selling_scrap.description') }}</h2>
+              <textarea v-model="description" maxlength="500" :placeholder="t('selling_scrap.typeHere')" required></textarea>
+              <div class="char-limit">{{ t('selling_scrap.characterLimit') }} {{ description.length }}/500</div>
             </section>
           </section>
         </div>

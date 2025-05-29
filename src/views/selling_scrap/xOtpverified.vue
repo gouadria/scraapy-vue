@@ -93,15 +93,15 @@ function resendOtp() {
           <div class="instructions">
             <label class="checkbox-label">
               <input type="checkbox" checked disabled />
-              <span>Enter the <strong>OTP</strong> received on mobile number</span>
+              {{ t('selling_scrap.enterYourMobile') }}
             </label>
           </div>
 
           <OtpInput @update="handleOtpChange" />
 
           <div class="resend-text">
-            Didn't receive the OTP? 
-            <button class="resend-btn" @click="resendOtp">Click to resend</button>
+            {{ t('selling_scrap.didntReceive') }}
+            <button class="resend-btn" @click="resendOtp">{{ t('selling_scrap.clickToResend') }}</button>
           </div>
 
         </div>

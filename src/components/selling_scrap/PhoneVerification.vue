@@ -8,7 +8,6 @@ const router = useRouter()
 
 const mobileNumber = ref('')
 const highlightMobile = ref(false)
-const isChecked = ref(false)
 
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
@@ -22,7 +21,7 @@ const validateMobile = () => {
 const sendOtp = async () => {
   console.log('sendOtp called')
 
-  if (!validateMobile() || !isChecked.value) {
+  if (!validateMobile()) {
     console.log('Validation failed - either mobile invalid or checkbox not checked')
     alert('Please enter a valid 10-digit mobile number and accept the terms.')
     return
@@ -55,23 +54,18 @@ const sendOtp = async () => {
   <div class="form-card">
     <div class="form-group verification-form">
       <div class="checkbox-container">
-        <input 
-          type="checkbox" 
-          id="mobileVerification" 
-          v-model="isChecked"
-        />
         <label for="mobileVerification">
-          Enter your <span class="highlight">Mobile Number</span> to receive OTP
+          {{ t('selling_scrap.enterYourMobile') }} <span class="highlight"></span>
         </label>
       </div>
 
       <div class="input-group">
-        <label for="mobile">Number</label>
+        <label for="mobile">{{ t('selling_scrap.phoneNumber') }}</label>
         <input
           type="tel"
           id="mobile"
           v-model="mobileNumber"
-          placeholder="10-DIGIT MOBILE"
+          placeholder="05xxxxxxxx"
           :class="{ 'highlight-input': highlightMobile }"
           @focus="highlightMobile = true"
           @blur="highlightMobile = false"
@@ -79,7 +73,7 @@ const sendOtp = async () => {
       </div>
 
       <p class="info-text">
-        A 6 digit one-time pin will be sent to your mobile number in order to verify it.
+        {{ t('selling_scrap.mobileNumberVerify') }}
       </p>
     </div>
   </div>
@@ -91,7 +85,7 @@ const sendOtp = async () => {
       {{ t('selling_scrap.previous') }}
     </button>
     <button class="button button-next" @click="sendOtp" 
-    :disabled="!validateMobile() || !isChecked">
+    :disabled="!validateMobile()">
       {{ t('selling_scrap.next') }}
     </button>
   </div>

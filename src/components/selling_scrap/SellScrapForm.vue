@@ -5,6 +5,9 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+
 const progress = ref(90);
 const selectedBank = ref('');
 const accountHolderName = ref('');
@@ -51,13 +54,13 @@ const goToNext = () => {
           <span>💳</span>
         </div>
         <div class="iban-text">
-          <p>Provide your <strong>IBAN</strong> Number to receive money</p>
+          <p>{{ t('selling_scrap.ProvideIBAN') }}<strong></strong></p>
         </div>
       </div>
       
       <form @submit.prevent="goToNext">
         <div class="form-group">
-          <label for="bank">Bank Name</label>
+          <label for="bank">{{ t('selling_scrap.bankName') }}</label>
           <div class="select-wrapper">
             <select id="bank" v-model="selectedBank">
               <option v-for="bank in banks" :key="bank" :value="bank">{{ bank }}</option>
@@ -67,7 +70,7 @@ const goToNext = () => {
         </div>
         
         <div class="form-group">
-          <label for="accountHolder">Account Holder Full Name</label>
+          <label for="accountHolder">{{ t('selling_scrap.accountHolder') }}</label>
           <input 
             type="text" 
             id="accountHolder" 
@@ -77,7 +80,7 @@ const goToNext = () => {
         </div>
         
         <div class="form-group">
-          <label for="iban">IBAN Number</label>
+          <label for="iban">{{ t('selling_scrap.IBANNumber') }}</label>
           <input 
             type="text" 
             id="iban" 
