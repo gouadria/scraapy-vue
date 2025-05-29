@@ -15,7 +15,6 @@
       <div class="form-group">
         <label for="fullName">{{ t('selling_scrap.fullName') }}</label>
         <div class="input-wrapper">
-          <span class="input-icon">👤</span>
           <input 
             type="text" 
             id="fullName" 
@@ -30,7 +29,6 @@
       <div class="form-group">
         <label for="email">{{ t('selling_scrap.email') }}</label>
         <div class="input-wrapper">
-          <span class="input-icon">✉️</span>
           <input 
             type="email" 
             id="email" 
@@ -277,6 +275,8 @@ h1 {
   outline: none;
   transition: all 0.2s ease;
   font-size: 1rem;
+  border: 1px solid gainsboro;
+  max-width: 500px;
 }
 
 .form-group input:focus {
