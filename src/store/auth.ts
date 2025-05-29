@@ -16,6 +16,7 @@ export interface UserRegistration {
   phone: string
   businessName?: string
   businessType?: string
+  crNumber?: string
 }
 
 export const useAuthStore = defineStore('auth', () => {
@@ -60,7 +61,13 @@ export const useAuthStore = defineStore('auth', () => {
         "contact_number": registration.value.phone,
         "password": "11111111",
         "user_type": registration.value.userType,
-        "business_sub_type": registration.value.businessType
+        "business_sub_type": registration.value.businessType,
+        "cr_number": registration.value.crNumber,
+        "address_line1": "anis",
+        "city": "anis",
+        "province": "anis",
+        "zip_code": "12345",
+        "country": "saudi arabia"
       })
 
       // console.log('Register response:', response)

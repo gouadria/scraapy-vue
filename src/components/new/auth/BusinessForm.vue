@@ -37,7 +37,10 @@ const validationSchema = yup.object({
   email: yup.string().email(t('validations.email')).required(t('validations.emailRequired')),
   phone: yup.string()
     .matches(/^05\d{8}$/, t('validations.phone'))
-    .required(t('validations.phoneRequired'))
+    .required(t('validations.phoneRequired')),
+  crNumber: yup.string()
+  .matches(/^1\d{9}$/, t('validations.crNumber'))
+  .required(t('validations.crNumberRequired'))
 })
 
 // Setup form
@@ -50,6 +53,7 @@ const { value: businessName, errorMessage: businessNameError } = useField<string
 const { value: businessType, errorMessage: businessTypeError } = useField<string>('businessType')
 const { value: email, errorMessage: emailError } = useField<string>('email')
 const { value: phone, errorMessage: phoneError } = useField<string>('phone')
+const { value: crNumber, errorMessage: crNumberError } = useField<string>('crNumber')
 
 // Modal & OTP state
 const showOtpModal = ref(false)
@@ -132,7 +136,13 @@ const onSubmit = handleSubmit((values) => {
     businessName: values.businessName,
     businessType: values.businessType,
     email: values.email,
-    phone: '+966' + values.phone.slice(1)
+    phone: '+966' + values.phone.slice(1),
+    crNumber: values.crNumber,
+    addressLine1: "anis",
+    city: "anis",
+    province: "anis",
+    zipCode: "12345",
+    country: "saudi arabia"
   }
 
   emit('submit', updatedValues)
@@ -148,6 +158,17 @@ const onSubmit = handleSubmit((values) => {
       :placeholder="$t('auth.fullBusinessName')"
       :error="businessNameError"
       autocomplete="organization"
+    />
+
+    <TextInput
+      v-model="crNumber"
+      :label="$t('auth.CRNumber')"
+      placeholder="1xxxxxxxxx"
+      type="tel"
+      :error="crNumberError"
+      autocomplete="tel"
+      maxlength="10"
+      class="flex-grow"
     />
     
     <div>

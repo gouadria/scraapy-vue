@@ -42,7 +42,7 @@ async function handleRegistration(formData: any) {
     
     // Register user
     const success = await authStore.registerUser()
-    await userStore.dispatch('registerBusinessProfile', { cr_number: '8647964678' })
+    // await userStore.dispatch('registerBusinessProfile', { cr_number: '8647964678' })
     console.log(success)
     if (success) {
       // Redirect to login
