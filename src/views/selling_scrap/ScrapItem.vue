@@ -366,6 +366,14 @@ function submitNewItem() {
   }
 
   /* old */
+  .modal form select, .modal form input {
+    width: 100%;
+    height: 40px;
+    margin: 5px 0;
+  }
+  .modal form button {
+    padding: 7px;
+  }
   .header {
     background: #ffffff;
     padding: 1rem;
@@ -494,7 +502,7 @@ function submitNewItem() {
     background: white;
     padding: 1.5rem;
     border-radius: 8px;
-    width: 300px;
+    width: 500px;
     
   }
 
