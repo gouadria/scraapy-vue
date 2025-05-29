@@ -102,22 +102,22 @@ const validateForm = (): boolean => {
   
   // Validate name
   if (!formData.fullName.trim()) {
-    formErrors.fullName = 'Full name is required';
+    formErrors.fullName = t('selling_scrap.fullNameRequired');
     isValid = false;
   }
   
   // Validate email
   if (!formData.email.trim()) {
-    formErrors.email = 'Email is required';
+    formErrors.email = t('selling_scrap.emailRequired');
     isValid = false;
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-    formErrors.email = 'Please enter a valid email address';
+    formErrors.email = t('selling_scrap.validEmail');
     isValid = false;
   }
   
   // Validate terms
   if (!formData.termsAccepted) {
-    formErrors.termsAccepted = 'You must accept the Terms & Conditions';
+    formErrors.termsAccepted = t('selling_scrap.acceptTermsConditions');
     isValid = false;
   }
   

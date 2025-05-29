@@ -48,13 +48,13 @@ onMounted(() => {
         </div>
 
         <div class="bg-white p-6 rounded-xl shadow-lg text-center max-w-md mx-auto mt-10 border border-gray-200">
-          <h2 class="text-3xl font-bold text-green-600 mb-4">Order Confirmed ✅</h2>
-          <p class="text-gray-700 mb-2">Thank you, <strong>{{ fullName }}</strong>!</p>
-          <p class="text-gray-700 mb-4">Your pickup request has been successfully submitted.</p>
+          <h2 class="text-3xl font-bold text-green-600 mb-4">{{ t('selling_scrap.orderConfirmed') }} ✅</h2>
+          <p class="text-gray-700 mb-2">{{ t('selling_scrap.thankYou') }} <strong>{{ fullName }}</strong>!</p>
+          <p class="text-gray-700 mb-4">{{ t('selling_scrap.pickupHasSuccessfully') }}</p>
 
           <div class="mt-6">
             
-            <p class="text-sm text-gray-500">You will receive a confirmation email shortly.</p>
+            <p class="text-sm text-gray-500">{{ t('selling_scrap.willReceiveConfirmation') }}</p>
           </div>
         </div>
         

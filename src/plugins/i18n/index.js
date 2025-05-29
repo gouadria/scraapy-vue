@@ -1479,8 +1479,16 @@ const messages = {
       enterYourName: 'Enter your name',
       email: 'Email',
       enterYourEmail: 'Enter your email',
+      fullNameRequired: 'Full name is required',
+      emailRequired: 'Email is required',
+      validEmail: 'Please enter a valid email address',
+      acceptTermsConditions: 'You must accept the Terms & Conditions',
       accept : 'Accept',
       termsConditions: 'Terms & Conditions',
+      orderConfirmed: 'Order Confirmed',
+      thankYou: 'Thank you,',
+      pickupHasSuccessfully: 'Your pickup request has been successfully submitted.',
+      willReceiveConfirmation: 'You will receive a confirmation email shortly.',
       dMoneyWillReceive: 'This is an estimation based on the information you have provided, actual amount will be known when the pickup driver weighs the scrap.'
     }
   },
@@ -2892,8 +2900,16 @@ const messages = {
       enterYourName: 'ادخل اسمك',
       email: 'البريد الإلكتروني',
       enterYourEmail: 'ادخل بريدك الإلكتروني',
+      fullNameRequired: 'الاسم مطلوب',
+      emailRequired: 'البريد الإلكتروني',
+      validEmail: 'يرجى إدخال بريد إلكتروني صحيح',
+      acceptTermsConditions: 'يجب عليك قبول الشروط والأحكام',
       accept : 'قبول',
       termsConditions: 'الشروط و الاحكام',
+      orderConfirmed: 'اكتملت الطلب',
+      thankYou: 'شكرا لك,',
+      pickupHasSuccessfully: 'لقد تم تقديم طلبك بنجاح.',
+      willReceiveConfirmation: 'سوف تتلقى رسالة تأكيد بالبريد الإلكتروني قريبًا.',
       dMoneyWillReceive: 'هذا تقدير يعتمد على المعلومات التي قدمتها، وسيتم معرفة المبلغ الفعلي عندما يقوم سائق الشاحنة بوزن سكرابك.'
     }
   }
