@@ -72,7 +72,7 @@ watch(estimatedAmount, (newVal) => {
     
     <div class="amount-container">
       <div class="amount">{{ estimatedAmount.toLocaleString() }}</div>
-      <img src="@/assets/svg-icons/sar.svg?url" class="input-icon" width="30px" height="30px" />
+      <img src="@/assets/svg-icons/sar.svg?url" class="input-icon" style="width: 30px; height: 30px;"/>
     </div>
     
     <div class="disclaimer">
