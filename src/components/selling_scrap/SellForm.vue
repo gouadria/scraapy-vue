@@ -3,24 +3,24 @@
     <div class="content-card">
       <div class="success-indicator">
         <div class="checkmark-circle">✓</div>
-        <h2>Scrap Pickup Requested</h2>
+        <h2>{{ t('selling_scrap.scrapPickupRequested') }}</h2>
       </div>
       
       <div class="message">
         <p>
-          Your Request to Sell Scrap was successfully Sent. You will get a call very soon to confirm the pickup appointment. To track the request, you need to create an account or sign-in. Fill in the details below to create your account.
+          {{ t('selling_scrap.dScrapPickupRequested') }}
         </p>
       </div>
       
       <div class="form-group">
-        <label for="fullName">Full Name*</label>
+        <label for="fullName">{{ t('selling_scrap.fullName') }}</label>
         <div class="input-wrapper">
           <span class="input-icon">👤</span>
           <input 
             type="text" 
             id="fullName" 
             v-model="formData.fullName" 
-            placeholder="Enter your name"
+            :placeholder="t('selling_scrap.enterYourName')"
             :class="{ 'error': formErrors.fullName }"
           />
         </div>
@@ -28,14 +28,14 @@
       </div>
       
       <div class="form-group">
-        <label for="email">Email*</label>
+        <label for="email">{{ t('selling_scrap.email') }}</label>
         <div class="input-wrapper">
           <span class="input-icon">✉️</span>
           <input 
             type="email" 
             id="email" 
             v-model="formData.email" 
-            placeholder="Enter your email"
+            :placeholder="t('selling_scrap.enterYourEmail')"
             :class="{ 'error': formErrors.email }"
           />
         </div>
@@ -49,7 +49,7 @@
           v-model="formData.termsAccepted"
           :class="{ 'error': formErrors.termsAccepted }"
         />
-        <label for="terms">Accept <a href="#" class="terms-link">Terms & Conditions</a></label>
+        <label for="terms">{{ t('selling_scrap.accept') }} <a href="#" class="terms-link">{{ t('selling_scrap.termsConditions') }}</a></label>
         <span v-if="formErrors.termsAccepted" class="error-message">{{ formErrors.termsAccepted }}</span>
       </div>
     </div>

@@ -1473,6 +1473,14 @@ const messages = {
       bankName: 'Bank Name',
       accountHolder: 'Account Holder Full Name',
       IBANNumber: 'IBAN Number',
+      scrapPickupRequested: 'Scrap Pickup Requested',
+      dScrapPickupRequested: 'Your Request to Sell Scrap was successfully Sent. You will get a call very soon to confirm the pickup appointment. To track the request, you need to create an account or sign-in. Fill in the details below to create your account.',
+      fullName: 'Full Name',
+      enterYourName: 'Enter your name',
+      email: 'Email',
+      enterYourEmail: 'Enter your email',
+      accept : 'Accept',
+      termsConditions: 'Terms & Conditions',
       dMoneyWillReceive: 'This is an estimation based on the information you have provided, actual amount will be known when the pickup driver weighs the scrap.'
     }
   },
@@ -2878,6 +2886,14 @@ const messages = {
       bankName: 'اسم البنك',
       accountHolder: 'الاسم الكامل لصاحب الحساب',
       IBANNumber: 'رقم IBAN',
+      scrapPickupRequested: 'تسجيل سكرابي',
+      dScrapPickupRequested: 'سيتم إرسال طلبك. ستتلقى اتصالاً قريبًا لتأكيد موعد الاستلام. لتتبع الطلب، عليك إنشاء حساب أو تسجيل الدخول. املأ التفاصيل أدناه لإنشاء حسابك.',
+      fullName: 'الاسم الكامل',
+      enterYourName: 'ادخل اسمك',
+      email: 'البريد الإلكتروني',
+      enterYourEmail: 'ادخل بريدك الإلكتروني',
+      accept : 'قبول',
+      termsConditions: 'الشروط و الاحكام',
       dMoneyWillReceive: 'هذا تقدير يعتمد على المعلومات التي قدمتها، وسيتم معرفة المبلغ الفعلي عندما يقوم سائق الشاحنة بوزن سكرابك.'
     }
   }
