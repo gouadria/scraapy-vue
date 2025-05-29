@@ -1438,6 +1438,16 @@ const messages = {
       choose: 'Choose',
       scrap: 'Scrap',
       type: 'Type',
+      detailsScrap: 'Details of your Scrap',
+      scrapName: 'Scrap Name',
+      size: 'Size',
+      quantity: 'Quantity',
+      addScrap: 'Add Scrap',
+      delete: 'Delete',
+      addScrapItem: 'Add Scrap Item',
+      selectCategory: 'Select Category',
+      add: 'Add',
+      cancel: 'Cancel',
       moneyWillReceive: 'Estimated amount of Money you will receive',
       dMoneyWillReceive: 'This is an estimation based on the information you have provided, actual amount will be known when the pickup driver weighs the scrap.'
     }
@@ -1882,7 +1892,7 @@ const messages = {
       failedToSendCode: 'فشل ارسال رمز التحقق. حاول مرة أخري',
       businessName: 'أدخل اسم صحيح',
       businessNameRequired: 'الاسم الكامل لشركتك مطلوب',
-      BusinessTypeRequired: 'نوع العمل مطلوب'
+      BusinessTypeRequired: 'نوع العمل مطلوب',
     },
     product: {
       addToCart: 'أضف إلى السلة',
@@ -2809,7 +2819,16 @@ const messages = {
       choose: 'اختر',
       scrap: 'سكرابك',
       type: 'نوع',
-      //
+      detailsScrap: 'تفاصيل سكرابك',
+      scrapName: 'سكرابك',
+      size: 'النوع',
+      quantity: 'الكمية',
+      addScrap: 'اضف سكراب',
+      delete: 'حذف',
+      addScrapItem: 'اضف سكراب',
+      selectCategory: 'اختر القسم',
+      add: 'اضف',
+      cancel: 'الغاد',
       moneyWillReceive: 'المبلغ المقدر',
       dMoneyWillReceive: 'هذا تقدير يعتمد على المعلومات التي قدمتها، وسيتم معرفة المبلغ الفعلي عندما يقوم سائق الشاحنة بوزن سكرابك.'
     }

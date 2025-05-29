@@ -105,7 +105,7 @@ onMounted(() => {
 <template>
   <div>
     <label class="form-label">{{ $t('auth.verificationCode') }}</label>
-    <div class="otp-input-container">
+    <div class="otp-input-container" style="direction: ltr">
       <input
         v-for="(_, index) in 6"
         :key="index"

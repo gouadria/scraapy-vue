@@ -157,14 +157,14 @@ function submitNewItem() {
 
         <div class="selection-content">
           <section class="card">
-            <h2>Details of your {{ categoryName }} Scrap</h2>
+            <h2>{{ t('selling_scrap.detailsScrap') }} {{ categoryName }}</h2>
 
             <table class="scrap-table">
               <thead>
                 <tr>
-                  <th>Scrap Name</th>
-                  <th>Size</th>
-                  <th>Quantity</th>
+                  <th>{{ t('selling_scrap.scrapName') }}</th>
+                  <th>{{ t('selling_scrap.size') }}</th>
+                  <th>{{ t('selling_scrap.quantity') }}</th>
                   <th></th>
                 </tr>
               </thead>
@@ -174,13 +174,13 @@ function submitNewItem() {
                   <td>{{ item.size }}</td>
                   <td>{{ item.quantity }}</td>
                   <td>
-                    <button class="delete-btn" @click="deleteItem(item.id)">Delete</button>
+                    <button class="delete-btn" @click="deleteItem(item.id)">{{ t('selling_scrap.delete') }}</button>
                   </td>
                 </tr>
               </tbody>
             </table>
 
-            <button @click="showAddForm = true" class="add-btn">+ Add Scrap</button>
+            <button @click="showAddForm = true" class="add-btn">+ {{ t('selling_scrap.addScrap') }}</button>
 
             <section class="section">
               <h2>Pictures</h2>
@@ -213,20 +213,20 @@ function submitNewItem() {
 
         <div v-if="showAddForm" class="modal-overlay">
           <div class="modal">
-            <h3>Add Scrap Item</h3>
+            <h3>{{ t('selling_scrap.addScrapItem') }}</h3>
             <form @submit.prevent="submitNewItem">
               <select v-model="newItem.name" required>
-                <option disabled value="">-- Select Category --</option>
+                <option disabled value="">-- {{ t('selling_scrap.selectCategory') }} --</option>
                 <option v-for="category in categoriesFromGroup" :key="category.id" :value="category.name">
                   {{ category.name }}
                 </option>
               </select>
 
-              <input v-model="newItem.size" placeholder="Size" required />
-              <input v-model.number="newItem.quantity" type="number" placeholder="Quantity" min="1" required />
+              <input v-model="newItem.size" :placeholder="t('selling_scrap.size')" required />
+              <input v-model.number="newItem.quantity" type="number" :placeholder="t('selling_scrap.quantity')" min="1" required />
               <div class="modal-actions">
-                <button type="button" @click="showAddForm = false">Cancel</button>
-                <button type="submit">Add</button>
+                <button type="button" @click="showAddForm = false">{{ t('selling_scrap.cancel') }}</button>
+                <button type="submit">{{ t('selling_scrap.add') }}</button>
               </div>
             </form>
           </div>
