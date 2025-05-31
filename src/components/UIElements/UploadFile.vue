@@ -19,11 +19,12 @@
         {{ fileTypesString }}
       </div>
     </div>
+
     <div class="file-info" v-if="(file || existingFile) && showFileInfo">
       <img src="@/assets/svg-icons/csv-file.svg?url" />
       <div class="details">
-        <div class="name">{{ (file || existingFile)?.name }}</div>
-        <div class="size">{{ humanFileSize((file || existingFile)?.size) }}</div>
+        <div class="name">{{ currentFile?.name }}</div>
+        <div class="size">{{ humanFileSize(currentFile?.size || 0) }}</div>
       </div>
       <button @click="removeFile">
         <img src="@/assets/svg-icons/close.svg?url" />
@@ -40,7 +41,8 @@ export default defineComponent({
   props: {
     type: {
       type: Array as () => string[],
-      required: false
+      required: false,
+      default: () => []
     },
     backgroundColor: {
       type: String,
@@ -53,7 +55,7 @@ export default defineComponent({
       default: false
     },
     existingFile: {
-      type: File as () => File | null,
+      type: Object as () => File | null,
       default: null
     }
   },
@@ -64,49 +66,53 @@ export default defineComponent({
     }
   },
   watch: {
-    file() {
-      this.$emit('file', this.file)
+    file(newFile: File | null) {
+      this.$emit('file', newFile)
     },
     existingFile(newFile: File | null) {
-      // Update the file data property when the existingFile prop changes
       this.file = newFile
     }
   },
   computed: {
-    fileTypesString() {
+    fileTypesString(): string {
       if (!this.type || this.type.length === 0) {
-        return 'Any'
+        return 'Any file format (max. 20MB)'
       }
-      return this.type?.join(', ') + ' file format (max. 20MB)'
+      return this.type.join(', ') + ' file format (max. 20MB)'
+    },
+    currentFile(): File | null {
+      return this.file || this.existingFile
     }
   },
   methods: {
     handleDrop(e: DragEvent) {
-      const file = e.dataTransfer?.files?.[0]
-      if (file) {
-        this.file = file
+      const droppedFile = e.dataTransfer?.files?.[0]
+      if (droppedFile) {
+        this.file = droppedFile
       }
       this.highlightDiv = false
     },
     uploadFile(e: Event) {
       const target = e.target as HTMLInputElement
-      const file = target.files?.[0]
-      if (file) {
-        this.file = file
+      const selectedFile = target.files?.[0]
+      if (selectedFile) {
+        this.file = selectedFile
       }
     },
     openFilePicker() {
       const input = document.createElement('input')
       input.type = 'file'
-      input.accept = this.type?.join(',') || '*'
-      input.onchange = (e) => {
+      input.accept = this.type?.join(',') || '*/*'
+      input.onchange = (e: Event) => {
         this.uploadFile(e)
       }
       input.click()
     },
-    humanFileSize(bytes: number) {
+    humanFileSize(bytes: number): string {
+      if (bytes === 0) return '0 B'
       const i = Math.floor(Math.log(bytes) / Math.log(1024))
-      return (bytes / Math.pow(1024, i)).toFixed(2) * 1 + ' ' + ['B', 'KB', 'MB', 'GB', 'TB'][i]
+      const sizes = ['B', 'KB', 'MB', 'GB', 'TB']
+      return (bytes / Math.pow(1024, i)).toFixed(2) + ' ' + sizes[i]
     },
     removeFile() {
       this.file = null
@@ -115,7 +121,6 @@ export default defineComponent({
     }
   },
   created() {
-    // Initialize the file with the existingFile prop
     this.file = this.existingFile
   }
 })

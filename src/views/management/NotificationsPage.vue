@@ -21,7 +21,7 @@ export default defineComponent({
       try {
         const response = await this.$axios.get('api/users/notifications/')
         console.log('Notifications:', response)
-        this.notifications = response.data.results
+        this.notifications = response.data
       } catch (error) {
         console.error('Error fetching notifications:', error)
       }

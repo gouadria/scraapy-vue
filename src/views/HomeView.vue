@@ -9,8 +9,9 @@ import productsCarousel from '@/components/marketFront/productsCarousel.vue'
 import trustedBy from '@/components/marketFront/trustedBy.vue'
 import type { Item } from '@/models/Item'
 import type { CategoryGroup } from '@/models/Category'
+import axios from 'axios'
 
-// Types
+
 interface MarketChoices {
   [key: string]: Item[]
 }
@@ -31,52 +32,61 @@ export default defineComponent({
   },
   data() {
     return {
-      categoryGroups: {},
+      categoryGroups: {} as Record<string, CategoryGroup[]>,
       isMobile: useIsMobile().isMobile,
       page_carousels: {
         product: [
           {
             title: "HomeView.mostSold",
             search: new URLSearchParams("sort=most_sold"),
+            items: [] as Item[]
           },
           {
             title: "HomeView.scraapy",
             search: new URLSearchParams("sort=relavance&seller=Bahid"),
+            items: [] as Item[]
           },
           {
             title: "HomeView.allProducts",
             search: new URLSearchParams("sort=relavance"),
+            items: [] as Item[]
           }
         ],
         rental: [
           {
             title: "HomeView.rental",
             search: new URLSearchParams("sort=relavance&type=rental"),
+            items: [] as Item[]
           },
           {
             title: "HomeView.bestSellingRental",
             search: new URLSearchParams("sort=most_sold&type=rental"),
+            items: [] as Item[]
           },
           {
             title: "HomeView.fleets",
             search: new URLSearchParams("sort=relavance&type=rental"),
+            items: [] as Item[]
           }
         ],
         service: [
           {
             title: "HomeView.service",
             search: new URLSearchParams("sort=relavance&type=service"),
+            items: [] as Item[]
           },
           {
             title: "HomeView.bestSellingServices",
             search: new URLSearchParams("sort=most_sold&type=service"),
+            items: [] as Item[]
           },
           {
             title: "HomeView.highValueServices",
             search: new URLSearchParams("sort=price_desc&type=service"),
+            items: [] as Item[]
           }
         ],
-      },
+      }
     }
   },
   computed: {
@@ -88,31 +98,37 @@ export default defineComponent({
     async fetchApi() {
       try {
         const response = await this.$axios.get('/api/inventory/home/')
-        this.categoryGroups = response.data.data.categories
+        if (response?.data?.data?.categories) {
+          this.categoryGroups = response.data.data.categories
+        } else {
+          this.categoryGroups = {}
+          console.warn('Categories data missing or empty in API response')
+        }
       } catch (error) {
         console.error('Failed to fetch categories', error)
+        this.categoryGroups = {}
       }
     },
-    async fetchMarketData() {
-      let carousels = this.page_carousels[this.activeTab]
-      for (const carousel of carousels) {
-        try {
-          const { data } = await this.$axios.get<ApiResponse>('/api/inventory/items/', {
-            params: carousel.search
-          })
-          carousel.items = data.results
-        } catch (error) {
-          console.error('Market data fetch error:', error)
-        }
-      }
-    },
+   async fetchMarketData() {
+  try {
+    const response = await axios.get('https://38.242.237.116/api/inventory/items/');
+    console.log('Réponse API produits:', response.data);
+    if (response.data?.data) {
+      // Exemple : mettre les items dans le premier carousel 'product'
+      this.page_carousels.product[0].items = response.data.data;
+    }
+  } catch (error) {
+    console.error('Erreur récupération produits :', error);
+  }
+},
+
     handleSearch(query: string): void {
-      this.$router.push({ name: 'search', query: { query: query } })
+      this.$router.push({ name: 'search', query: { query } })
     },
-    handleSeeMore(index: number) {
-      let query = this.page_carousels[this.activeTab][index].search
+    handleSeeMore(index: number): void {
+      const query = this.page_carousels[this.activeTab][index].search
       if (query) {
-        this.$router.push({ name: 'search', query: Object.fromEntries(query) })
+        this.$router.push({ name: 'search', query: Object.fromEntries(query.entries()) })
       } else {
         console.error('No query found for carousel index:', index)
       }
@@ -144,7 +160,7 @@ export default defineComponent({
         @submit="handleSearch"
       />
 
-      <categories :categoryGroups="categoryGroups[activeTab]" />
+      <categories :categoryGroups="categoryGroups[activeTab] ?? []" />
 
       <template
         v-for="(carousel, index) in page_carousels[activeTab].filter(carousel => carousel.items?.length)"

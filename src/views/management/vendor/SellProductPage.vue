@@ -128,29 +128,32 @@ export default defineComponent({
       }
     },
 
-    async fetchItems() {
-      if (!this.nextPageUrl || this.loading) return
-      this.loading = true
-      try {
-        const response = await this.$axios.get(this.nextPageUrl)
-        const newItems = response.data.results.map((item: Item) => ({ ...item, isNew: true }))
-        this.listings.push(...newItems)
-        this.nextPageUrl = response.data.next
+   async fetchItems() {
+  if (!this.nextPageUrl || this.loading) return
+  this.loading = true
+  try {
+    const response = await this.$axios.get(this.nextPageUrl)
+    console.log('Response data:', response.data) // debug
 
-        // Remove the 'isNew' flag after animation completes (e.g., 1s)
-        setTimeout(() => {
-          this.listings.forEach((item) => delete item.isNew)
-        }, 1000)
-      } catch (error) {
-        console.error('Failed to fetch items:', error)
-        toast.error(this.$t('errorsMsgs.something_went_wrong'), {
-          position: this.$i18n.locale === 'ar' ? 'top-left' : 'top-right',
-          autoClose: 2000
-        })
-      } finally {
-        this.loading = false
-      }
-    },
+    const results = response.data?.data || []
+    const newItems = results.map((item: Item) => ({ ...item, isNew: true }))
+    this.listings.push(...newItems)
+    this.nextPageUrl = response.data?.next || null
+
+    // Remove the 'isNew' flag after animation completes (e.g., 1s)
+    setTimeout(() => {
+      this.listings.forEach((item) => delete item.isNew)
+    }, 1000)
+  } catch (error) {
+    console.error('Failed to fetch items:', error)
+    toast.error(this.$t('errorsMsgs.something_went_wrong'), {
+      position: this.$i18n.locale === 'ar' ? 'top-left' : 'top-right',
+      autoClose: 2000
+    })
+  } finally {
+    this.loading = false
+  }
+},
 
     setupIntersectionObserver() {
       const sentinel = this.$refs.infiniteScroll as HTMLElement

@@ -127,7 +127,7 @@ export default defineComponent({
 
       try {
         const response = await this.$axios.get('api/billing/orders/', { params })
-        const data = response.data.results
+        const data = response.data.data?.results || []
         console.log('api/billing/orders/', { params })
         console.log('Response:', response)
         const transformedOrders = data.flatMap((order: OrderDetailsType) => {

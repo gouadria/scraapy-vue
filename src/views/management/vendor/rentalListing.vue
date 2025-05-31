@@ -93,10 +93,11 @@ import type { CategoryGroup } from '@/models/Category'
 
 interface CategoryResponse {
   message: string
-  data: CategoryGroup[]
+  data: any // on met any car ce n'est pas un tableau direct
   errors: any[]
   warnings: any[]
 }
+
 export default defineComponent({
   components: {
     ItemCard,
@@ -117,7 +118,6 @@ export default defineComponent({
     }
   },
   methods: {
-    // Debounce function to limit fetch calls
     debounce(fn: Function, delay: number) {
       let timeoutId: ReturnType<typeof setTimeout>
       return (...args: any[]) => {
@@ -126,34 +126,59 @@ export default defineComponent({
       }
     },
 
-    async fetchItems() {
-      if (!this.nextPageUrl || this.loading) return
-      this.loading = true
-      try {
-        const response = await this.$axios.get(this.nextPageUrl)
-        const newItems = response.data.results.map((item: Item) => ({ ...item, isNew: true }))
-        this.listings.push(...newItems)
-        this.nextPageUrl = response.data.next
+async fetchItems() {
+  if (!this.nextPageUrl || this.loading) return
+  this.loading = true
+  try {
+    const response = await this.$axios.get(this.nextPageUrl)
+    console.log('fetchItems API response:', response.data)
 
-        // Remove the 'isNew' flag after animation completes (e.g., 1s)
-        setTimeout(() => {
-          this.listings.forEach((item) => delete item.isNew)
-        }, 1000)
-      } catch (error) {
-        console.error('Failed to fetch items:', error)
-        toast.error(this.$t('errorsMsgs.something_went_wrong'), {
-          position: this.$i18n.locale === 'ar' ? 'top-right' : 'top-left',
-          autoClose: 2000
-        })
-      } finally {
-        this.loading = false
+    const apiResponse = response.data
+
+    let results: any[] | undefined = undefined
+
+    if (Array.isArray(apiResponse.data)) {
+      results = apiResponse.data
+    } else if (apiResponse.data && Array.isArray(apiResponse.data.results)) {
+      results = apiResponse.data.results
+    } else if (apiResponse.data && Array.isArray(apiResponse.data.data)) {
+      results = apiResponse.data.data
+    }
+
+    // Gérer le cas où data est vide mais pas une erreur
+    if (!results) {
+      // Si data est un objet vide, on peut simplement mettre results à []
+      if (apiResponse.data && Object.keys(apiResponse.data).length === 0) {
+        results = []
+      } else {
+        throw new Error(
+          'Invalid response format: could not find an array in apiResponse.data, apiResponse.data.results, or apiResponse.data.data'
+        )
       }
-    },
+    }
+
+    const newItems = results.map((item: Item) => ({ ...item, isNew: true }))
+    this.listings.push(...newItems)
+    this.nextPageUrl = apiResponse.data.next || null
+
+    setTimeout(() => {
+      this.listings.forEach((item) => delete item.isNew)
+    }, 1000)
+  } catch (error) {
+    console.error('Failed to fetch items:', error)
+    toast.error(this.$t('errorsMsgs.something_went_wrong'), {
+      position: this.$i18n.locale === 'ar' ? 'top-right' : 'top-left',
+      autoClose: 2000
+    })
+  } finally {
+    this.loading = false
+  }
+},
+
     setupIntersectionObserver() {
       const sentinel = this.$refs.infiniteScroll as HTMLElement
       if (!sentinel) return
 
-      // Debounced fetchItems
       const debouncedFetchItems = this.debounce(this.fetchItems, 300)
 
       this.observer = new IntersectionObserver(
@@ -164,23 +189,43 @@ export default defineComponent({
         },
         {
           root: null,
-          threshold: 0.1 // Trigger slightly before sentinel is fully visible
+          threshold: 0.1
         }
       )
       this.observer.observe(sentinel)
     },
+
     async fetchCategories() {
       try {
-        const response = await this.$axios.get<CategoryResponse>(
-          '/api/inventory/categories/?type=rental'
-        )
-        console.log(response.data)
-        this.categoryGroups = response.data.data || []
-        console.log('Categories fetched successfully:', this.categoryGroups)
+        const response = await this.$axios.get<CategoryResponse>('/api/inventory/categories/?type=rental')
+        console.log('Raw API response:', response.data)
+
+        // On analyse le contenu de response.data.data
+        const categoriesData = response.data?.data
+
+        // Si categoriesData est un objet (pas un tableau), essayons d'en extraire un tableau
+        if (Array.isArray(categoriesData)) {
+          this.categoryGroups = categoriesData
+        } else if (categoriesData && typeof categoriesData === 'object') {
+          // Par exemple, si c'est un objet avec des clés de groupe, on rassemble tous les sous-tableaux
+          const combinedCategories: CategoryGroup[] = []
+          for (const key in categoriesData) {
+            if (Array.isArray(categoriesData[key])) {
+              combinedCategories.push(...categoriesData[key])
+            }
+          }
+          this.categoryGroups = combinedCategories
+        } else {
+          console.warn('Expected an array or object for categoryGroups, but got:', categoriesData)
+          this.categoryGroups = []
+        }
+
+        console.log('Categories after processing:', this.categoryGroups)
       } catch (error) {
         console.error('Failed to fetch categories:', error)
       }
     },
+
     handleAddListing(type: string) {
       if (type === 'batch') {
         this.showModal = true
@@ -188,49 +233,46 @@ export default defineComponent({
         this.editItem = {} as Item
       }
     },
+
     handleEditItem(id: number | string) {
       this.editItem = this.listings.find((item) => item.id === id) || null
     },
+
     handleDeleteItem(id: number | string) {
       this.listings = this.listings.filter((item) => item.id !== id)
     },
-    // async handleUpdateItem(itemPromise: Promise<Item> | Item) {
-    //   try {
-    //     const item = await (itemPromise instanceof Promise
-    //       ? itemPromise
-    //       : Promise.resolve(itemPromise))
-    //     const index = this.listings.findIndex((i) => i.id === item.id)
-    //     if (index === -1) {
-    //       this.listings.push(item)
-    //     } else {
-    //       this.listings[index] = item
-    //     }
-    //   } catch (error) {
-    //     console.error('Failed to update item:', error)
-    //   }
-    // },
+
     async handleUpdateItem(itemPromise: Promise<Item>) {
-      const item = await itemPromise
-      const index = this.listings.findIndex((i) => i.id === item.id)
-      if (index === -1) {
-        this.listings.push(item)
-      } else {
-        this.listings[index] = item
+      try {
+        const item = await itemPromise
+        const index = this.listings.findIndex((i) => i.id === item.id)
+        if (index === -1) {
+          this.listings.push(item)
+        } else {
+          this.listings[index] = item
+        }
+      } catch (error) {
+        console.error('Failed to update item:', error)
       }
     },
+
     async updateItems() {
       this.loading = true
       try {
         const response = await this.$axios.get('/api/inventory/user/items/?category_group=rental')
+        console.log('updateItems API response:', response.data)
+
+        if (!response.data || !Array.isArray(response.data.results)) {
+          throw new Error('Invalid response format: results is not an array')
+        }
+
         const newItems = response.data.results.map((item: Item) => ({ ...item, isNew: true }))
-        // Replace the existing list
         this.listings = newItems
-        this.nextPageUrl = response.data.next
+        this.nextPageUrl = response.data.next || null
 
         setTimeout(() => {
           this.listings.forEach((item) => delete item.isNew)
         }, 1000)
-        console.log('Fetched items from success:', response)
       } catch (error) {
         console.error('Failed to fetch items:', error)
         toast.error(this.$t('errorsMsgs.something_went_wrong'), {
@@ -242,11 +284,13 @@ export default defineComponent({
       }
     }
   },
+
   mounted() {
     this.fetchItems()
     this.fetchCategories()
     this.setupIntersectionObserver()
   },
+
   beforeUnmount() {
     if (this.observer) {
       this.observer.disconnect()
@@ -254,6 +298,7 @@ export default defineComponent({
   }
 })
 </script>
+
 
 <style scoped>
 .items-list {

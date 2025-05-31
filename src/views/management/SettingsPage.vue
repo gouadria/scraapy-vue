@@ -18,30 +18,55 @@ export default defineComponent({
     inputField,
     MainBtn
   },
-  setup() {
-    return { v$: useVuelidate() }
-  },
 
   data() {
+    // Ici on suppose que $userStore est disponible
+    const user = this.$userStore.state.user || {}
     return {
-      name: this.$userStore.state.user?.name,
-      contactNumber: this.$userStore.state.user?.contact_number,
-      email: this.$userStore.state.user?.email,
+      name: user.name || '',
+      contactNumber: user.contact_number || '',
+      email: user.email || '',
       showUpdatePassword: false,
       showDeleteAccount: false,
       showSuccessMessage: false,
-      validateContact: {},
-      emailError: null,
-      contactError: null
+      validateContact: null as any,  // Typage permissif pour objet de validation
+      emailError: null as string | null,
+      contactError: null as string | null
     }
   },
-  computed: {
-    changed() {
-      return (
-        this.name !== this.$userStore.state.user?.name ||
-        this.contactNumber !== this.$userStore.state.user?.contact_number ||
-        this.email !== this.$userStore.state.user?.email
-      )
+
+  setup() {
+    const v$ = useVuelidate()
+    return { v$ }
+  },
+
+ computed: {
+  user() {
+    return this.$userStore.state.user || {}
+  },
+  businessIcon(): string | null {
+    return this.user.business?.icon || null
+  },
+  changed(): boolean {
+    return (
+      this.name !== this.user?.name ||
+      this.contactNumber !== this.user?.contact_number ||
+      this.email !== this.user?.email
+    )
+  }
+},
+
+
+  watch: {
+    // Met à jour les champs lorsque le store est mis à jour
+    user: {
+      immediate: true,
+      deep: true,
+      handler(newVal) {
+        this.name = newVal.name || ''
+        this.contactNumber = newVal.contact_number || ''
+        this.email = newVal.email || ''
+      }
     }
   },
 
@@ -49,10 +74,7 @@ export default defineComponent({
     return {
       name: {
         required: helpers.withMessage(() => this.$t('validations.requiredField'), required),
-        minLength: helpers.withMessage(
-          () => this.$t('validations.minLength', { min: 3 }),
-          minLength(3)
-        )
+        minLength: helpers.withMessage(() => this.$t('validations.minLength', { min: 3 }), minLength(3))
       },
       email: {
         required: helpers.withMessage(() => this.$t('validations.requiredField'), required),
@@ -63,35 +85,36 @@ export default defineComponent({
       }
     }
   },
+
   methods: {
-    handleUpdate(field, value) {
-      this[field] = value
+    handleUpdate(field: string, value: string) {
+      // Mise à jour dynamique des champs
+      (this as any)[field] = value
     },
+
     validateContactUpdate() {
-      if (this.validateContact == {} || this.validateContact === null) {
+      if (!this.validateContact || Object.keys(this.validateContact).length === 0) {
         this.contactError = null
         return
       }
-      this.contactError =
-        this.validateContact.valid && this.validateContact.possible
-          ? null
-          : this.$t('validations.invalidPhoneNumber')
+      const isValid = this.validateContact.valid && this.validateContact.possible
+      this.contactError = isValid ? null : (this.$t('validations.invalidPhoneNumber') as string)
     },
-    handlePatchUser() {
+
+    async handlePatchUser() {
       if (!this.changed) {
         console.log('No changes')
         return
       }
+
       this.v$.name.$touch()
       this.v$.email.$touch()
       this.v$.contactNumber.$touch()
-      if (
-        this.contactNumber !== null ||
-        this.contactNumber !== undefined ||
-        this.contactNumber !== ''
-      ) {
+
+      if (this.contactNumber != null && this.contactNumber !== '') {
         this.validateContactUpdate()
       }
+
       if (
         this.v$.name.$invalid ||
         this.v$.email.$invalid ||
@@ -101,47 +124,68 @@ export default defineComponent({
       ) {
         return
       }
-      const contactNumber = this.validateContact.number
-      const user = {}
-      if (this.name !== this.$userStore.state.user?.name) {
-        user.name = this.name
-      }
-      if (contactNumber !== this.$userStore.state.user?.contact_number) {
-        user.contact_number = contactNumber
-      }
-      if (this.email !== this.$userStore.state.user?.email) {
-        user.email = this.email
-      }
-      this.$userStore
-        .dispatch('patchUser', { user })
-        .then(() => {
-          this.showSuccessMessage = true
-          console.log('User updated')
-        })
-        .catch(() => {
-          console.error('Failed to update user')
-        })
-    },
-    async uploadImage(file: File) {
-      console.log('Uploading', file)
 
-      // Create a FormData object
-      const formData = new FormData()
-      formData.append('image', file)
+      const updatedUser: any = {}
+      const storeUser = this.$userStore.state.user
+
+      if (this.name !== storeUser?.name) updatedUser.name = this.name
+      if (this.email !== storeUser?.email) updatedUser.email = this.email
+      if (this.validateContact?.number !== storeUser?.contact_number) {
+        updatedUser.contact_number = this.validateContact.number
+      }
 
       try {
-        // Send the FormData object in the request body
-        const response = await this.$axios.patch('/api/users/me/', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        })
-        this.$userStore.commit('setUser', response.data || {})
-        console.log('Upload successful:', response.data)
-      } catch (error) {
-        console.error('Error in uploadImage:', error)
+        const response = await this.$userStore.dispatch('patchUser', { user: updatedUser })
+        this.$userStore.commit('setUser', response)
+        this.showSuccessMessage = true
+        console.log('User updated')
+      } catch (err) {
+        console.error('Failed to update user:', err)
+      }
+    },
+async uploadImage(file: File) {
+  console.log('Uploading', file)
+  const formData = new FormData()
+  formData.append('icon', file)
+
+  try {
+    const response = await this.$axios.patch('/api/users/me/', formData, {
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+
+    const updatedIcon = response.data.icon
+    const currentUser = this.$userStore.state.user || {}
+
+    const updatedUser = {
+      ...currentUser,
+      business: {
+        ...(currentUser.business || {}),
+        icon: updatedIcon
       }
     }
+
+    this.$userStore.commit('setUser', updatedUser)
+
+    // **Met à jour l'image dans la sidebar du DOM global**
+    this.$nextTick(() => {
+      const sidebarImg = document.querySelector('#app > div.management-page > div > div.sidebar > div.sidebar-header > img')
+      if (sidebarImg) {
+        sidebarImg.setAttribute('src', updatedIcon)
+        console.log('Sidebar logo mis à jour')
+      } else {
+        console.warn('Image sidebar non trouvée dans le DOM')
+      }
+    })
+
+  } catch (error) {
+    console.error('Erreur lors de l\'upload de l\'image:', error)
+  }
+}
+
+
   }
 })
 </script>
@@ -160,46 +204,48 @@ export default defineComponent({
       </div>
     </div>
 
-    <!-- Business Logo -->
-    <div class="item-group row logo">
-      <div class="item-title-group">
-        <div class="title">{{ $t('settings.businessLogo') }}</div>
-        <div class="sub-title">{{ $t('settings.businessLogoSubTitle') }}</div>
-      </div>
+   <!-- Business Logo -->
+<div class="item-group row logo">
+  <div class="item-title-group">
+    <div class="title">{{ $t('settings.businessLogo') }}</div>
+    <div class="sub-title">{{ $t('settings.businessLogoSubTitle') }}</div>
+  </div>
 
-      <div class="profile-image-wrapper">
-        <div class="profile-image">
-          <img
-            :src="$userStore.state.user?.image"
-            :alt="$t('settings.businessLogoAlt')"
-            v-if="$userStore.state.user?.image"
+  <div class="profile-image-wrapper">
+    <div class="profile-image">
+      <img
+        v-if="businessIcon"
+        :src="businessIcon"
+        :alt="$t('settings.businessLogoAlt')"
+        :key="businessIcon"
+      />
+      <div class="no_logo" v-else>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+          <path
+            d="M20 21C20 19.6044 20 18.9067 19.8278 18.3389C19.44 17.0605 18.4395 16.06 17.1611 15.6722C16.5933 15.5 15.8956 15.5 14.5 15.5H9.5C8.10444 15.5 7.40665 15.5 6.83886 15.6722C5.56045 16.06 4.56004 17.0605 4.17224 18.3389C4 18.9067 4 19.6044 4 21M16.5 7.5C16.5 9.98528 14.4853 12 12 12C9.51472 12 7.5 9.98528 7.5 7.5C7.5 5.01472 9.51472 3 12 3C14.4853 3 16.5 5.01472 16.5 7.5Z"
+            stroke="#6D6D6D"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
           />
-          <div class="no_logo" v-else>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <path
-                d="M20 21C20 19.6044 20 18.9067 19.8278 18.3389C19.44 17.0605 18.4395 16.06 17.1611 15.6722C16.5933 15.5 15.8956 15.5 14.5 15.5H9.5C8.10444 15.5 7.40665 15.5 6.83886 15.6722C5.56045 16.06 4.56004 17.0605 4.17224 18.3389C4 18.9067 4 19.6044 4 21M16.5 7.5C16.5 9.98528 14.4853 12 12 12C9.51472 12 7.5 9.98528 7.5 7.5C7.5 5.01472 9.51472 3 12 3C14.4853 3 16.5 5.01472 16.5 7.5Z"
-                stroke="#6D6D6D"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </div>
-          <!-- <img src="https://via.placeholder.com/150" :alt="$t('settings.businessLogoAlt')"  /> -->
-        </div>
-        <UploadFile :type="['.svg', '.png', '.jpg', '.gif']" @file="uploadImage">
-          <div class="upload-image-logo">
-            <img src="@/assets/svg-icons/cloud.svg?url" />
-          </div>
-        </UploadFile>
+        </svg>
       </div>
     </div>
+
+    <UploadFile :type="['.svg', '.png', '.jpg', '.gif']" @file="uploadImage">
+      <div class="upload-image-logo">
+        <img src="@/assets/svg-icons/cloud.svg?url" />
+      </div>
+    </UploadFile>
+  </div>
+</div>
+
 
     <div class="info-container">
       <div class="inputs-wrapper">
@@ -242,9 +288,9 @@ export default defineComponent({
 
     <!-- Business Password -->
     <div class="item-group btn-group">
-      <MainBtn type="white" @click="showUpdatePassword = true">{{
-        $t('settings.changePassword')
-      }}</MainBtn>
+      <MainBtn type="white" @click="showUpdatePassword = true">
+        {{ $t('settings.changePassword') }}
+      </MainBtn>
     </div>
 
     <div class="item-group row delete">
@@ -262,6 +308,7 @@ export default defineComponent({
     </div>
   </div>
 </template>
+
 
 <style scoped>
 .info-container {

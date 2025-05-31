@@ -129,7 +129,7 @@ export default defineComponent({
       listings: [] as Driver[],
       showModal: false,
       editItem: null as Driver | null,
-      nextPageUrl: '/api/driver/create' as string | null,
+      nextPageUrl: '/api/driver/create/' as string | null,
       loading: false as boolean,
       observer: null as IntersectionObserver | null,
       generatedPassword: '' as string,

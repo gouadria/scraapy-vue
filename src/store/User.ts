@@ -260,9 +260,13 @@ const instance = createStore({
     async verify_otp({ commit }, { phone, otp }) {
       try {
         await axios.post('/api/otp/verify-otp-token/', { phone, otp }).then((response) => {
-          commit('setToken', response.data.token)
+          const token = response.data.token;
+
+          commit('setToken', token)
           commit('setExpiry', response.data.expiry)
           commit('setUser', response.data.user)
+          localStorage.setItem('token', token);
+
           console.log(response.data.token)
           // console.log(response.data.expiry)
           // console.log(response.data.user)

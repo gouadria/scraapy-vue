@@ -8,6 +8,8 @@ import approvalBadge from '@/components/UIElements/approvalBadge.vue'
 import DeleteModal from '@/components/UIElements/delete_modal.vue'
 import QuantityIcon from '@/assets/svg-icons/card-icons/Quantity.svg?url'
 import { toast } from 'vue3-toastify'
+import axios from 'axios';
+
 
 export default defineComponent({
   name: 'ItemCard',
@@ -20,49 +22,17 @@ export default defineComponent({
   props: {
     item: {
       type: Object as () => Item,
-      required: true,
-      validator(value: Item) {
-        return value !== undefined && value !== null
-      }
+      required: true
     },
-    showBadge: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    enableUpload: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    vendorActions: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    staffActions: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    displayVendor: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    serviceDelete: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    driver: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
+    showBadge: Boolean,
+    enableUpload: Boolean,
+    vendorActions: Boolean,
+    staffActions: Boolean,
+    displayVendor: Boolean,
+    serviceDelete: Boolean,
+    driver: Boolean,
     approvalClick: {
       type: Function,
-      required: false,
       default: () => {}
     }
   },
@@ -75,10 +45,12 @@ export default defineComponent({
   computed: {
     thumbnail() {
       const images = this.item?.images || []
-      if (images.length === 0) {
-        return null
+      if (images.length === 0) return null
+      const img = images.find(image => image?.is_thumbnail) || images[0]
+      if (img && img.image && !img.image.startsWith('http')) {
+        return { ...img, image: `${import.meta.env.VITE_API_BASE_URL || ''}${img.image}` }
       }
-      return images.find((image) => image?.is_thumbnail) || images[0]
+      return img
     },
     showActions() {
       return this.staffActions || this.vendorActions
@@ -97,15 +69,6 @@ export default defineComponent({
         fieldsByType[this.item.category_type]?.includes(field.type.name)
       )
 
-      // if (fieldsByType[this.item.category_type]?.includes('Location')) {
-      //   extra_fields.push({
-      //     value: this.item.city,
-      //     type: {
-      //       name: this.$t('Selling.Location'),
-      //       icon: ''
-      //     }
-      //   })
-      // }
       if (fieldsByType[this.item.category_type]?.includes('Quantity')) {
         extra_fields.push({
           value: this.item.quantity,
@@ -115,8 +78,6 @@ export default defineComponent({
           }
         })
       }
-
-      // TODO: Add weight field + Icon
 
       return extra_fields
     }
@@ -166,29 +127,40 @@ export default defineComponent({
     emitGeneratePassword() {
       this.$emit('generatePassword', this.item.id)
     },
-    async uploadImage(file: File) {
-      if (!this.item?.id || !file) return
+   async uploadImage(file: File) {
+  if (!file) {
+    console.error("No file provided to uploadImage");
+    return;
+  }
 
-      const formData = new FormData()
-      formData.append('image', file)
-      formData.append('is_thumbnail', 'true')
-      try {
-        const response = await this.$axios.post(
-          `/api/inventory/user/items/${this.item.id}/images/`,
-          formData,
-          {
-            headers: {
-              'Content-Type': 'multipart/form-data'
-            }
-          }
-        )
-        if (response?.data) {
-          this.$emit('upload-image', response.data)
+  try {
+    const formData = new FormData();
+    formData.append('image', file); // Clé attendue par le backend
+
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.error('No authentication token found.');
+      return;
+    }
+
+    const response = await axios.post(
+      `https://38.242.237.116/api/inventory/user/items/${this.item.id}/images/`,
+      formData,
+      {
+        headers: {
+          Authorization: `Token ${token}` // ✅ NE PAS mettre 'Content-Type'
         }
-      } catch (error) {
-        console.error('Failed to upload image:', error)
       }
-    },
+    );
+
+    console.log("Image uploaded successfully:", response.data);
+    // Eventuel rafraîchissement ou mise à jour ici
+
+  } catch (error) {
+    console.error("Failed to upload image:", error.response?.data || error.message);
+  }
+},
+
     async approveItem() {
       if (!this.item?.id) return
 
@@ -202,6 +174,7 @@ export default defineComponent({
   }
 })
 </script>
+
 <template>
   <div class="item" @click="handleClickItem">
     <approvalBadge :status="item.status || ''" :showBadge="showBadge" />
@@ -225,20 +198,24 @@ export default defineComponent({
 
       <img draggable="false" src="@/assets/placeholder-item.jpeg" alt="item-image" v-else />
     </div>
+
     <div class="item-image" @click="openEditPage()" v-else>
       <img draggable="false" src="@/assets/svg-icons/image.png" alt="item-image" />
     </div>
+
     <div class="card-content" @click="openEditPage()">
       <div class="name-image-price-wrapper">
         <div class="name-image-wrapper" :class="driver ? 'driver-mode' : ''">
-          <div class="name">
-            {{ item.name }}
-          </div>
-          <div class="driver_id" v-if="driver">
-            {{ item.id_number }}
-          </div>
+          <div class="name">{{ item.name }}</div>
+          <div class="driver_id" v-if="driver">{{ item.id_number }}</div>
+
           <div v-if="displayVendor" class="vendor-image">
-            <img draggable="false" :src="item.owner_image" alt="vendor" v-if="item.owner_image" />
+            <img
+              draggable="false"
+              :src="item.owner_image"
+              alt="vendor"
+              v-if="item.owner_image"
+            />
             <img
               draggable="false"
               src="@/assets/svg-icons/vendor-placeholder.svg?url"
@@ -249,10 +226,7 @@ export default defineComponent({
         </div>
 
         <template
-          v-if="
-            !item.category?.hide_price ||
-            ($userStore.getters.hasBusinessProfile && item.category?.hide_price)
-          "
+          v-if="!item.category?.hide_price || ($userStore.getters.hasBusinessProfile && item.category?.hide_price)"
         >
           <div class="price" v-if="!driver">
             {{ item.price }}
@@ -280,21 +254,14 @@ export default defineComponent({
       <span class="description" v-if="item.category_type === 'service'">
         {{ item.description }}
       </span>
-      <!-- we should discuss it  -->
-      <div class="fields" v-if="false">
-        <!-- item?.extra_fields?.length > 0 -->
-        <div class="field" v-for="field in item?.extra_fields" :key="field.type.name">
-          <img v-if="field.type.icon" :src="field.type.icon" alt="icon" />
-          <div class="field-value">{{ field.value }}</div>
-          <div class="field-type">{{ field.type.name }}</div>
-        </div>
-      </div>
+
       <div class="availble" v-if="item.category_type !== 'service' && !driver">
-        <img src="@/assets/svg-icons/Selling/container.svg?url" :alt="item.city + ' ' + 'icon'" />
+        <img src="@/assets/svg-icons/Selling/container.svg?url" :alt="item.city + ' icon'" />
         <p>
           {{ item.quantity }} <span> {{ $t('HomeView.Available') }}</span>
         </p>
       </div>
+
       <div class="location field" v-if="item.city">
         <img src="@/assets/svg-icons/location.svg?url" alt="Location" />
         <div class="field-value">
@@ -302,15 +269,15 @@ export default defineComponent({
           <div class="field-type">{{ $t('Selling.Location') }}</div>
         </div>
       </div>
+
       <div class="driver_data" v-if="driver">
         <ul>
           <li>
-            <img src="@/assets/svg-icons/@, at.svg?url" alt="chevron" />
+            <img src="@/assets/svg-icons/@, at.svg?url" alt="Email" />
             <span>{{ item.email }}</span>
           </li>
           <li>
-            <img src="@/assets/svg-icons/phone-call-01.svg?url" alt="chevron" />
-
+            <img src="@/assets/svg-icons/phone-call-01.svg?url" alt="Phone" />
             <span>{{ item.contact_number }}</span>
           </li>
           <li>
@@ -318,62 +285,11 @@ export default defineComponent({
             <span>{{ item.make }} {{ item.model }}</span>
           </li>
         </ul>
-        <div class="generat_password" v-if="driver">
-          <MainBtn @click="emitGeneratePassword" type="white">
-            {{ $t('addDriver.GeneratePassword') }}
-          </MainBtn>
-        </div>
       </div>
     </div>
-    <div class="divider edf" v-if="showActions"></div>
-    <div class="actions" v-if="vendorActions">
-      <MainBtn @click="$emit('edit', item.id)">
-        <div class="btn-img">
-          <img src="@/assets/svg-icons/edit.svg?url" alt="Edit" />
-        </div>
-        {{ $t('itemCard.EditListing') }}
-      </MainBtn>
-      <MainBtn @click="OpenDeleteModal" type="cancel">
-        <div class="btn-img">
-          <img src="@/assets/svg-icons/trash.svg?url" alt="Delete" />
-        </div>
-        {{ $t('itemCard.Delete') }}
-      </MainBtn>
-    </div>
-    <div class="actions" v-else-if="staffActions">
-      <MainBtn @click="approveItem" type="green">
-        <div class="btn-img">
-          <img src="@/assets/svg-icons/white-check.svg?url" alt="Approve" />
-        </div>
-        {{ $t('itemCard.Approve') }}
-      </MainBtn>
-      <MainBtn type="cancel" @click="$emit('reject')">
-        {{ $t('itemCard.Reject') }}
-      </MainBtn>
-    </div>
-
-    <DeleteModal
-      v-if="!driver"
-      :isActive="deleteDocModal"
-      :title="$t('listings.confirmDelete')"
-      :subTitle="
-        serviceDelete ? $t('listings.DeleteServiceConfirmation') : $t('listings.DeleteConfirmation')
-      "
-      :onClickCancel="OpenDeleteModal"
-      :onClickButton="deleteItem"
-    />
-    <DeleteModal
-      v-if="driver"
-      :isActive="deleteDocModal"
-      :title="$t('listings.confirmDelete')"
-      :subTitle="
-        serviceDelete ? $t('listings.DeleteServiceConfirmation') : $t('listings.DeleteConfirmation')
-      "
-      :onClickCancel="OpenDeleteModal"
-      :onClickButton="deleteDriver"
-    />
   </div>
 </template>
+
 
 <style scoped>
 .item {

@@ -132,7 +132,7 @@ export default defineComponent({
       this.loading = true
       try {
         const response = await this.$axios.get(this.nextPageUrl)
-        const newItems = response.data.results.map((item: Item) => ({ ...item, isNew: true }))
+        const newItems = (response.data.data?.results || []).map((item: Item) => ({ ...item, isNew: true }))
         this.listings.push(...newItems)
         this.nextPageUrl = response.data.next
         console.log('API Response:', response)
@@ -173,17 +173,19 @@ export default defineComponent({
       this.observer.observe(sentinel)
     },
 
-    async fetchCategories() {
-      try {
-        const response = await this.$axios.get<CategoryResponse>(
-          '/api/inventory/categories/?type=service'
-        )
-        this.categoryGroups = response.data.data
-        console.log(response)
-      } catch (error) {
-        console.error('Failed to fetch categories:', error)
-      }
-    },
+async fetchCategories() {
+  try {
+    const response = await this.$axios.get<CategoryResponse>(
+      '/api/inventory/categories/?type=service'
+    )
+    // response.data.data est un tableau de CategoryGroup
+    this.categoryGroups = response.data.data || []
+    console.log('Categories fetched:', this.categoryGroups)
+  } catch (error) {
+    console.error('Failed to fetch categories:', error)
+  }
+},
+
     handleAddListing(type: string) {
       if (type === 'batch') {
         this.showModal = true
