@@ -8,7 +8,7 @@ export default defineComponent({
   props: {
     textColor: {
       type: String,
-      default: '#3D3D3D'
+      default: '#fff'
     }
   },
   data() {
