@@ -169,7 +169,7 @@ export default defineComponent({
 
 <style scoped>
 .management-sidebar-icon {
-  stroke: #3d3d3d;
+  stroke: #fff;
 }
 
 .management-sidebar-icon.mobile {
@@ -177,6 +177,8 @@ export default defineComponent({
 }
 
 .sidebar {
+  background-color: #0C3241;
+  color: white;
   display: flex;
   flex-direction: column;
   min-width: 240px;
@@ -270,7 +272,7 @@ html[dir='rtl'] .sidebar-item img {
 }
 
 .sidebar-item.active svg {
-  filter: invert(56%) sepia(35%) saturate(3966%) hue-rotate(120deg) brightness(93%) contrast(84%);
+  /* filter: invert(56%) sepia(35%) saturate(3966%) hue-rotate(120deg) brightness(93%) contrast(84%); */
 }
 
 .sidebar-item-arrow.active svg {
@@ -327,7 +329,7 @@ html[dir='rtl'] .sidebar-sub-items-animated {
   align-items: flex-start;
 }
 .info h4 {
-  color: #6d6d6d;
+  color: #fff;
   font-size: 16px;
   font-weight: 600;
 }
@@ -348,18 +350,18 @@ html[dir='rtl'] .sidebar-sub-items-animated {
   object-fit: cover;
 }
 .sidebar-item:hover {
-  color: #15b377;
+  color: #fff;
 }
 
 .sidebar-item.active {
-  color: #15b377;
-  border: 1px solid #15b377;
-  background-color: rgba(21, 179, 119, 0.1);
+  color: #fff;
+  border: 1px solid #1a4b5f;
+  background-color: #1a4b5f;
 }
 </style>
 <style>
 .sidebar-item svg path {
-  stroke: #6d6d6d;
+  stroke: #fff;
 }
 .mobile-menu .sidebar-group.mobile svg path {
   stroke: #fff;

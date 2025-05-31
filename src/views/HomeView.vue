@@ -110,18 +110,21 @@ export default defineComponent({
       }
     },
    async fetchMarketData() {
-  try {
-    const response = await axios.get('https://38.242.237.116/api/inventory/items/');
-    console.log('Réponse API produits:', response.data);
-    if (response.data?.data) {
-      // Exemple : mettre les items dans le premier carousel 'product'
-      this.page_carousels.product[0].items = response.data.data;
-    }
-  } catch (error) {
-    console.error('Erreur récupération produits :', error);
-  }
-},
+  const tab = this.activeTab
+  const carousels = this.page_carousels[tab]
 
+  await Promise.all(
+    carousels.map(async (carousel) => {
+      try {
+        const response = await axios.get(`https://38.242.237.116/api/inventory/items/?${carousel.search.toString()}`);
+        carousel.items = response.data.data || []
+      } catch (error) {
+        console.error(`Erreur récupération items pour ${carousel.title}:`, error)
+        carousel.items = []
+      }
+    })
+  )
+},
     handleSearch(query: string): void {
       this.$router.push({ name: 'search', query: { query } })
     },
