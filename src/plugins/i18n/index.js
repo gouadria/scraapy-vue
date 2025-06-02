@@ -187,7 +187,10 @@ const messages = {
       materials: 'Materials',
       return: 'Return & Refund',
       service_providers: 'Service Providers',
-      subscriptions: 'Subscriptions'
+      subscriptions: 'Subscriptions',
+      demolition_works: 'Demolition Works',
+      qhs: 'Quality, Health, Safety Policy',
+      franchise: 'Franchise'
     },
     auth: {
       lang: 'en',
@@ -1664,10 +1667,13 @@ const messages = {
       vat: 'ضريبة القيمة المضافة: 310567108900003',
       poweredBy: 'تطوير',
       partner: 'كن شريكنا',
-      materials: 'المواد المجهولة',
+      materials: 'سياسة المواد المجهولة',
       return: 'سياسة الإرجاع والاسترداد',
       service_providers: 'مقدمي الخدمات المساندة',
-      subscriptions: 'الاشتراكات'
+      subscriptions: 'الاشتراكات',
+      demolition_works: 'اعمال الهدم',
+      qhs: 'سياسة الجودة، الصحة البيئية، والسلامة',
+      franchise: 'الامتياز التجاري'
     },
     qoutes: {
       performance: 'عزز أداءك بالإستفادة من أدوات تحليل البيانات عالية الدقة',

@@ -47,6 +47,16 @@ const router = createRouter({
       component: () => import('@/views/ServiceProvidersView.vue')
     },
     {
+      path: '/qhs',
+      name: 'qhs',
+      component: () => import('@/views/QualityHealthSafetyPolicyView.vue')
+    },
+    {
+      path: '/franchise',
+      name: 'franchise',
+      component: () => import('@/views/FranchiseView.vue')
+    },
+    {
       path: '/terms',
       name: 'terms',
       component: () => import('@/views/TermsView.vue')
@@ -55,6 +65,11 @@ const router = createRouter({
       path: '/subscriptions',
       name: 'subscriptions',
       component: () => import('@/views/SubscriptionsView.vue')
+    },
+    {
+      path: '/demolition_works',
+      name: 'demolition_works',
+      component: () => import('@/views/DemolitionWorksView.vue')
     },
     {
       path: '/scrap-item/:categoryName',

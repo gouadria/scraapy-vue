@@ -1,17 +1,17 @@
 <script lang="ts">
 import navBar from '@/components/UIElements/navBar.vue'
 import footerComponant from '@/components/UIElements/footerComponant.vue'
-import aboutUs from '@/components/about_us/aboutUs.vue'
+import qualityHealthSafetyPolicy from '@/components/quality_health_safety_policy/qualityHealthSafetyPolicy.vue'
 
 export default {
   components: {
     navBar,
     footerComponant,
-    aboutUs,
+    qualityHealthSafetyPolicy,
   },
   mounted() {
     this.$router.push({
-      name: 'about',
+      name: 'qhs',
     })
   },
 }
@@ -19,7 +19,7 @@ export default {
 <template>
   <navBar />
   <main>
-    <aboutUs />
+    <qualityHealthSafetyPolicy />
   </main>
   <footerComponant />
 </template>

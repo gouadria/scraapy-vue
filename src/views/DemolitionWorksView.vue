@@ -1,17 +1,17 @@
 <script lang="ts">
 import navBar from '@/components/UIElements/navBar.vue'
 import footerComponant from '@/components/UIElements/footerComponant.vue'
-import aboutUs from '@/components/about_us/aboutUs.vue'
+import demolitionWorks from '@/components/demolition_works/demolitionWorks.vue'
 
 export default {
   components: {
     navBar,
     footerComponant,
-    aboutUs,
+    demolitionWorks,
   },
   mounted() {
     this.$router.push({
-      name: 'about',
+      name: 'demolition_works',
     })
   },
 }
@@ -19,7 +19,7 @@ export default {
 <template>
   <navBar />
   <main>
-    <aboutUs />
+    <demolitionWorks />
   </main>
   <footerComponant />
 </template>

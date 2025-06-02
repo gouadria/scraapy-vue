@@ -170,6 +170,7 @@ const steps = ref<ProcessStep[]>([
 @media (max-width: 1200px) {
   .right-section {
     width: 100%;
+    padding: 0;
   }
 }
 

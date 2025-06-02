@@ -238,7 +238,7 @@ const handleNextClick = () => {
 @media (max-width: 1200px) {
   .left-section {
     width: 100%;
-    padding-right: 0;
+    padding: 15px;
     margin-bottom: 50px;
   }
   

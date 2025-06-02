@@ -1,17 +1,17 @@
 <script lang="ts">
 import navBar from '@/components/UIElements/navBar.vue'
 import footerComponant from '@/components/UIElements/footerComponant.vue'
-import aboutUs from '@/components/about_us/aboutUs.vue'
+import franchise from '@/components/franchise/franchise.vue'
 
 export default {
   components: {
     navBar,
     footerComponant,
-    aboutUs,
+    franchise,
   },
   mounted() {
     this.$router.push({
-      name: 'about',
+      name: 'franchise',
     })
   },
 }
@@ -19,7 +19,7 @@ export default {
 <template>
   <navBar />
   <main>
-    <aboutUs />
+    <franchise />
   </main>
   <footerComponant />
 </template>

@@ -46,10 +46,14 @@ export default {
                 </router-link>
               </li>
               <li class="footer-item">
-                <a href="#renting">اعمال الهدم</a>
+                <router-link to="/demolition_works">
+                  {{ $t('footer.demolition_works') }}
+                </router-link>
               </li>
               <li class="footer-item">
-                <a href="#offers">الامتياز التجاري</a>
+                <router-link to="/franchise">
+                  {{ $t('footer.franchise') }}
+                </router-link>
               </li>
             </ul>
           </div>
@@ -100,8 +104,8 @@ export default {
                 </router-link>
               </li>
               <li class="footer-item">
-                <router-link :to="{ name: 'materials_policy' }">
-                  سياسة الجودة
+                <router-link :to="{ name: 'qhs' }">
+                  {{ $t('footer.qhs') }}
                 </router-link>
               </li>
             </ul>

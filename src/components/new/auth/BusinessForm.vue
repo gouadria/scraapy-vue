@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { useForm, useField } from 'vee-validate'
 import * as yup from 'yup'
+import '@/assets/style-auth.css'
 import TextInput from '@/components/new/ui/TextInput.vue'
 import Button from '@/components/new/ui/Button.vue'
 import ModalPopup from '@/components/UIElements/NewModalPopup.vue'
@@ -277,5 +278,8 @@ const onSubmit = handleSubmit((values) => {
     padding: 10px;
     margin: 0 0 10px 0;
     border-radius: 0.5rem;
+  }
+  .gap-2 {
+    gap: 0.5rem;
   }
 </style>
