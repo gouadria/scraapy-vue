@@ -116,7 +116,7 @@ export default defineComponent({
   await Promise.all(
     carousels.map(async (carousel) => {
       try {
-        const response = await axios.get(`https://38.242.237.116/api/inventory/items/?${carousel.search.toString()}`);
+        const response = await axios.get(`https://vmi2584358.contaboserver.net/api/inventory/items/?${carousel.search.toString()}`);
         carousel.items = response.data.data || []
       } catch (error) {
         console.error(`Erreur récupération items pour ${carousel.title}:`, error)

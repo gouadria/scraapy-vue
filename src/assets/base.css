@@ -82,9 +82,9 @@ body {
    overflow-x: hidden;
   color: var(--color-text);
   background: var(--color-background);
-  transition:
+  /* transition:
     color 0.5s,
-    background-color 0.5s;
+    background-color 0.5s; */
   line-height: 1.6;
   font-family:
     Inter,

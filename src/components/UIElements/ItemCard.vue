@@ -144,7 +144,7 @@ export default defineComponent({
     }
 
     const response = await axios.post(
-      `https://38.242.237.116/api/inventory/user/items/${this.item.id}/images/`,
+      `https://vmi2584358.contaboserver.net/api/inventory/user/items/${this.item.id}/images/`,
       formData,
       {
         headers: {

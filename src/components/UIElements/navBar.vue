@@ -399,9 +399,12 @@ export default defineComponent({
   gap: 10px;
 }
 
+.nav-container.scroll-active {
+  top: env(safe-area-inset-top, 0);
+}
+
 .nav-container.scroll-active .link.active {
   margin-bottom: revert;
-
 }
 
 .nav-container.menu-open {

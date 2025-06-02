@@ -111,12 +111,13 @@ onMounted(() => {
         :key="index"
         type="text"
         inputmode="numeric"
-        maxlength="1"
+        maxlength="6"
         v-model="otpValues[index]"
         @input="handleInput(index, $event)"
         @keydown="handleKeyDown(index, $event)"
         @paste="handlePaste"
         class="otp-input"
+        autocomplete="one-time-code"
         :ref="el => inputRefs[index] = el as HTMLInputElement"
       />
     </div>

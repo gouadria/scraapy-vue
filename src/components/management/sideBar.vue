@@ -186,8 +186,6 @@ export default defineComponent({
   padding-right: 2px;
   position: fixed;
   height: 100vh;
-  top: 93px;
-  left: 80px;
   width: 250px;
   height: calc(100vh - 93px); /* Adjust height to account for top offset */
   overflow: hidden; /* Prevent sidebar itself from scrolling */
