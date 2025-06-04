@@ -22,90 +22,90 @@
           <tr>
             <td>{{ $t('subscriptions.individualsRowVerification') }}</td>
             <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="grey-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.individualsRowPage') }}</td>
             <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="grey-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.individualsRowScrapTransactions') }}</td>
             <td>5 {{ $t('subscriptions.transactions') }}</td>
-            <td>24 {{ $t('subscriptions.transactions') }}</td>
-            <td>55 {{ $t('subscriptions.transactions') }}</td>
-            <td>{{ $t('subscriptions.individualsRowUnlimited') }}</td>
-            <td>{{ $t('subscriptions.individualsRowUnlimited') }}</td>
+            <td class="grey-c">24 {{ $t('subscriptions.transactions') }}</td>
+            <td class="green-c">55 {{ $t('subscriptions.transactions') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowUnlimited') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowUnlimited') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.individualsRowPreferredPrice') }}</td>
             <td>{{ $t('subscriptions.individualsRowDash') }}</td>
-            <td>{{ $t('subscriptions.individualsRowDash') }}</td>
-            <td>{{ $t('subscriptions.individualsRowDash') }}</td>
-            <td>{{ $t('subscriptions.individualsRowDash') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="grey-c">{{ $t('subscriptions.individualsRowDash') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowDash') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowDash') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.individualsRowPrioritySchedule') }}</td>
             <td>{{ $t('subscriptions.individualsRowDash') }}</td>
-            <td>{{ $t('subscriptions.individualsRowDash') }}</td>
-            <td>{{ $t('subscriptions.individualsRowDash') }}</td>
-            <td>{{ $t('subscriptions.individualsRowDash') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="grey-c">{{ $t('subscriptions.individualsRowDash') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowDash') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowDash') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.individualsRowDemolition') }}</td>
             <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="grey-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.individualsRowRentConstructionContainers') }}</td>
             <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="grey-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.individualsRowRentPlasticContainers') }}</td>
             <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="grey-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.individualsRowCleanWaterSales') }}</td>
             <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="grey-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.individualsRowSewagePumping') }}</td>
             <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="grey-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.individualsRowHomeProcessingMachine') }}</td>
             <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="grey-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
         </tbody>
       </table>
@@ -126,81 +126,81 @@
         <tbody>
           <tr>
             <td>{{ $t('subscriptions.commercialRowVerification') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.commercialRowListing') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.commercialRowInternalPage') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.commercialRowInspectionContractor') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.commercialRowShippingContractor') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.commercialRowNonHazardousTransport') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.commercialRowHazardousTransport') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.commercialRowDemolitionContractor') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.commercialRowContainerRental') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.commercialRowWaterSales') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.commercialRowSewagePumping') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.commercialRowRenewalDiscount') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.commercialRowOpeningCredit') }}</td>
-            <td>{{ $t('subscriptions.individualsRowDash') }}</td>
-            <td>{{ $t('subscriptions.individualsRowDash') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowDash') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowDash') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
         </tbody>
       </table>
@@ -221,69 +221,69 @@
         <tbody>
           <tr>
             <td>{{ $t('subscriptions.providersRowVerification') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.providersRowListing') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.providersRowInternalPage') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.providersRowInspectionContractor') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.providersRowShippingContractor') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.providersRowNonHazardousTransport') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.providersRowHazardousTransport') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.providersRowDemolitionWorks') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.providersRowContainerRental') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.providersRowWaterSales') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
           <tr>
             <td>{{ $t('subscriptions.providersRowSewagePumping') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
-            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="green-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="silver-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td class="golden-c">{{ $t('subscriptions.individualsRowCheck') }}</td>
           </tr>
         </tbody>
       </table>
@@ -312,7 +312,7 @@
   }
   
   h1, h2, h3 {
-    color: #2c3e50;
+    color: #0c3241;
     margin-top: 40px;
   }
   
@@ -329,7 +329,8 @@
   }
   
   th {
-    background-color: #f2f2f2;
+    background-color: #0c3241;
+    color: #ffffff;
   }
   
   td:nth-child(1) {
@@ -343,7 +344,7 @@
   
   .btn {
     display: inline-block;
-    background-color: #007bff;
+    background-color: #16b277;
     color: white;
     padding: 12px 24px;
     border-radius: 5px;
@@ -352,6 +353,26 @@
   }
   
   .btn:hover {
-    background-color: #0056b3;
+    background-color: #0c3241;
+  }
+
+  .golden-c {
+    background-color: #ffcf40;
+    color: #000000;
+  }
+
+  .silver-c {
+    background-color: #cccccc;
+    color: #000000;
+  }
+
+  .green-c {
+    background-color: #16b277;
+    color: #000000;
+  }
+
+  .grey-c {
+    background-color: #f2f2f2;
+    color: #000000;
   }
 </style>
