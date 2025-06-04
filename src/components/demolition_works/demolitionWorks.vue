@@ -1,67 +1,69 @@
 <template>
   <div class="demolition-services">
-    <h1>خدمات هدم المباني</h1>
-    <p>
-      في سكرابي، نوفر خدمات هدم آمنة وفعالة للمباني والمنشآت بجميع أنواعها، باستخدام أحدث المعدات وتحت إشراف فرق متخصصة.
-    </p>
+    <!-- العنوان -->
+    <h1>{{ $t('demolitionWorks.title') }}</h1>
+    <p>{{ $t('demolitionWorks.intro') }}</p>
 
     <!-- مراحل الخدمة -->
     <section class="service-stages">
-      <h2>مراحل تنفيذ مشروع الهدم</h2>
+      <h2>{{ $t('demolitionWorks.stagesTitle') }}</h2>
       <ol>
-        <li><strong>التقييم الأولي:</strong> زيارة الموقع من قبل خبير ميداني لتحديد نوع المبنى ودراسة الجوانب البيئية والهيكلية.</li>
-        <li><strong>وضع الخطة:</strong> إعداد خطة عمل شاملة تتضمن الآليات المستخدمة، التوقيت المتوقع، وإجراءات السلامة.</li>
-        <li><strong>التنفيذ:</strong> تنفيذ عملية الهدم باستخدام معدات حديثة ومتطورة مع الالتزام بمعايير السلامة العالمية (ISO 45001).</li>
-        <li><strong>إزالة المخلفات:</strong> جمع ونقل النفايات الناتجة (خرسانة، معدن، خشب) إلى مراكز الفرز المعتمدة لإعادة التدوير.</li>
-        <li><strong>تنظيف الموقع:</strong> تجهيز الموقع ليكون جاهزًا للاستخدام الفوري بعد الانتهاء من الهدم.</li>
+        <li><strong>{{ $t('demolitionWorks.stageAssessment') }}</strong> {{ $t('demolitionWorks.dStageAssessment') }}</li>
+        <li><strong>{{ $t('demolitionWorks.stagePlanning') }}</strong> {{ $t('demolitionWorks.dStagePlanning') }}</li>
+        <li><strong>{{ $t('demolitionWorks.stageExecution') }}</strong> {{ $t('demolitionWorks.dStageExecution') }}</li>
+        <li><strong>{{ $t('demolitionWorks.stageWasteRemoval') }}</strong> {{ $t('demolitionWorks.dStageWasteRemoval') }}</li>
+        <li><strong>{{ $t('demolitionWorks.stageCleaning') }}</strong> {{ $t('demolitionWorks.dStageCleaning') }}</li>
       </ol>
     </section>
 
     <!-- خدمات مساندة -->
     <section class="support-services">
-      <h2>خدمات مساندة</h2>
+      <h2>{{ $t('demolitionWorks.supportServicesTitle') }}</h2>
       <ul>
-        <li>توفر شاحنات متخصصة بنقل المخلفات بأفضل الأسعار.</li>
-        <li>توفير حاويات معدنية بمقاسات مختلفة لتجميع النفايات في الموقع.</li>
-        <li>فحص المواد القابلة لإعادة التدوير وتقدير قيمتها.</li>
+        <li>{{ $t('demolitionWorks.supportServiceTrucks') }}</li>
+        <li>{{ $t('demolitionWorks.supportServiceContainers') }}</li>
+        <li>{{ $t('demolitionWorks.supportServiceRecycling') }}</li>
       </ul>
     </section>
 
     <!-- لماذا تختارنا -->
     <section class="why-us">
-      <h2>لماذا تختار سكرابي؟</h2>
+      <h2>{{ $t('demolitionWorks.whyUsTitle') }}</h2>
       <ul>
-        <li><strong>أمان عالي:</strong> نتبع أعلى معايير السلامة أثناء عمليات الهدم والنقل.</li>
-        <li><strong>أسعار شفافة:</strong> عروض أسعار مفصلة بدون أي تكاليف خفية.</li>
-        <li><strong>استدامة بيئية:</strong> إعادة تدوير أكثر من 90% من النفايات الناتجة.</li>
-        <li><strong>فريق محترف:</strong> لدينا شبكة من مقدمي الخدمات المؤهلين والمدربين.</li>
+        <li><strong>{{ $t('demolitionWorks.whyUsSafety') }}</strong> {{ $t('demolitionWorks.dWhyUsSafety') }}</li>
+        <li><strong>{{ $t('demolitionWorks.whyUsTransparentPricing') }}</strong> {{ $t('demolitionWorks.dWhyUsTransparentPricing') }}</li>
+        <li><strong>{{ $t('demolitionWorks.whyUsSustainability') }}</strong> {{ $t('demolitionWorks.dWhyUsSustainability') }}</li>
+        <li><strong>{{ $t('demolitionWorks.whyUsProfessionalTeam') }}</strong> {{ $t('demolitionWorks.dWhyUsProfessionalTeam') }}</li>
       </ul>
     </section>
 
     <!-- خطوات طلب الخدمة -->
     <section class="how-to-request">
-      <h2>كيف تطلب الخدمة؟</h2>
+      <h2>{{ $t('demolitionWorks.requestStepsTitle') }}</h2>
       <ol>
-        <li><strong>سجل في المنصة:</strong> أنشئ حسابك عبر موقع أو تطبيق سكرابي.</li>
-        <li><strong>حدد الخدمة:</strong> اختر خدمة "هدم المباني" وأدخل تفاصيل الموقع والمتطلبات.</li>
-        <li><strong>استلم العروض:</strong> تلقى عدة عروض من مقدمي الخدمات المعتمدين.</li>
-        <li><strong>اختر الأنسب:</strong> قارن بين العروض واختر المزود الذي يناسبك.</li>
-        <li><strong>تابع التنفيذ:</strong> راقب سير العمل حتى الانتهاء من المشروع.</li>
+        <li>{{ $t('demolitionWorks.requestStepRegister') }}</li>
+        <li>{{ $t('demolitionWorks.requestStepSelect') }}</li>
+        <li>{{ $t('demolitionWorks.requestStepReceiveOffers') }}</li>
+        <li>{{ $t('demolitionWorks.requestStepChooseProvider') }}</li>
+        <li>{{ $t('demolitionWorks.requestStepMonitor') }}</li>
       </ol>
     </section>
 
-    <!-- رسالة ختامية وزر التسجيل -->
+    <!-- رسالة ختامية -->
     <section class="cta">
-      <h3>ابدأ الآن!</h3>
-      <p>اشترك اليوم واستفد من خبرتنا في تقديم خدمات هدم آمنة ومستدامة.</p>
-      <p>للاستفسارات: <a href="mailto:demo@scraapy.sa">demo@scraapy.sa</a></p>
+      <h2>{{ $t('demolitionWorks.ctaStartNow') }}</h2>
+      <p>{{ $t('demolitionWorks.ctaDescription') }}</p>
+      <p>
+        {{ $t('demolitionWorks.ctaContactEmail') }}:
+        <a href="mailto:demo@scraapy.sa">demo@scraapy.sa</a>
+      </p>
     </section>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'DemolitionServices'
+  name: 'DemolitionWorks'
 }
 </script>
 

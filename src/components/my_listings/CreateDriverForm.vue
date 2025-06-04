@@ -223,6 +223,10 @@ export default defineComponent({
         if (this.DriverData.insurance_expiry) {
           formData.append('insurance_expiry', this.DriverData.insurance_expiry)
         }
+        for (const [key, value] of formData.entries()) {
+  console.log(`${key}:`, value);
+}
+
 
         // Make POST request to api/driver/create
         const response = await this.$axios.post('/api/driver/create/', formData, {

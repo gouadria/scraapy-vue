@@ -136,7 +136,10 @@ export default defineComponent({
     console.log('Response data:', response.data) // debug
 
     const results = response.data?.data || []
-    const newItems = results.map((item: Item) => ({ ...item, isNew: true }))
+    const newItems = Array.isArray(results)
+  ? results.map((item: Item) => ({ ...item, isNew: true }))
+  : [];
+
     this.listings.push(...newItems)
     this.nextPageUrl = response.data?.next || null
 

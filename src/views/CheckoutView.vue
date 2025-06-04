@@ -280,52 +280,64 @@ export default defineComponent({
         this.contractValidationError = ''
       }
     },
+submitOrder(paymentDetails: { [key: string]: string }) {
+  if (this.hasContract && !this.allContractsSigned) {
+    this.contractValidationError = this.$t('checkout.reviewAndSign')
+    return
+  }
 
-    submitOrder(paymentDetails: { [key: string]: string }) {
-      if (this.hasContract && !this.allContractsSigned) {
-        this.contractValidationError = this.$t('checkout.reviewAndSign')
-        return
-      }
-      // Check if submission is allowed
-      if (!this.canSubmitOrder) {
-        if (this.selectedOptionId === null) {
-          this.shippingValidationError = 'Please select a shipping option before submitting.'
-        }
-        return // Prevent submission
-      }
-      const items = this.$userStore.state.cart.map(({ item, quantity }) => {
-        if (item.parent_order_item !== undefined) {
-          return { parent_order_item: item.parent_order_item, item: item.id }
-        }
-        return item.category_type === 'service'
-          ? { item: item.id }
-          : { item: item.id, order_quantity: quantity }
-      })
-      const { addressLine1, addressLine2, city, province, zipCode, country } = this.selectedAddress
-      this.$axios
-        .post('/api/billing/orders/', {
-          items,
-          signedContract: this.allContractsSigned,
-          delivery_address_line1: addressLine1,
-          delivery_address_line2: addressLine2,
-          delivery_city: city,
-          delivery_province: province,
-          delivery_zip_code: zipCode,
-          delivery_country: country,
-          longitude: this.selectedAddress.longitude,
-          latitude: this.selectedAddress.latitude,
-          addressName: this.selectedAddress.addressName,
-          shipping_option: this.selectedOptionId,
-          ...paymentDetails
-        })
-        .then((response) => {
-          const { payment_url } = response.data.data
-          window.location.replace(payment_url)
-        })
-        .catch((error) => {
-          console.error('Payment failed', error)
-        })
-    },
+  // Vérifie si on peut soumettre
+  if (!this.canSubmitOrder) {
+    if (this.selectedOptionId === null) {
+      this.shippingValidationError = 'Please select a shipping option before submitting.'
+    }
+    return
+  }
+
+  // 🔽 Ajoute la vérification de la quantité ici
+  const hasInvalidQuantity = this.$userStore.state.cart.some(
+    (entry: any) => !entry.quantity || entry.quantity < 1
+  )
+  if (hasInvalidQuantity) {
+    this.error = "Certains articles ont une quantité invalide."
+    return
+  }
+
+  const items = this.$userStore.state.cart.map(({ item, quantity }) => {
+    if (item.parent_order_item !== undefined) {
+      return { parent_order_item: item.parent_order_item, item: item.id }
+    }
+    return item.category_type === 'service'
+      ? { item: item.id }
+      : { item: item.id, order_quantity: quantity }
+  })
+
+  const { addressLine1, addressLine2, city, province, zipCode, country } = this.selectedAddress
+  this.$axios
+    .post('/api/billing/orders/', {
+      items,
+      signedContract: this.allContractsSigned,
+      delivery_address_line1: addressLine1,
+      delivery_address_line2: addressLine2,
+      delivery_city: city,
+      delivery_province: province,
+      delivery_zip_code: zipCode,
+      delivery_country: country,
+      longitude: this.selectedAddress.longitude,
+      latitude: this.selectedAddress.latitude,
+      addressName: this.selectedAddress.addressName,
+      shipping_option: this.selectedOptionId,
+      ...paymentDetails
+    })
+    .then((response) => {
+      const { payment_url } = response.data.data
+      window.location.replace(payment_url)
+    })
+    .catch((error) => {
+      console.error('Payment failed', error)
+    })
+},
+
 
     removeItemFromCart(item: Item) {
       const itemId = item.id

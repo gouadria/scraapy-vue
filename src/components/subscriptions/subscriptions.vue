@@ -1,110 +1,308 @@
 <template>
-    <div class="subscriptions-page">
-      <h1>باقات الاشتراك</h1>
-      <p>اختر الباقة التي تناسب احتياجاتك واستفد من المزايا الحصرية.</p>
-  
-      <!-- قطاع الأفراد -->
-      <section class="individuals-subscription">
-        <h2>قطاع الأفراد</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>الوصف</th>
-              <th>شهري (60 ريال)</th>
-              <th>ربع سنوي (170 ريال)</th>
-              <th>نصف سنوي (350 ريال)</th>
-              <th>سنوي (650 ريال)</th>
-              <th>بريميوم سنوي (850 ريال)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>التحقق من العميل</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
-            <tr><td>صفحة العميل</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
-            <tr><td>عمليات بيع السكراب</td><td>5 عمليات</td><td>24 عملية</td><td>55 عملية</td><td>غير محدودة</td><td>غير محدودة</td></tr>
-            <tr><td>أسعار تفضيلية للبيع</td><td>-</td><td>-</td><td>-</td><td>-</td><td>✓</td></tr>
-            <tr><td>أفضلية مواعيد الزيارة</td><td>-</td><td>-</td><td>-</td><td>-</td><td>✓</td></tr>
-            <tr><td>خدمات مقاولات الهدم</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
-            <tr><td>استئجار حاويات البناء/الهدم</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
-            <tr><td>استئجار حاويات بلاستيكية منزلية</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
-            <tr><td>بيع مياه نظيفة</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
-            <tr><td>شفط الصرف الصحي</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
-            <tr><td>شراء ماكينة معالجة نباتات/أطعمة منزلية</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
-          </tbody>
-        </table>
-      </section>
-  
-      <!-- قطاع الشركات التجارية -->
-      <section class="commercial-subscription">
-        <h2>قطاع الشركات التجارية</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>الوصف</th>
-              <th>نصف سنوي (1500 ريال)</th>
-              <th>سنوي (2850 ريال)</th>
-              <th>بريميوم سنوي (3000 ريال)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>التحقق من العميل</td><td>✓</td><td>✓</td><td>✓</td></tr>
-            <tr><td>العرض في الموقع</td><td>✓</td><td>✓</td><td>✓</td></tr>
-            <tr><td>صفحة داخلية لإدارة الطلبات والعروض</td><td>✓</td><td>✓</td><td>✓</td></tr>
-            <tr><td>مقاول فحص وتدقيق</td><td>✓</td><td>✓</td><td>✓</td></tr>
-            <tr><td>مقاول شحن وتوصيل</td><td>✓</td><td>✓</td><td>✓</td></tr>
-            <tr><td>مقاول نقل النفايات غير الخطرة</td><td>✓</td><td>✓</td><td>✓</td></tr>
-            <tr><td>مقاول نقل النفايات الخطرة</td><td>✓</td><td>✓</td><td>✓</td></tr>
-            <tr><td>مقاول مقاولات الهدم</td><td>✓</td><td>✓</td><td>✓</td></tr>
-            <tr><td>مقاول حاويات البناء/الهدم</td><td>✓</td><td>✓</td><td>✓</td></tr>
-            <tr><td>مقاول بيع مياه نظيفة</td><td>✓</td><td>✓</td><td>✓</td></tr>
-            <tr><td>مقاول شفط الصرف الصحي</td><td>✓</td><td>✓</td><td>✓</td></tr>
-            <tr><td>خصومات تجديد الاشتراك (20%)</td><td>✓</td><td>✓</td><td>✓</td></tr>
-            <tr><td>رصيد افتتاحي (200 ريال)</td><td>-</td><td>-</td><td>✓</td></tr>
-          </tbody>
-        </table>
-      </section>
-  
-      <!-- قطاع مقدمي الخدمات -->
-      <section class="providers-subscription">
-        <h2>قطاع مقدمي الخدمات</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>الوصف</th>
-              <th>نصف سنوي (1500 ريال)</th>
-              <th>سنوي (2850 ريال)</th>
-              <th>بريميوم سنوي (3000 ريال)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>التحقق من العميل</td><td>✓</td><td>✓</td><td>✓</td></tr>
-            <tr><td>العرض في الموقع</td><td>✓</td><td>✓</td><td>✓</td></tr>
-            <tr><td>صفحة داخلية لإدارة الطلبات والعروض</td><td>✓</td><td>✓</td><td>✓</td></tr>
-            <tr><td>مقاول فحص وتدقيق</td><td>✓</td><td>✓</td><td>✓</td></tr>
-            <tr><td>مقاول شحن وتوصيل</td><td>✓</td><td>✓</td><td>✓</td></tr>
-            <tr><td>مقاول نقل النفايات غير الخطرة</td><td>✓</td><td>✓</td><td>✓</td></tr>
-            <tr><td>مقاول نقل النفايات الخطرة</td><td>✓</td><td>✓</td><td>✓</td></tr>
-            <tr><td>مقاول مقاولات الهدم</td><td>✓</td><td>✓</td><td>✓</td></tr>
-            <tr><td>مقاول حاويات البناء/الهدم</td><td>✓</td><td>✓</td><td>✓</td></tr>
-            <tr><td>مقاول بيع مياه نظيفة</td><td>✓</td><td>✓</td><td>✓</td></tr>
-            <tr><td>مقاول شفط الصرف الصحي</td><td>✓</td><td>✓</td><td>✓</td></tr>
-          </tbody>
-        </table>
-      </section>
-  
-      <!-- زر التسجيل -->
-      <section class="cta">
-        <h3>اختر باقتك الآن!</h3>
-      </section>
-    </div>
-  </template>
-  
-  <script>
+  <div class="subscriptions-page">
+    <!-- العنوان -->
+    <h1>{{ $t('subscriptions.title') }}</h1>
+    <p>{{ $t('subscriptions.description') }}</p>
+
+    <!-- قطاع الأفراد -->
+    <section class="individuals-subscription">
+      <h2>{{ $t('subscriptions.individualsTitle') }}</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>{{ $t('subscriptions.individualsHeaderDesc') }}</th>
+            <th>{{ $t('subscriptions.individualsHeaderMonthly') }}</th>
+            <th>{{ $t('subscriptions.individualsHeaderQuarterly') }}</th>
+            <th>{{ $t('subscriptions.individualsSemiAnnual') }}</th>
+            <th>{{ $t('subscriptions.individualsAnnual') }}</th>
+            <th>{{ $t('subscriptions.individualsPremium') }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ $t('subscriptions.individualsRowVerification') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.individualsRowPage') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.individualsRowScrapTransactions') }}</td>
+            <td>5 {{ $t('subscriptions.transactions') }}</td>
+            <td>24 {{ $t('subscriptions.transactions') }}</td>
+            <td>55 {{ $t('subscriptions.transactions') }}</td>
+            <td>{{ $t('subscriptions.individualsRowUnlimited') }}</td>
+            <td>{{ $t('subscriptions.individualsRowUnlimited') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.individualsRowPreferredPrice') }}</td>
+            <td>{{ $t('subscriptions.individualsRowDash') }}</td>
+            <td>{{ $t('subscriptions.individualsRowDash') }}</td>
+            <td>{{ $t('subscriptions.individualsRowDash') }}</td>
+            <td>{{ $t('subscriptions.individualsRowDash') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.individualsRowPrioritySchedule') }}</td>
+            <td>{{ $t('subscriptions.individualsRowDash') }}</td>
+            <td>{{ $t('subscriptions.individualsRowDash') }}</td>
+            <td>{{ $t('subscriptions.individualsRowDash') }}</td>
+            <td>{{ $t('subscriptions.individualsRowDash') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.individualsRowDemolition') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.individualsRowRentConstructionContainers') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.individualsRowRentPlasticContainers') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.individualsRowCleanWaterSales') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.individualsRowSewagePumping') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.individualsRowHomeProcessingMachine') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- قطاع الشركات التجارية -->
+    <section class="commercial-subscription">
+      <h2>{{ $t('subscriptions.commercialTitle') }}</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>{{ $t('subscriptions.commercialHeaderDesc') }}</th>
+            <th>{{ $t('subscriptions.commercialSemiAnnual') }}</th>
+            <th>{{ $t('subscriptions.commercialAnnual') }}</th>
+            <th>{{ $t('subscriptions.commercialPremium') }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ $t('subscriptions.commercialRowVerification') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.commercialRowListing') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.commercialRowInternalPage') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.commercialRowInspectionContractor') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.commercialRowShippingContractor') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.commercialRowNonHazardousTransport') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.commercialRowHazardousTransport') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.commercialRowDemolitionContractor') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.commercialRowContainerRental') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.commercialRowWaterSales') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.commercialRowSewagePumping') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.commercialRowRenewalDiscount') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.commercialRowOpeningCredit') }}</td>
+            <td>{{ $t('subscriptions.individualsRowDash') }}</td>
+            <td>{{ $t('subscriptions.individualsRowDash') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- قطاع مقدمي الخدمات -->
+    <section class="providers-subscription">
+      <h2>{{ $t('subscriptions.providersTitle') }}</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>{{ $t('subscriptions.providersHeaderDesc') }}</th>
+            <th>{{ $t('subscriptions.providersSemiAnnual') }}</th>
+            <th>{{ $t('subscriptions.providersAnnual') }}</th>
+            <th>{{ $t('subscriptions.providersPremium') }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ $t('subscriptions.providersRowVerification') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.providersRowListing') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.providersRowInternalPage') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.providersRowInspectionContractor') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.providersRowShippingContractor') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.providersRowNonHazardousTransport') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.providersRowHazardousTransport') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.providersRowDemolitionWorks') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.providersRowContainerRental') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.providersRowWaterSales') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+          <tr>
+            <td>{{ $t('subscriptions.providersRowSewagePumping') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+            <td>{{ $t('subscriptions.individualsRowCheck') }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- زر الدعوة للتسجيل -->
+    <section class="cta">
+      <h3>{{ $t('subscriptions.ctaTitle') }}</h3>
+    </section>
+  </div>
+</template>
+
+<script>
   export default {
     name: 'Subscriptions'
   }
-  </script>
+</script>
   
-  <style scoped>
+<style scoped>
   .subscriptions-page {
     font-family: Inter, Zain;
     line-height: 1.6;
@@ -156,4 +354,4 @@
   .btn:hover {
     background-color: #0056b3;
   }
-  </style>
+</style>

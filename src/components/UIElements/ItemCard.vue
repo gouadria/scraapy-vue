@@ -160,6 +160,25 @@ export default defineComponent({
     console.error("Failed to upload image:", error.response?.data || error.message);
   }
 },
+async rejectItem() {
+  if (!this.item?.id) return;
+
+  try {
+    // Appel de l'API pour rejeter l'item
+    await this.$axios.post(`/api/inventory/staff/${this.item.id}/reject/`, {
+      reason: 'Non conforme'
+    });
+
+    // Suppression immédiate de l'item après rejet
+    await this.$axios.delete(`/api/inventory/user/items/${this.item.id}/`);
+
+    // Émettre l'événement de suppression pour mettre à jour la liste côté parent
+    this.$emit('delete', this.item.id);
+  } catch (error) {
+    console.error('Failed to reject and delete item:', error);
+  }
+},
+
 
     async approveItem() {
       if (!this.item?.id) return
@@ -287,6 +306,12 @@ export default defineComponent({
         </ul>
       </div>
     </div>
+    <div v-if="staffActions" class="approve-button-wrapper">
+  <button @click.stop="approveItem" class="approve-btn">APPROVED</button>
+  <button @click.stop="rejectItem" class="reject-btn">REJECTED</button>
+</div>
+
+
   </div>
 </template>
 
@@ -445,6 +470,43 @@ export default defineComponent({
   display: flex;
   gap: 6px;
 }
+.approve-button-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.approve-btn {
+  background-color: #198754; /* Vert Bootstrap "success" */
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.approve-btn:hover {
+  background-color: #157347;
+}
+
+.reject-btn {
+  background-color: #dc3545; /* Rouge Bootstrap "danger" */
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reject-btn:hover {
+  background-color: #bb2d3b;
+}
+
 
 .unit {
   font-weight: 600;

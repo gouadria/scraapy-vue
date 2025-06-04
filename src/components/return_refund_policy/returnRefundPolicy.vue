@@ -1,89 +1,80 @@
 <template>
-    <div class="policy-page">
-      <!-- القسم الأول -->
-      <section class="intro">
-        <h1>سياسة الإرجاع والاسترداد</h1>
-        <p>
-          في سكرابي، نحرص على ضمان رضاك التام عن خدماتنا ومنتجاتنا. تُطبَّق الشروط التالية لضمان عدالة وشفافية العمليات.
-        </p>
-      </section>
-  
-      <!-- سياسة إرجاع النفايات -->
-      <section class="waste-policy">
-        <h2>سياسة إرجاع النفايات</h2>
+  <div class="policy-page">
+    <!-- القسم الأول -->
+    <section class="intro">
+      <h1>{{ $t('returnPolicy.title') }}</h1>
+      <p>{{ $t('returnPolicy.intro') }}</p>
+    </section>
+
+    <!-- سياسة إرجاع النفايات -->
+    <section class="waste-policy">
+      <h2>{{ $t('returnPolicy.wastePolicyTitle') }}</h2>
+      <ul>
+        <li><strong>{{ $t('returnPolicy.wastePolicyItem1') }}</strong></li>
+        <li>{{ $t('returnPolicy.wastePolicyItem2') }}</li>
+      </ul>
+    </section>
+
+    <!-- سياسة إرجاع المنتجات البيئية -->
+    <section class="eco-products-policy">
+      <h2>{{ $t('returnPolicy.ecoProductsPolicyTitle') }}</h2>
+      <ul>
+        <li>{{ $t('returnPolicy.ecoProductsPolicyItem1') }}</li>
+        <li>{{ $t('returnPolicy.ecoProductsPolicyItem2') }}</li>
+        <li>{{ $t('returnPolicy.ecoProductsPolicyItem3') }}</li>
+        <li>{{ $t('returnPolicy.ecoProductsPolicyItem4') }}</li>
+        <li><strong>{{ $t('returnPolicy.ecoProductsPolicyRefund') }}</strong></li>
+      </ul>
+    </section>
+
+    <!-- إلغاء الخدمات المساندة -->
+    <section class="support-services-cancel">
+      <h2>{{ $t('returnPolicy.supportServicesCancelTitle') }}</h2>
+      <ul>
+        <li>{{ $t('returnPolicy.supportServicesCancelBefore') }}</li>
+        <li><strong>{{ $t('returnPolicy.supportServicesCancelAfter') }}</strong></li>
         <ul>
-          <li><strong>النفايات الخطرة وغير الخطرة:</strong></li>
-          <ul>
-            <li>لا يمكن إرجاع أو استبدال أي أنواع من النفايات (خطرة/غير خطرة) بعد استلام الدفع وإصدار الفاتورة.</li>
-          </ul>
+          <li>{{ $t('returnPolicy.supportServicesCancelAfterCost') }}</li>
         </ul>
-      </section>
-  
-      <!-- سياسة إرجاع المنتجات البيئية -->
-      <section class="eco-products-policy">
-        <h2>سياسة إرجاع المنتجات البيئية</h2>
-        <ul>
-          <li><strong>المدة المسموحة:</strong> يُمكن إرجاع المنتجات البيئية (مثل الحاويات الذكية، معدات التدوير) خلال <strong>48 ساعة فقط</strong> من استلام الفاتورة.</li>
-          <li><strong>شروط الإرجاع:</strong></li>
-          <ul>
-            <li>تقديم الفاتورة الأصلية.</li>
-            <li>إعادة المنتج بحالته الأصلية (مغلف بتغليف المصنع، غير تالف، غير مستخدم).</li>
-            <li>اجتياز الفحص الفني من قبل فريق سكرابي.</li>
-          </ul>
-          <li><strong>الاسترداد:</strong> يُعاد المبلغ إلى محفظتك الإلكترونية في المنصة بعد خصم تكاليف النقل.</li>
-        </ul>
-      </section>
-  
-      <!-- إلغاء الخدمات المساندة -->
-      <section class="support-services-cancel">
-        <h2>إلغاء الخدمات المساندة</h2>
-        <ul>
-          <li><strong>قبل التنفيذ:</strong> يُمكن إلغاء الخدمات (مثل تأجير المعدات، النقل) قبل موعد التنفيذ بـ <strong>5 ساعات</strong> دون أي رسوم.</li>
-          <li><strong>بعد التنفيذ:</strong></li>
-          <ul>
-            <li>إذا تعذَّر تنفيذ الخدمة رغم وصول الفريق إلى الموقع:</li>
-            <ul>
-              <li>يُخصم أجرة يوم واحد للمعدات أو تكلفة إعادة الحاويات.</li>
-            </ul>
-          </ul>
-          <li><strong>في جميع الحالات:</strong> يُعاد المبلغ إلى محفظتك الإلكترونية دون إمكانية السحب النقدي.</li>
-        </ul>
-      </section>
-  
-      <!-- عملية الاسترداد -->
-      <section class="refund-process">
-        <h2>عملية الاسترداد</h2>
-        <ul>
-          <li><strong>فحص المنتج:</strong> عند استلام المنتج المرتجع، نفحصه خلال <strong>3 أيام عمل</strong> ونُبلغك بنتيجة الفحص عبر البريد الإلكتروني.</li>
-          <li><strong>رد المبلغ:</strong> في حالة الموافقة، يُضاف المبلغ إلى محفظتك خلال <strong>5–7 أيام عمل</strong> (حسب سياسات البنك المُصدر للبطاقة).</li>
-        </ul>
-      </section>
-  
-      <!-- تكاليف الشحن -->
-      <section class="shipping-costs">
-        <h2>تكاليف الشحن</h2>
-        <ul>
-          <li><strong>مسؤولية العميل:</strong> يتحمل العميل تكاليف شحن المنتجات المرتجعة.</li>
-          <li><strong>غير قابلة للاسترداد:</strong> لا تُعاد تكاليف الشحن في حال الموافقة على الاسترداد.</li>
-        </ul>
-      </section>
-  
-      <!-- طريقة التواصل -->
-      <section class="contact-support">
-        <h2>تواصل مع الدعم</h2>
-        <p>لأي استفسارات حول الإرجاع أو الاسترداد:</p>
-        <p><a href="mailto:support@scraapy.sa">support@scraapy.sa</a></p>
-      </section>
-    </div>
-  </template>
-  
-  <script>
+        <li>{{ $t('returnPolicy.supportServicesCancelAllCases') }}</li>
+      </ul>
+    </section>
+
+    <!-- عملية الاسترداد -->
+    <section class="refund-process">
+      <h2>{{ $t('returnPolicy.refundProcessTitle') }}</h2>
+      <ul>
+        <li>{{ $t('returnPolicy.refundProcessItem1') }}</li>
+        <li>{{ $t('returnPolicy.refundProcessItem2') }}</li>
+        <li>{{ $t('returnPolicy.refundProcessItem3') }}</li>
+      </ul>
+    </section>
+
+    <!-- تكاليف الشحن -->
+    <section class="shipping-costs">
+      <h2>{{ $t('returnPolicy.shippingCostsTitle') }}</h2>
+      <ul>
+        <li>{{ $t('returnPolicy.shippingCostsCustomerResponsibility') }}</li>
+        <li>{{ $t('returnPolicy.shippingCostsNonRefundable') }}</li>
+      </ul>
+    </section>
+
+    <!-- طريقة التواصل -->
+    <section class="contact-support">
+      <h2>{{ $t('returnPolicy.contactSupportTitle') }}</h2>
+      <p>{{ $t('returnPolicy.contactSupportDesc') }}</p>
+      <p><a href="mailto:support@scraapy.sa">support@scraapy.sa</a></p>
+    </section>
+  </div>
+</template>
+
+<script>
   export default {
     name: 'returnRefundPolicy'
   }
-  </script>
+</script>
   
-  <style scoped>
+<style scoped>
   .policy-page {
     font-family: Inter, Zain;
     line-height: 1.6;
@@ -131,4 +122,4 @@
   .btn:hover {
     background-color: #0056b3;
   }
-  </style>
+</style>

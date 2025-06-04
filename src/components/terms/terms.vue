@@ -1,100 +1,95 @@
 <template>
-    <div class="terms-page">
-      <!-- القسم الأول -->
-      <section class="intro">
-        <h1>الشروط والأحكام</h1>
-        <p>
-          منصة سكرابي © هي خدمة تقدمها شركة باهظ لتقنية المعلومات (س.ت: 2050180292).
-          باستخدامك الموقع أو التطبيق، فإنك توافق على الالتزام بهذه الشروط والأحكام.
-          يرجى قراءتها بعناية قبل استخدام خدماتنا.
-        </p>
-      </section>
-  
-      <!-- التعريفات -->
-      <section class="definitions">
-        <h2>التعريفات</h2>
-        <ul>
-          <li><strong>المنصة:</strong> موقع وتطبيق سكرابي.</li>
-          <li><strong>المستخدم:</strong> الفرد أو المؤسسة التي تستخدم المنصة.</li>
-          <li><strong>البائع/المورد:</strong> من يعرض أو يبيع المواد أو الخدمات.</li>
-          <li><strong>المشتري:</strong> من يشتري المنتجات أو الخدمات.</li>
-          <li><strong>العميل:</strong> أي طرف يستخدم المنصة لأغراض البيع أو الشراء.</li>
-        </ul>
-      </section>
-  
-      <!-- استخدام المنصة -->
-      <section class="platform-use">
-        <h2>استخدام المنصة</h2>
-        <ul>
-          <li>لا يجوز لك إعادة بيع أو توزيع الخدمات أو تعديل تصميم المنصة أو الوصول إلى كود المصدر.</li>
-          <li>لا يسمح بمشاركة اسم المستخدم أو كلمة المرور مع أطراف ثالثة.</li>
-          <li>غير مسموح للأطفال دون سن 18 عامًا باستخدام المنصة إلا بإشراف.</li>
-          <li>الدخول إلى المنصة واستخدامها يكون فقط للأغراض القانونية.</li>
-        </ul>
-      </section>
-  
-      <!-- الرسوم والمعاملات -->
-      <section class="fees">
-        <h2>الرسوم والمعاملات</h2>
-        <ul>
-          <li>جميع الرسوم النهائية وغير قابلة للاسترداد ما لم يُحدد خلاف ذلك.</li>
-          <li>تُخصم رسوم العمولة من قيمة البيع النهائي وفق الاتفاقية.</li>
-          <li>الضرائب مثل ضريبة القيمة المضافة مستحقة الدفع حسب النظام السعودي.</li>
-          <li>شركة باهظ تقوم بدور وكيل تحصيل الأموال بين الأطراف.</li>
-        </ul>
-      </section>
-  
-      <!-- الحقوق الفكرية -->
-      <section class="ip-rights">
-        <h2>الحقوق الفكرية</h2>
-        <ul>
-          <li>جميع المحتويات (النصوص، الصور، الفيديوهات) مملوكة لسكرابي أو الجهات الخارجية.</li>
-          <li>لا يجوز نقل أو تعديل أو إعادة توزيع أي محتوى بدون إذن كتابي.</li>
-        </ul>
-      </section>
-  
-      <!-- الأمان والسلوك -->
-      <section class="security">
-        <h2>الأمان والسلوك</h2>
-        <ul>
-          <li>تلتزم المنصة بحماية بياناتك الشخصية عبر تقنيات التشفير.</li>
-          <li>المسؤولية الكاملة عن استخدام الخدمة تقع على عاتق المستخدم.</li>
-          <li>في حالة انتهاك الشروط، يجوز إيقاف الحساب أو رفع دعوى قانونية.</li>
-        </ul>
-      </section>
-  
-      <!-- المسؤولية والتعويض -->
-      <section class="responsibility">
-        <h2>المسؤولية والتعويض</h2>
-        <ul>
-          <li>لا تتحمل سكرابي مسؤولية أي ضرر مباشر أو غير مباشر نتيجة الاستخدام.</li>
-          <li>توافق على تعويض سكرابي في حال تسببك في أي مطالبات أو خسائر.</li>
-          <li>المنصة لا تضمن جودة أو ملاءمة مقدمي الخدمات.</li>
-        </ul>
-      </section>
-  
-      <!-- التعديلات -->
-      <section class="updates">
-        <h2>التعديلات على الشروط</h2>
-        <p>تحتفظ سكرابي بحق تعديل هذه الشروط في أي وقت. سيتم إبلاغك بالتغييرات عبر الموقع.</p>
-      </section>
-  
-      <!-- التواصل -->
-      <section class="contact">
-        <h2>لأي استفسارات</h2>
-        <p>يمكنك التواصل عبر البريد الإلكتروني:</p>
-        <p><a href="mailto:admin@scraapy.sa">admin@scraapy.sa</a></p>
-      </section>
-    </div>
-  </template>
-  
-  <script>
+  <div class="terms-page">
+    <!-- القسم الأول -->
+    <section class="intro">
+      <h1>{{ $t('termsP.title') }}</h1>
+      <p>{{ $t('termsP.intro') }}</p>
+    </section>
+
+    <!-- التعريفات -->
+    <section class="definitions">
+      <h2>{{ $t('termsP.definitionsTitle') }}</h2>
+      <ul>
+        <li><strong>{{ $t('termsP.definitionsItems') }}</strong> {{ $t('termsP.dDefinitionsItems') }}</li>
+        <li><strong>{{ $t('termsP.definitionsItems2') }}</strong> {{ $t('termsP.dDefinitionsItems2') }}</li>
+        <li><strong>{{ $t('termsP.definitionsItems3') }}</strong> {{ $t('termsP.dDefinitionsItems3') }}</li>
+        <li><strong>{{ $t('termsP.definitionsItems4') }}</strong> {{ $t('termsP.dDefinitionsItems4') }}</li>
+        <li><strong>{{ $t('termsP.definitionsItems5') }}</strong> {{ $t('termsP.dDefinitionsItems5') }}</li>
+      </ul>
+    </section>
+
+    <!-- استخدام المنصة -->
+    <section class="platform-use">
+      <h2>{{ $t('termsP.platformUseTitle') }}</h2>
+      <ul>
+        <li>{{ $t('termsP.platformUseItems') }}</li>
+        <li>{{ $t('termsP.platformUseItems2') }}</li>
+        <li>{{ $t('termsP.platformUseItems3') }}</li>
+        <li>{{ $t('termsP.platformUseItems4') }}</li>
+      </ul>
+    </section>
+
+    <!-- الرسوم والمعاملات -->
+    <section class="fees">
+      <h2>{{ $t('termsP.feesTitle') }}</h2>
+      <ul>
+        <li>{{ $t('termsP.feesItems') }}</li>
+        <li>{{ $t('termsP.feesItems2') }}</li>
+        <li>{{ $t('termsP.feesItems3') }}</li>
+        <li>{{ $t('termsP.feesItems4') }}</li>
+      </ul>
+    </section>
+
+    <!-- الحقوق الفكرية -->
+    <section class="ip-rights">
+      <h2>{{ $t('termsP.ipRightsTitle') }}</h2>
+      <ul>
+        <li>{{ $t('termsP.ipRightsItems') }}</li>
+        <li>{{ $t('termsP.ipRightsItems2') }}</li>
+      </ul>
+    </section>
+
+    <!-- الأمان والسلوك -->
+    <section class="security">
+      <h2>{{ $t('termsP.securityTitle') }}</h2>
+      <ul>
+        <li>{{ $t('termsP.securityItems') }}</li>
+        <li>{{ $t('termsP.securityItems2') }}</li>
+        <li>{{ $t('termsP.securityItems3') }}</li>
+      </ul>
+    </section>
+
+    <!-- المسؤولية والتعويض -->
+    <section class="responsibility">
+      <h2>{{ $t('termsP.responsibilityTitle') }}</h2>
+      <ul>
+        <li>{{ $t('termsP.responsibilityItems') }}</li>
+        <li>{{ $t('termsP.responsibilityItems2') }}</li>
+        <li>{{ $t('termsP.responsibilityItems3') }}</li>
+      </ul>
+    </section>
+
+    <!-- التعديلات -->
+    <section class="updates">
+      <h2>{{ $t('termsP.updatesTitle') }}</h2>
+      <p>{{ $t('termsP.updatesDesc') }}</p>
+    </section>
+
+    <!-- التواصل -->
+    <section class="contact">
+      <h2>{{ $t('termsP.contactTitle') }}</h2>
+      <p>{{ $t('termsP.contactDesc') }} <a href="mailto:admin@scraapy.sa">admin@scraapy.sa</a></p>
+    </section>
+  </div>
+</template>
+
+<script>
   export default {
     name: 'TermsAndConditions'
   }
-  </script>
+</script>
   
-  <style scoped>
+<style scoped>
   .terms-page {
     font-family: Inter, Zain;
     line-height: 1.6;
@@ -138,4 +133,4 @@
   .btn:hover {
     background-color: #0056b3;
   }
-  </style>
+</style>

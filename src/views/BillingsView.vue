@@ -125,41 +125,44 @@ export default defineComponent({
       console.log('Search query:', searchQuery)
     },
     async fetchBills() {
-      if (this.isLoading) return
+  if (this.isLoading) return
 
-      this.isLoading = true
-      this.error = null
+  this.isLoading = true
+  this.error = null
 
-      const getParams = new URLSearchParams(window.location.search)
-      const params = {
-        page: getParams.get('page') || 1,
-        query: getParams.get('search') || '',
-        status: getParams.get('filter') || '',
-        sort: getParams.get('sort') || '',
-        per_page: this.itemsPerPage
-      }
+  const getParams = new URLSearchParams(window.location.search)
+  const params = {
+    page: getParams.get('page') || 1,
+    query: getParams.get('search') || '',
+    status: getParams.get('filter') || '',
+    sort: getParams.get('sort') || '',
+    per_page: this.itemsPerPage
+  }
 
-      try {
-        const response = await this.$axios.get('api/billing/', { params })
-        const data = response.data.results
+  try {
+    const response = await this.$axios.get('api/billing/', { params })
+    console.log('API response:', response.data)
 
-        // Update billing list with pagination logic
-        const page = getParams.get('page') ? Number(getParams.get('page')) : 1
-        if (page === 1) {
-          this.billing = data
-          console.log(this.billing)
-        } else {
-          this.billing = [...this.billing, ...data]
-        }
+    const results = Array.isArray(response.data) ? response.data : []
+    if (!Array.isArray(results)) {
+      throw new Error('Malformed API response: results is not an array')
+    }
 
-        this.hasMoreItems = data.length === this.itemsPerPage
-      } catch (err) {
-        this.error = 'Failed to fetch data. Please try again.'
-        console.error('API Error:', err)
-      } finally {
-        this.isLoading = false
-      }
-    },
+    const page = getParams.get('page') ? Number(getParams.get('page')) : 1
+    if (page === 1) {
+      this.billing = results
+    } else {
+      this.billing = [...this.billing, ...results]
+    }
+
+    this.hasMoreItems = results.length === this.itemsPerPage
+  } catch (err) {
+    this.error = 'Failed to fetch data. Please try again.'
+    console.error('API Error:', err)
+  } finally {
+    this.isLoading = false
+  }
+},
     async fetchDocuments(selectedType: string) {
       if (this.isLoading) return
       this.isLoading = true

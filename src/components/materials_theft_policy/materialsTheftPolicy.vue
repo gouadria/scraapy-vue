@@ -1,73 +1,73 @@
 <template>
-    <div class="policy-page">
-      <!-- القسم الأول -->
-      <section class="intro">
-        <h1>سياسة التعامل مع المواد مجهولة المصدر</h1>
-        <p>
-          في سكرابي، نُقدّر ثقة عملائنا وشركائنا، ونسعى جاهدين لضمان نزاهة سوق إعادة التدوير عبر اتباع أنظمة صارمة لمكافحة تداول المواد المسروقة أو المشبوهة.
-        </p>
-        <p>
-          الالتزام بهذه السياسة يساعدنا على بناء اقتصاد دائري آمن ومستدام، ويحمي جميع الأطراف من أي تعاملات غير قانونية.
-        </p>
-      </section>
-  
-      <!-- الإجراءات الوقائية -->
-      <section class="preventive-measures">
-        <h2>الإجراءات الوقائية</h2>
-        <ul>
-          <li><strong>الاعتماد الرسمي:</strong> يُسمح فقط للتجار والموردين المعتمدين من "موان" بمزاولة النشاط على المنصة.</li>
-          <li><strong>الفواتير الضريبية:</strong> جميع عمليات البيع والشراء تتم عبر فواتير ضريبية رسمية تحدد مصدر المواد وتفاصيلها.</li>
-          <li><strong>التعاملات المالية الشفافة:</strong> تُجرى جميع المدفوعات عبر قنوات بنكية موثقة لضمان تتبع كل عملية مالية.</li>
-          <li><strong>مطابقة الهوية:</strong> تُطابق بيانات العملاء المسجلة مع الفواتير الصادرة لتأكيد هوية البائع/المشتري.</li>
-          <li><strong>أرشفة البيانات:</strong> يُحتفظ بسجل كامل لجميع المعاملات لمدة 5 سنوات قابلة للمراجعة من الجهات المختصة.</li>
-          <li><strong>منع الشحنات المشبوهة:</strong> لا يتم نقل أي مواد مجهولة المصدر أو غير موثقة عبر المنصة.</li>
-        </ul>
-      </section>
-  
-      <!-- التعامل مع الحالات المشبوهة -->
-      <section class="suspicious-cases">
-        <h2>إجراءات التعامل مع الحالات المشبوهة</h2>
-        <ul>
-          <li><strong>فحص مكثف:</strong> تلتزم شركات الفحص والتدقيق المعتمدة بإبلاغ سكرابي فور اكتشاف أي مواد غير مطابقة للمواصفات أو مشبوهة.</li>
-          <li><strong>الإبلاغ الفوري:</strong> يتم إخطار الجهات الحكومية المختصة (مثل الشرطة البيئية) فورًا مع إخلاء مسؤولية المنصة.</li>
-          <li><strong>تعليق الحسابات:</strong> تُعلق حسابات الأطراف المتورطة في عمليات غير مشروعة حتى انتهاء التحقيقات.</li>
-        </ul>
-      </section>
-  
-      <!-- العقوبات -->
-      <section class="penalties">
-        <h2>عقوبات المخالفات</h2>
-        <ul>
-          <li><strong>غرامات مالية:</strong> تصل إلى 50,000 ريال سعودي للمخالفات المتكررة.</li>
-          <li><strong>حظر دائم:</strong> في حال ثبوت تورط أي طرف في ترويج مواد مسروقة.</li>
-        </ul>
-      </section>
-  
-      <!-- التزام الشركة -->
-      <section class="community-protection">
-        <h2>التزامنا بحماية المجتمع</h2>
-        <ul>
-          <li><strong>تعزيز الوعي:</strong> نقدم دورات توعوية حول مخاطر التعامل مع المواد مجهولة المصدر.</li>
-          <li><strong>خط للإبلاغ:</strong> يمكنك الإبلاغ عن أي نشاط مشبوه عبر <a href="mailto:security@scraapy.sa">security@scraapy.sa</a>.</li>
-        </ul>
-      </section>
-  
-      <!-- رسالة ختامية -->
-      <section class="closing">
-        <p><strong>"في سكرابي، نحمي سوق إعادة التدوير لنبني اقتصادًا دائريًا آمنًا للجميع."</strong></p>
-        <p>للاستفسارات: <a href="mailto:support@scraapy.sa">support@scraapy.sa</a></p>
-        <a href="https://www.scraapy.sa/policies " target="_blank" class="btn">لمعرفة المزيد</a>
-      </section>
-    </div>
-  </template>
-  
-  <script>
+  <div class="policy-page">
+    <!-- القسم الأول -->
+    <section class="intro">
+      <h1>{{ $t('materialsTheft.title') }}</h1>
+      <p>{{ $t('materialsTheft.intro') }}</p>
+      <p>{{ $t('materialsTheft.intro2') }}</p>
+    </section>
+
+    <!-- الإجراءات الوقائية -->
+    <section class="preventive-measures">
+      <h2>{{ $t('materialsTheft.preventiveMeasuresTitle') }}</h2>
+      <ul>
+        <li><strong>{{ $t('materialsTheft.measureOfficialCertification') }}</strong></li>
+        <li><strong>{{ $t('materialsTheft.measureTaxInvoices') }}</strong></li>
+        <li><strong>{{ $t('materialsTheft.measureTransparentPayments') }}</strong></li>
+        <li><strong>{{ $t('materialsTheft.measureIdentityVerification') }}</strong></li>
+        <li><strong>{{ $t('materialsTheft.measureDataArchiving') }}</strong></li>
+        <li><strong>{{ $t('materialsTheft.measureBlockedShipments') }}</strong></li>
+      </ul>
+    </section>
+
+    <!-- التعامل مع الحالات المشبوهة -->
+    <section class="suspicious-cases">
+      <h2>{{ $t('materialsTheft.suspiciousCasesTitle') }}</h2>
+      <ul>
+        <li><strong>{{ $t('materialsTheft.caseIntensiveInspection') }}</strong></li>
+        <li><strong>{{ $t('materialsTheft.caseImmediateReport') }}</strong></li>
+        <li><strong>{{ $t('materialsTheft.caseAccountSuspension') }}</strong></li>
+      </ul>
+    </section>
+
+    <!-- العقوبات -->
+    <section class="penalties">
+      <h2>{{ $t('materialsTheft.penaltiesTitle') }}</h2>
+      <ul>
+        <li><strong>{{ $t('materialsTheft.penaltyFinancialFines') }}</strong></li>
+        <li><strong>{{ $t('materialsTheft.penaltyPermanentBan') }}</strong></li>
+      </ul>
+    </section>
+
+    <!-- التزام الشركة -->
+    <section class="community-protection">
+      <h2>{{ $t('materialsTheft.communityProtectionTitle') }}</h2>
+      <ul>
+        <li><strong>{{ $t('materialsTheft.communityAwareness') }}</strong></li>
+        <li><strong>{{ $t('materialsTheft.communityReportingLine') }}</strong></li>
+      </ul>
+    </section>
+
+    <!-- رسالة ختامية -->
+    <section class="closing">
+      <p><strong>{{ $t('materialsTheft.closingMessage') }}</strong></p>
+      <p>{{ $t('materialsTheft.contactEmailLabel') }}:
+        <a :href="'mailto:' + $t('materialsTheft.contactEmail')">{{ $t('materialsTheft.contactEmail') }}</a>
+      </p>
+      <a href="https://www.scraapy.sa/policies"  target="_blank" class="btn">
+        {{ $t('materialsTheft.ctaButtonText') }}
+      </a>
+    </section>
+  </div>
+</template>
+
+<script>
   export default {
     name: 'materialsTheftPolicy'
   }
-  </script>
+</script>
   
-  <style scoped>
+<style scoped>
   .policy-page {
     font-family: Inter, Zain;
     line-height: 1.6;
@@ -119,4 +119,4 @@
   .btn:hover {
     background-color: #0056b3;
   }
-  </style>
+</style>

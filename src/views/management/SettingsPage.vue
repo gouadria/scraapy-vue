@@ -20,7 +20,6 @@ export default defineComponent({
   },
 
   data() {
-    // Ici on suppose que $userStore est disponible
     const user = this.$userStore.state.user || {}
     return {
       name: user.name || '',
@@ -29,7 +28,7 @@ export default defineComponent({
       showUpdatePassword: false,
       showDeleteAccount: false,
       showSuccessMessage: false,
-      validateContact: null as any,  // Typage permissif pour objet de validation
+      validateContact: null as any,
       emailError: null as string | null,
       contactError: null as string | null
     }
@@ -40,35 +39,30 @@ export default defineComponent({
     return { v$ }
   },
 
- computed: {
+  computed: {
   user() {
     return this.$userStore.state.user || {}
   },
-  businessIcon(): string | null {
-    return this.user.business?.icon || null
+
+  // Pour récupérer l'URL complète de l'image logo
+  userImage(): string | null {
+    const img = this.user.image || null
+    if (!img) return null
+    if (img.startsWith('http')) return img
+    // Ajoute la base URL si l'image est stockée en chemin relatif
+    return `https://vmi2584358.contaboserver.net${img}`
   },
+
+  // exemple, si tu veux détecter changement des champs
   changed(): boolean {
     return (
       this.name !== this.user?.name ||
       this.contactNumber !== this.user?.contact_number ||
       this.email !== this.user?.email
+      // si tu veux, tu peux aussi tracker image (optionnel)
     )
   }
 },
-
-
-  watch: {
-    // Met à jour les champs lorsque le store est mis à jour
-    user: {
-      immediate: true,
-      deep: true,
-      handler(newVal) {
-        this.name = newVal.name || ''
-        this.contactNumber = newVal.contact_number || ''
-        this.email = newVal.email || ''
-      }
-    }
-  },
 
   validations() {
     return {
@@ -88,7 +82,6 @@ export default defineComponent({
 
   methods: {
     handleUpdate(field: string, value: string) {
-      // Mise à jour dynamique des champs
       (this as any)[field] = value
     },
 
@@ -143,52 +136,53 @@ export default defineComponent({
         console.error('Failed to update user:', err)
       }
     },
+
 async uploadImage(file: File) {
   console.log('Uploading', file)
+
   const formData = new FormData()
-  formData.append('icon', file)
+  formData.append('i', file)  // <-- ici on envoie "image", pas "icon"
 
   try {
     const response = await this.$axios.patch('/api/users/me/', formData, {
       withCredentials: true,
       headers: {
-        'Content-Type': 'multipart/form-data'
+        'Content-Type': 'multipart/form-data',
       }
+      
+
     })
+    console.log('Response backend:', response.data)
+    const updatedImage = response.data.image  // <-- ici on récupère "image"
 
-    const updatedIcon = response.data.icon
-    const currentUser = this.$userStore.state.user || {}
+    if (updatedImage && typeof updatedImage === 'string') {
+      const fullImageUrl = updatedImage.startsWith('http')
+        ? updatedImage
+        : `https://vmi2584358.contaboserver.net${updatedImage}`
 
-    const updatedUser = {
-      ...currentUser,
-      business: {
-        ...(currentUser.business || {}),
-        icon: updatedIcon
-      }
+      localStorage.setItem('sidebarImageUrl', fullImageUrl)
+
+      this.$nextTick(() => {
+        const sidebarImg = document.querySelector('#sidebar-image')
+        if (sidebarImg) {
+          sidebarImg.setAttribute('src', fullImageUrl)
+          console.log('Sidebar image mis à jour')
+        } else {
+          console.warn('Image sidebar non trouvée dans le DOM')
+        }
+      })
+    } else {
+      console.warn('L’image mise à jour est vide ou invalide:', updatedImage)
     }
-
-    this.$userStore.commit('setUser', updatedUser)
-
-    // **Met à jour l'image dans la sidebar du DOM global**
-    this.$nextTick(() => {
-      const sidebarImg = document.querySelector('#app > div.management-page > div > div.sidebar > div.sidebar-header > img')
-      if (sidebarImg) {
-        sidebarImg.setAttribute('src', updatedIcon)
-        console.log('Sidebar logo mis à jour')
-      } else {
-        console.warn('Image sidebar non trouvée dans le DOM')
-      }
-    })
-
   } catch (error) {
-    console.error('Erreur lors de l\'upload de l\'image:', error)
+    console.error('Erreur lors de la mise à jour de l\'image:', error)
   }
 }
-
 
   }
 })
 </script>
+
 
 <template>
   <UpdatePassword :show="showUpdatePassword" @close="showUpdatePassword = false" />

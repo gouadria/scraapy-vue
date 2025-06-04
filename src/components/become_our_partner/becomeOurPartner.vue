@@ -1,88 +1,87 @@
 <template>
-    <div class="become-partner">
-      <!-- القسم الأول -->
-      <section class="intro">
-        <h1>كن شريكنا</h1>
-        <p>شكرًا لك على إظهار اهتمامك بـ <strong>سكرابي</strong>. إذا كنت من أصحاب المنشآت التي تنتج نفايات خطرة أو غير خطرة بشكل يومي، شهري، أو سنوي، أو تعمل في مجال بيع وشراء السكراب، أو لديك خدمات مساندة لإعادة التدوير، فإننا نتطلع للعمل معك!</p>
-      </section>
-  
-      <!-- هل تنطبق عليك هذه الحالات؟ -->
-      <section class="questions">
-        <h2>هل تنطبق عليك الحالات التالية؟</h2>
-        <ul>
-          <li>هل تمتلك منشأة تجارية أو صناعية أو خدمية تنتج نفايات خطرة أو غير خطرة؟</li>
-          <li>هل أنت شخص يتعامل في بيع وشراء أنواع مختلفة من النفايات أو الخردة؟</li>
-          <li>هل نشاطك يتعلق بالخدمات المساندة مثل تأجير الحاويات، النقل، الفحص، أو التخزين؟</li>
-        </ul>
-        <p>إذا كانت الإجابة "نعم"، فأخبرنا لنبدأ رحلة العمل معًا.</p>
-      </section>
-  
-      <!-- لماذا الشراكة معنا -->
-      <section class="why-partner">
-        <h2>لماذا الشراكة معنا؟</h2>
-        <ul>
-          <li>فرصة مربحة للطرفين.</li>
-          <li>ربط البائعين والمشترين لتحقيق المنافع المشتركة.</li>
-          <li>نُوفّر لك الوصول إلى قطاعات متعددة وبناء سوق إعادة التدوير.</li>
-          <li>دعم كامل لرسالتك ومبادراتك البيئية.</li>
-        </ul>
-      </section>
-  
-      <!-- من يمكنه الشراكة -->
-      <section class="who-can-join">
-        <h2>من يمكنه الانضمام؟</h2>
-        <ul>
-          <li>مسجل لدى المركز الوطني لإدارة النفايات (موان)</li>
-          <li>مُنتج للنفايات القابلة للتدوير من القطاعات المختلفة</li>
-          <li>مالك محلات تشاليح أو سكراب</li>
-          <li>مقاول هدم أو تأجير حاويات/ معدات</li>
-          <li>شركة نقل وشحن أو فحص بيئي</li>
-          <li>شركات الصرف الصحي أو بيع المياه</li>
-          <li>بائع منتجات بيئية</li>
-          <li>مالك شاحنات متوسطة ولديك الرغبة في تقنين أعمالك</li>
-          <li>شخص متحمس ومبدع ويملك الخبرة</li>
-        </ul>
-      </section>
-  
-      <!-- خطوات التسجيل -->
-      <section class="registration-steps">
-        <h2>خطوات التسجيل</h2>
-        <ol>
-          <li>سجل أو سجل دخولك عبر الموقع الإلكتروني.</li>
-          <li>اضغط على زر "كن شريكنا".</li>
-          <li>املأ البيانات المطلوبة.</li>
-          <li>ارفع الوثائق والمستندات الداعمة.</li>
-          <li>اختر باقة الاشتراك المناسبة.</li>
-          <li>انقر على زر التسجيل.</li>
-        </ol>
-      </section>
-  
-      <!-- ملاحظات -->
-      <section class="notes">
-        <h3>ملاحظات مهمة:</h3>
-        <ul>
-          <li>تقدم سكرابي عرض اشتراك سنوي بخصم خاص يصل إلى 50%.</li>
-          <li>في حالة أي عملية بيع نهائية، سيتم خصم رسوم العمولة المتفق عليها من القيمة الإجمالية.</li>
-        </ul>
-      </section>
-  
-      <!-- زر التسجيل -->
-      <section class="cta">
-        <h2>سجل الآن وتمتع براحة البال!</h2>
-        <router-link :to="{ name: 'marketplace' }" target="_blank" class="btn">
-            زيارة الموقع
-        </router-link>
-      </section>
-    </div>
-  </template>
-  
-  <script>
+  <div class="become-partner">
+    <!-- القسم الأول -->
+    <section class="intro">
+      <h1>{{ $t('partner.title') }}</h1>
+      <p>{{ $t('partner.intro') }} {{ $t('partner.intro2') }}</p>
+    </section>
+
+    <!-- هل تنطبق عليك هذه الحالات؟ -->
+    <section class="questions">
+      <h2>{{ $t('partner.questionsTitle') }}</h2>
+      <ul>
+        <li>{{ $t('partner.question1') }}</li>
+        <li>{{ $t('partner.question2') }}</li>
+        <li>{{ $t('partner.question3') }}</li>
+      </ul>
+      <p>{{ $t('partner.questionFinal') }}</p>
+    </section>
+
+    <!-- لماذا الشراكة معنا -->
+    <section class="why-partner">
+      <h2>{{ $t('partner.whyPartnerTitle') }}</h2>
+      <ul>
+        <li><strong>{{ $t('partner.whyPartnerItem1') }}</strong></li>
+        <li><strong>{{ $t('partner.whyPartnerItem2') }}</strong></li>
+        <li><strong>{{ $t('partner.whyPartnerItem3') }}</strong></li>
+        <li><strong>{{ $t('partner.whyPartnerItem4') }}</strong></li>
+      </ul>
+    </section>
+
+    <!-- من يمكنه الشراكة -->
+    <section class="who-can-join">
+      <h2>{{ $t('partner.whoCanJoinTitle') }}</h2>
+      <ul>
+        <li>{{ $t('partner.whoCanJoinItem1') }}</li>
+        <li>{{ $t('partner.whoCanJoinItem2') }}</li>
+        <li>{{ $t('partner.whoCanJoinItem3') }}</li>
+        <li>{{ $t('partner.whoCanJoinItem4') }}</li>
+        <li>{{ $t('partner.whoCanJoinItem5') }}</li>
+        <li>{{ $t('partner.whoCanJoinItem6') }}</li>
+        <li>{{ $t('partner.whoCanJoinItem7') }}</li>
+        <li>{{ $t('partner.whoCanJoinItem8') }}</li>
+        <li>{{ $t('partner.whoCanJoinItem9') }}</li>
+      </ul>
+    </section>
+
+    <!-- خطوات التسجيل -->
+    <section class="registration-steps">
+      <h2>{{ $t('partner.registrationStepsTitle') }}</h2>
+      <ol>
+        <li>{{ $t('partner.registrationStep1') }}</li>
+        <li>{{ $t('partner.registrationStep2') }}</li>
+        <li>{{ $t('partner.registrationStep3') }}</li>
+        <li>{{ $t('partner.registrationStep4') }}</li>
+        <li>{{ $t('partner.registrationStep5') }}</li>
+        <li>{{ $t('partner.registrationStep6') }}</li>
+      </ol>
+    </section>
+
+    <!-- ملاحظات -->
+    <section class="notes">
+      <h3>{{ $t('partner.notesTitle') }}</h3>
+      <ul>
+        <li>{{ $t('partner.note1') }}</li>
+        <li>{{ $t('partner.note2') }}</li>
+      </ul>
+    </section>
+
+    <!-- زر التسجيل -->
+    <section class="cta">
+      <h2>{{ $t('partner.ctaTitle') }}</h2>
+      <br/>
+      <router-link :to="{ name: 'marketplace' }" target="_blank" class="btn">{{ $t('partner.ctaButtonText') }}</router-link>
+    </section>
+  </div>
+</template>
+
+<script>
   export default {
     name: 'becomeOurPartner'
   }
-  </script>
+</script>
   
-  <style scoped>
+<style scoped>
   .become-partner {
     font-family: Inter, Zain;
     line-height: 1.6;
@@ -115,4 +114,4 @@
   .btn:hover {
     background-color: #0056b3;
   }
-  </style>
+</style>

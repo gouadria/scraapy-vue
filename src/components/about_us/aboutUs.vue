@@ -1,110 +1,105 @@
 <template>
-    <div class="about-us">
-      <!-- القسم الأول: عن الشركة -->
-      <section class="section-intro">
-        <h1>عن الشركة</h1>
-        <p>
-          سكرابي® ملتزمون بإدارة النفايات الخطرة وغير الخطرة رقميًا وتقنيًا، وتقديم كافة الخدمات المساندة، وتسويق المنتجات المتخصصة في إعادة التدوير والاستدامة.
-          انطلاقًا من إدراكنا لمسؤوليتنا الوطنية للاستفادة من النفايات بطرق نظامية ومأتمته تضمن الاستدامة عبر سلسلة القيمة لهذه النفايات.
-        </p>
-      </section>
-  
-      <!-- الرؤية والرسالة -->
-      <section class="vision-mission">
-        <div class="vision">
-          <h2>رؤيتنا</h2>
-          <p>
-            نطمح في سكرابي إلى أن نكون الرواد العالميين في تقديم حلول رقمية متكاملة لإدارة النفايات الخطرة وغير الخطرة، عبر منصة واحدة تجمع بين الابتكار التقني والالتزام البيئي.
-            نعتمد على أحدث التقنيات الذكية لضمان تحقيق الاستدامة عبر سلسلة القيمة الكاملة للنفايات، انطلاقًا من مسؤوليتنا الوطنية نحو استغلال الموارد بطريقة نظامية ومُحكمة.
-          </p>
-        </div>
-  
-        <div class="mission">
-          <h2>مهمتنا</h2>
+  <div class="about-us">
+    <!-- القسم الأول: عن الشركة -->
+    <section class="section-intro">
+      <h1>{{ $t('aboutUs.title') }}</h1>
+      <p>{{ $t('aboutUs.intro') }}</p>
+    </section>
+
+    <!-- الرؤية والرسالة -->
+    <section class="vision-mission">
+      <div class="vision">
+        <h2>{{ $t('aboutUs.visionTitle') }}</h2>
+        <p>{{ $t('aboutUs.visionText') }}</p>
+      </div>
+
+      <div class="mission">
+        <h2>{{ $t('aboutUs.missionTitle') }}</h2>
+        <ul>
+          <li><strong>{{ $t('aboutUs.missionItems') }}</strong> {{ $t('aboutUs.dMissionItems') }}</li>
+          <li><strong>{{ $t('aboutUs.missionItems2') }}</strong> {{ $t('aboutUs.dMissionItems2') }}</li>
+          <li><strong>{{ $t('aboutUs.missionItems3') }}</strong> {{ $t('aboutUs.dMissionItems3') }}</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- نطاق العمل -->
+    <section class="scope">
+      <h2>{{ $t('aboutUs.scopeTitle') }}</h2>
+      <ul>
+        <li>{{ $t('aboutUs.scopeItems') }}</li>
+        <li>{{ $t('aboutUs.scopeItems2') }}</li>
+        <li>{{ $t('aboutUs.scopeItems3') }}
           <ul>
-            <li><strong>كسب الثقة:</strong> نحرص على بناء علاقات متينة مع عملائنا وشركائنا عبر الشفافية والجودة في كل تفاعل.</li>
-            <li><strong>التميز المالي:</strong> نحقق أهدافنا الاقتصادية مع استثمار مواردنا لدعم النمو المستدام.</li>
-            <li><strong>توفير الوقت:</strong> نسهّل التعامل عبر منصاتنا الرقمية لتحويل إدارة النفايات إلى تجربة سلسة وفعّالة.</li>
+            <li>{{ $t('aboutUs.scopeItems31') }}</li>
+            <li>{{ $t('aboutUs.scopeItems32') }}</li>
+            <li>{{ $t('aboutUs.scopeItems33') }}</li>
           </ul>
-        </div>
-      </section>
+        </li>
+      </ul>
+    </section>
+
+    <!-- استراتيجياتنا -->
+    <section class="strategies">
+      <h2>{{ $t('aboutUs.strategiesTitle') }}</h2>
+      <ul>
+        <li><strong>{{ $t('aboutUs.strategiesItems') }}</strong> {{ $t('aboutUs.dStrategiesItems') }}</li>
+        <li><strong>{{ $t('aboutUs.strategiesItems2') }}</strong> {{ $t('aboutUs.dStrategiesItems2') }}</li>
+        <li><strong>{{ $t('aboutUs.strategiesItems3') }}</strong> {{ $t('aboutUs.dStrategiesItems3') }}</li>
+      </ul>
+    </section>
+
+    <!-- كيف يعمل سكرابي -->
+    <section class="how-it-works">
+      <h2>{{ $t('aboutUs.howItWorksTitle') }}</h2>
+      <ol>
+        <li>{{ $t('aboutUs.howItWorksSteps') }}</li>
+        <li>{{ $t('aboutUs.howItWorksSteps2') }}</li>
+        <li>{{ $t('aboutUs.howItWorksSteps3') }}</li>
+        <li>{{ $t('aboutUs.howItWorksSteps4') }}</li>
+        <li>{{ $t('aboutUs.howItWorksSteps5') }}</li>
+      </ol>
+    </section>
+
+    <!-- لماذا نتميز -->
+    <section class="why-us">
+      <h2>{{ $t('aboutUs.whyUsTitle') }}</h2>
+      <ul>
+        <li><strong>{{ $t('aboutUs.whyUsItems') }}</strong> {{ $t('aboutUs.dWhyUsItems') }}</li>
+        <li><strong>{{ $t('aboutUs.whyUsItems2') }}</strong> {{ $t('aboutUs.dWhyUsItems2') }}</li>
+        <li><strong>{{ $t('aboutUs.whyUsItems3') }}</strong> {{ $t('aboutUs.dWhyUsItems3') }}</li>
+      </ul>
+    </section>
+
+    <!-- الرؤية المستقبلية -->
+    <section class="future-vision">
+      <h2>{{ $t('aboutUs.futureVisionTitle') }}</h2>
+      <ul>
+        <li>{{ $t('aboutUs.futureVisionItems') }}</li>
+        <li>{{ $t('aboutUs.futureVisionItems2') }}</li>
+        <li>{{ $t('aboutUs.futureVisionItems3') }}</li>
+      </ul>
+    </section>
+
+    <!-- زر الانضمام -->
+    <section class="join-section">
+      <h2>{{ $t('aboutUs.joinTitle') }}</h2>
+      <p>{{ $t('aboutUs.joinDesc') }}</p>
+      <br/>
+      <router-link :to="{ name: 'marketplace' }" class="btn">
+        {{ $t('aboutUs.joinBtn') }}
+      </router-link>
+    </section>
+  </div>
+</template>
   
-      <!-- نطاق العمل -->
-      <section class="scope">
-        <h2>نطاق عملنا</h2>
-        <ul>
-          <li>التسويق الإلكتروني المباشر لجميع القطاعات (الأفراد، التجارية، الصناعية، الخدمية).</li>
-          <li>إدارة النفايات: بيع، شراء، إعادة تدوير، أو التخلص الآمن عبر شركائنا المعتمدين.</li>
-          <li>الخدمات المساندة:
-            <ul>
-              <li>تأجير الحاويات والمعدات.</li>
-              <li>فحص المنتجات ومطابقتها للمواصفات القياسية.</li>
-              <li>خدمات نقل وشحن مُحكمة بمعايير السلامة.</li>
-            </ul>
-          </li>
-        </ul>
-      </section>
-  
-      <!-- استراتيجياتنا -->
-      <section class="strategies">
-        <h2>استراتيجياتنا</h2>
-        <ul>
-          <li><strong>التركيز التقني:</strong> استخدام الذكاء الاصطناعي وإنترنت الأشياء (IoT) لتحسين كفاءة العمليات.</li>
-          <li><strong>التميز التشغيلي:</strong> رفع جودة الخدمات مع خفض التكاليف عبر تحسين سلاسل الإمداد.</li>
-          <li><strong>التنفيذ المدروس:</strong> ندمج الخبرة العملية مع الابتكار لضمان استدامة النتائج.</li>
-        </ul>
-      </section>
-  
-      <!-- كيف يعمل سكرابي -->
-      <section class="how-it-works">
-        <h2>كيف يعمل سكرابي</h2>
-        <ol>
-          <li>تصفح الموقع أو قم بتحميل التطبيق.</li>
-          <li>قم بالتسجيل أو الدخول.</li>
-          <li>قم بتحميل منتجاتك / أو حدد خياراتك حال الشراء أو طلب الخدمة.</li>
-          <li>حدد الصنف والكمية والعنوان واختر الخدمات المصاحبة.</li>
-          <li>نُفذ عملية البيع أو الشراء.</li>
-        </ol>
-      </section>
-  
-      <!-- لماذا نتميز -->
-      <section class="why-us">
-        <h2>لماذا نتميز؟</h2>
-        <ul>
-          <li><strong>مصداقية مُثبتة:</strong> نُسعِّر المنتجات بشفافية وفق معايير السوق، مع ضمان الجودة.</li>
-          <li><strong>حلول شاملة:</strong> من الفحص الأولي إلى التسليم النهائي، نغطي كل التفاصيل.</li>
-          <li><strong>فريق خبراء:</strong> ممثلونا مدربون على فهم احتياجاتك وتقديم حلول مخصصة بسرية تامة.</li>
-        </ul>
-      </section>
-  
-      <!-- الرؤية المستقبلية -->
-      <section class="future-vision">
-        <h2>رؤيتنا المستقبلية</h2>
-        <ul>
-          <li>إلغاء المرادم: عبر تعميم مبادئ الاقتصاد الدائري في المنطقة.</li>
-          <li>الريادة الإقليمية: أن نكون السوق التقنية الرائدة لإدارة النفايات في الشرق الأوسط.</li>
-          <li>العدالة والاستدامة: ضمان حقوق جميع الأطراف مع الحفاظ على الموارد الطبيعية.</li>
-        </ul>
-      </section>
-  
-      <!-- زر الانضمام -->
-      <section class="join-section">
-        <h2>انضم إلينا اليوم!</h2>
-        <p>زوروا موقعنا أو حملوا التطبيق لتبدأوا رحلتكم نحو الاستدامة.</p>
-        <router-link :to="{ name: 'marketplace' }" target="_blank" class="btn">
-            زيارة الموقع
-        </router-link>
-      </section>
-    </div>
-  </template>
-  
-  <script>
+<script>
   export default {
     name: 'aboutUs'
   }
-  </script>
+</script>
   
-  <style scoped>
+<style scoped>
   .about-us {
     font-family: Inter, Zain;
     line-height: 1.6;
@@ -138,7 +133,7 @@
   
   .btn {
     display: inline-block;
-    background-color: #28a745;
+    background-color: #16B277;
     color: white;
     padding: 10px 20px;
     text-decoration: none;
@@ -146,6 +141,6 @@
   }
   
   .btn:hover {
-    background-color: #218838;
+    background-color: #16B277;
   }
-  </style>
+</style>

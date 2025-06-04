@@ -1,79 +1,77 @@
 <template>
-    <div class="service-providers-page">
-      <!-- القسم الأول -->
-      <section class="intro">
-        <h1>الشركاء المميزون مع سكرابي</h1>
-        <p>
-          انضم إلى شبكتنا واحصد فرصًا استثمارية في سوق التدوير المزدهر.
-          في إطار سعي سكرابي لبناء منظومة متكاملة لإدارة النفايات، نفتح الباب أمام الشركات والمؤسسات المتخصصة لتكونوا جزءًا من رحلتنا نحو تحقيق اقتصاد دائري مستدام.
-        </p>
-      </section>
-  
-      <!-- فرص الشراكة -->
-      <section class="partnership-opportunities">
-        <h2>مجالات الشراكة المطلوبة</h2>
-        <ul>
-          <li><strong>مقاولو هدم محترفون:</strong> للهدم الآمن والمُخطط.</li>
-          <li><strong>تجار الخردة:</strong> شراء وبيع المواد القابلة لإعادة التدوير.</li>
-          <li><strong>مُقدمو خدمات التأجير:</strong>
-            <ul>
-              <li>حاويات فرز النفايات بأنواعها.</li>
-              <li>معدات الهدم والنقل المتخصصة.</li>
-            </ul>
-          </li>
-          <li><strong>جهات الفحص والتدقيق:</strong> ضمان الجودة والامتثال البيئي.</li>
-          <li><strong>المختبرات المعتمدة:</strong> تحليل العينات وتقييم المخلفات.</li>
-          <li><strong>شركات نقل مرخصة من "موان":</strong> نقل آمن للمواد الخطرة وغير الخطرة.</li>
-          <li><strong>مراكز الجمع والفرز والتخزين المُعتمدة.</strong></li>
-          <li><strong>منشآت إعادة التدوير المُتوافقة مع معايير "موان".</strong></li>
-          <li><strong>مرافق التخلص الآمن والمرادم المُراقَبة.</strong></li>
-        </ul>
-      </section>
-  
-      <!-- مزايا الانضمام -->
-      <section class="benefits">
-        <h2>مزايا الانضمام إلى شبكة سكرابي</h2>
-        <ul>
-          <li><strong>وصول مباشر:</strong> إلى آلاف العملاء الراغبين في خدماتك عبر منصتنا الرقمية.</li>
-          <li><strong>فرص فوز بعقود مربحة:</strong> في مشاريع كبرى ضمن سوق التدوير الواعد.</li>
-          <li><strong>عوائد مالية مجزية:</strong> مع شروط دفع مرنة وشفافة.</li>
-          <li><strong>دعم تسويقي:</strong> لعرض خدماتك على نطاق واسع.</li>
-          <li><strong>شهادة شريك معتمد:</strong> من سكرابي تعزز مصداقيتك في السوق.</li>
-        </ul>
-      </section>
-  
-      <!-- خطوات التسجيل -->
-      <section class="registration-steps">
-        <h2>كيفية التسجيل</h2>
-        <ol>
-          <li>سجل بيانات شركتك عبر <a href="https://scraapy.sa/auth/register " target="_blank">رابط التسجيل</a>.</li>
-          <li>ارفع الوثائق المطلوبة (رخصة العمل، شهادات الاعتماد، إلخ).</li>
-          <li>انتظر الموافقة خلال 3 أيام عمل.</li>
-          <li>ابدأ بتقديم خدماتك للعملاء المستهدفين.</li>
-        </ol>
-      </section>
-  
-      <!-- رسالة ختامية -->
-      <section class="closing">
-        <p><strong>"مع سكرابي، لن تكون مجرد مقدم خدمة... بل شريكًا فاعلًا في تحويل النفايات إلى ثروة!"</strong></p>
-        <a href="https://scraapy.sa/auth/register " target="_blank" class="btn">سجل الآن</a>
-      </section>
-  
-      <!-- التواصل -->
-      <section class="contact">
-        <h3>للاستفسارات</h3>
-        <p>بريد التواصل: <a href="mailto:partners@scraapy.sa">partners@scraapy.sa</a></p>
-      </section>
-    </div>
-  </template>
-  
-  <script>
+  <div class="service-providers-page">
+    <!-- القسم الأول -->
+    <section class="intro">
+      <h1>{{ $t('serviceProviders.title') }}</h1>
+      <p>{{ $t('serviceProviders.intro') }}</p>
+      <p>{{ $t('serviceProviders.intro2') }}</p>
+    </section>
+
+    <!-- فرص الشراكة -->
+    <section class="partnership-opportunities">
+      <h2>{{ $t('serviceProviders.opportunitiesTitle') }}</h2>
+      <ul>
+        <li><strong>{{ $t('serviceProviders.opportunityDemolition') }}</strong></li>
+        <li><strong>{{ $t('serviceProviders.opportunityScrapDealers') }}</strong></li>
+        <li><strong>{{ $t('serviceProviders.opportunityRentalServices') }}</strong>
+          <ul>
+            <li>{{ $t('serviceProviders.opportunityWasteContainers') }}</li>
+            <li>{{ $t('serviceProviders.opportunityEquipment') }}</li>
+          </ul>
+        </li>
+        <li><strong>{{ $t('serviceProviders.opportunityInspection') }}</strong></li>
+        <li><strong>{{ $t('serviceProviders.opportunityLabs') }}</strong></li>
+        <li><strong>{{ $t('serviceProviders.opportunityTransport') }}</strong></li>
+        <li><strong>{{ $t('serviceProviders.opportunityCollectionCenters') }}</strong></li>
+        <li><strong>{{ $t('serviceProviders.opportunityRecyclingFacilities') }}</strong></li>
+        <li><strong>{{ $t('serviceProviders.opportunityDisposalFacilities') }}</strong></li>
+      </ul>
+    </section>
+
+    <!-- مزايا الانضمام -->
+    <section class="benefits">
+      <h2>{{ $t('serviceProviders.benefitsTitle') }}</h2>
+      <ul>
+        <li><strong>{{ $t('serviceProviders.benefitDirectAccess') }}</strong></li>
+        <li><strong>{{ $t('serviceProviders.benefitProfitableContracts') }}</strong></li>
+        <li><strong>{{ $t('serviceProviders.benefitFlexiblePricing') }}</strong></li>
+        <li><strong>{{ $t('serviceProviders.benefitMarketingSupport') }}</strong></li>
+        <li><strong>{{ $t('serviceProviders.benefitCertifiedPartner') }}</strong></li>
+      </ul>
+    </section>
+
+    <!-- خطوات التسجيل -->
+    <section class="registration-steps">
+      <h2>{{ $t('serviceProviders.registrationStepsTitle') }}</h2>
+      <ol>
+        <li>{{ $t('serviceProviders.registrationStep') }} <a href="https://scraapy.sa/auth/register"  target="_blank">{{ $t('serviceProviders.registrationStep1') }}</a>.</li>
+        <li>{{ $t('serviceProviders.registrationStep2') }}</li>
+        <li>{{ $t('serviceProviders.registrationStep3') }}</li>
+        <li>{{ $t('serviceProviders.registrationStep4') }}</li>
+      </ol>
+    </section>
+
+    <!-- رسالة ختامية -->
+    <section class="closing">
+      <p><strong>{{ $t('serviceProviders.closingText') }}</strong></p>
+      <a href="https://scraapy.sa/auth/register"  target="_blank" class="btn">{{ $t('serviceProviders.ctaButtonText') }}</a>
+    </section>
+
+    <!-- التواصل -->
+    <section class="contact">
+      <h3>{{ $t('serviceProviders.contactTitle') }}</h3>
+      <p>{{ $t('serviceProviders.contactEmailLabel') }}: <a href="mailto:partners@scraapy.sa">partners@scraapy.sa</a></p>
+    </section>
+  </div>
+</template>
+
+<script>
   export default {
     name: 'ServiceProviders'
   }
-  </script>
+</script>
   
-  <style scoped>
+<style scoped>
   .service-providers-page {
     font-family: Inter, Zain;
     line-height: 1.6;
@@ -117,4 +115,4 @@
   .btn:hover {
     background-color: #0056b3;
   }
-  </style>
+</style>

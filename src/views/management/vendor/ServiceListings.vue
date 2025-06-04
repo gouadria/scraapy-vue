@@ -132,7 +132,7 @@ export default defineComponent({
       this.loading = true
       try {
         const response = await this.$axios.get(this.nextPageUrl)
-        const newItems = (response.data.data?.results || []).map((item: Item) => ({ ...item, isNew: true }))
+        const newItems = (response.data.data || []).map((item: Item) => ({ ...item, isNew: true }))
         this.listings.push(...newItems)
         this.nextPageUrl = response.data.next
         console.log('API Response:', response)

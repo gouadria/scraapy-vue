@@ -48,6 +48,7 @@ export default defineComponent({
     }
   },
   computed: {
+   
     pageType() {
       const subPage = this.$route.params.subPage
       const businessProfile = this.$userStore.state.user?.business_profile || {}
@@ -172,9 +173,21 @@ export default defineComponent({
         this.hasMoreItems = data.length === this.itemsPerPage
         console.log(this.orderList)
       } catch (err) {
-        this.error = 'Failed to fetch data. Please try again.'
-        console.error('API Error:', err)
-      } finally {
+  if (err.response) {
+    // Le serveur a répondu avec un code d'erreur (ex: 500)
+    console.error('API responded with:', err.response.status, err.response.data)
+    this.error = `Server error: ${err.response.status} - ${err.response.data?.message || 'No message'}`
+  } else if (err.request) {
+    // La requête a été envoyée mais aucune réponse reçue
+    console.error('No response received. Request:', err.request)
+    this.error = 'No response from server. Please check your network connection.'
+  } else {
+    // Erreur lors de la configuration de la requête ou autre
+    console.error('Axios error:', err.message)
+    this.error = 'Request setup error: ' + err.message
+  }
+}
+ finally {
         this.isLoading = false
       }
     },
