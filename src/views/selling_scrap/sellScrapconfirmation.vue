@@ -1,64 +1,52 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref } from 'vue'
+import NavBar from '@/components/UIElements/NavBar.vue'
+import SellScrapForm from '@/components/selling_scrap/SellForm.vue'
+import AppFooter from '@/components/UIElements/FooterComponant.vue'; // Mise à jour du nom
 
-import navBar from '@/components/UIElements/navBar.vue'
-import footerComponant from '@/components/UIElements/footerComponant.vue'
-import SellScrapForm from '@/components/selling_scrap/SellForm.vue';
-import NavigationButtons from '@/components/selling_scrap/NavigationButtons.vue';
+const progress = ref(100)
+const isAccountCreated = ref(false)
+const userData = ref({ fullName: '', email: '' })
+const errorMessage = ref<string | null>(null)
 
-const progress = ref(100);
-const isAccountCreated = ref(false);
-const userData = ref({ fullName: '', email: '' });
-
-import { useI18n } from 'vue-i18n'
-const { t } = useI18n()
-
-
-const handleFormSubmit = (formData: { fullName: string; email: string }) => {
+const handleFormSubmit = async (formData: { fullName: string; email: string }) => {
   userData.value = formData;
   isAccountCreated.value = true;
 
-  // Récupération des données dans localStorage
   const pickupAddress = localStorage.getItem("pickupAddress") || '';
   const estimatedAmount = localStorage.getItem("estimatedAmount") || '0';
-
-  const bankInfoRaw = localStorage.getItem("bankInfo") || "{}";
   let bankInfo = {};
   try {
-    bankInfo = JSON.parse(bankInfoRaw);
+    bankInfo = JSON.parse(localStorage.getItem("bankInfo") || "{}");
   } catch (err) {
-    console.error("Erreur parsing bankInfo:", err, bankInfoRaw);
+    console.error("Erreur parsing bankInfo:", err);
   }
 
-  const scrapItemsRaw = localStorage.getItem("scrapItems") || "[]";
   let scrapItems = [];
   try {
-    scrapItems = JSON.parse(scrapItemsRaw);
+    scrapItems = JSON.parse(localStorage.getItem("scrapItems") || "[]");
   } catch (err) {
-    console.error("Erreur parsing scrapItems:", err, scrapItemsRaw);
+    console.error("Erreur parsing scrapItems:", err);
   }
 
-  const imagesRaw = localStorage.getItem("images") || "[]";
   let imagesWithPrefix = [];
   try {
-    imagesWithPrefix = JSON.parse(imagesRaw);
+    imagesWithPrefix = JSON.parse(localStorage.getItem("images") || "[]");
   } catch (err) {
-    console.error("Erreur parsing images:", err, imagesRaw);
+    console.error("Erreur parsing images:", err);
   }
 
   const selectedCategoryId = localStorage.getItem("selectedCategoryId") || '';
-
   const userType = localStorage.getItem("user_type") || '';
   const phone = localStorage.getItem("userPhone") || '';
 
-  if ( !formData.email || !userType || !phone || !pickupAddress) {
+  if (!selectedCategoryId || !formData.email || !userType || !phone || !pickupAddress) {
     alert("Données obligatoires manquantes !");
     return;
   }
 
-  // Fonction utilitaire conversion base64 -> Blob
   function base64ToBlob(b64: string): Blob {
-    const byteString = atob(b64);
+    const byteString = atob(b64.split(',')[1]);
     const ab = new ArrayBuffer(byteString.length);
     const ia = new Uint8Array(ab);
     for (let i = 0; i < byteString.length; i++) {
@@ -67,15 +55,15 @@ const handleFormSubmit = (formData: { fullName: string; email: string }) => {
     return new Blob([ab], { type: "image/jpeg" });
   }
 
-  // Envoi de chaque scrapItem (avec mêmes images pour tous)
-  scrapItems.forEach((scrapItem, index) => {
+  // Envoi de chaque scrapItem
+  for (const [index, item] of scrapItems.entries()) {
     const fd = new FormData();
 
     fd.append("category_group", selectedCategoryId);
-    fd.append("name", scrapItem.name);
-    fd.append("size", scrapItem.size || "");
-    fd.append("quantity", String(scrapItem.quantity ?? ""));
-    fd.append("description", scrapItem.description?.trim() || "Pas de description fournie");
+    fd.append("name", item.name);
+    fd.append("size", item.size || "");
+    fd.append("quantity", String(item.quantity ?? ""));
+    fd.append("description", item.description?.trim() || "Pas de description fournie");
     fd.append("pickup_address", pickupAddress);
     fd.append("total", estimatedAmount);
 
@@ -83,12 +71,13 @@ const handleFormSubmit = (formData: { fullName: string; email: string }) => {
     fd.append("user_type", userType);
     fd.append("phone", phone);
 
-   if (bankInfo.accountHolderName && bankInfo.accountHolderName.trim() !== '') {
-  fd.append("banking_info.full_name", bankInfo.accountHolderName.trim());
-} else {
-  alert("Le nom du titulaire du compte est requis.");
- 
-}
+    if (bankInfo.accountHolderName && bankInfo.accountHolderName.trim() !== '') {
+      fd.append("banking_info.full_name", bankInfo.accountHolderName.trim());
+    } else {
+      alert("Le nom du titulaire du compte est requis.");
+      return;
+    }
+
     if (bankInfo.selectedBank) {
       fd.append("banking_info.bank_name", bankInfo.selectedBank);
     }
@@ -100,65 +89,67 @@ const handleFormSubmit = (formData: { fullName: string; email: string }) => {
       imagesWithPrefix.forEach((dataUrl: string, idx: number) => {
         const base64 = dataUrl.split(",")[1];
         if (base64) {
-          const blob = base64ToBlob(base64);
+          const blob = base64ToBlob(dataUrl);
           const file = new File([blob], `image_${index}_${idx}.jpg`, { type: blob.type });
           fd.append("images", file);
         }
       });
     }
 
-    fetch(import.meta.env.VITE_API_URL + "api/sms/create-scrap-item/", {
-      method: "POST",
-      credentials: "include",
-      body: fd,
-    })
-    .then(async res => {
-      const text = await res.text();
-      console.log(`Réponse scrapItem ${index}:`, text);
-      if (!res.ok) throw new Error(`Erreur HTTP ${res.status}`);
-      try {
-        const data = JSON.parse(text);
-        console.log("Réponse JSON:", data);
-      } catch(e) {
-        console.warn("Réponse non JSON");
+    try {
+      const response = await fetch(import.meta.env.VITE_API_URL + "api/sms/create-scrap-item/", {
+        method: "POST",
+         headers: {
+    'Content-Type': 'application/json',
+  },
+        body: fd,
+         credentials: "include"
+      });
+
+      if (!response.ok) {
+        const text = await response.text();
+        throw new Error(`Erreur HTTP ${response.status}: ${text}`);
       }
-    })
-    .catch(err => {
-      console.error("Erreur envoi scrapItem:", err);
-    });
-  });
-}
+
+      const result = await response.json();
+      console.log("Réponse succès:", result);
+    } catch (error) {
+      console.error("Échec d’envoi:", error);
+      errorMessage.value = "Impossible d’envoyer les données. Vérifiez la connexion ou essayez plus tard.";
+    }
+  }
+};
 </script>
 
 <template>
-  <div class="app">
-    <navBar />
-    <main class="main-content">
-      <div class="scrap-selection">
-        <div class="selection-header">
-          <h1 class="selection-title">{{ t('selling_scrap.sell_scrap') }}</h1>
-          <div class="progress-container">
-            <div class="progress-bar">
-              <div class="progress-fill" :style="{ width: progress + '%' }"></div>
-            </div>
-            <span class="progress-text">{{ progress }}%</span>
-          </div>
-        </div>
+  <div class="min-h-screen flex flex-col bg-gray-50">
+    <NavBar />
 
-        <template v-if="!isAccountCreated">
-          <SellScrapForm @submit="handleFormSubmit" />
-        </template>
-        <template v-else>
-          <div class="text-green-600 text-lg font-semibold">
-            ✅ Vos informations ont été envoyées avec succès !
-          </div>
-        </template>
-        
+    <main class="flex-grow">
+      <div class="container-custom py-8">
+        <h1 class="text-2xl md:text-3xl font-bold mb-6">Sell Scrap</h1>
+        <div class="max-w-2xl mx-auto">
+          <template v-if="!isAccountCreated">
+            <SellScrapForm @submit="handleFormSubmit" />
+          </template>
+          <template v-else>
+            <div class="text-green-600 text-lg font-semibold">
+              ✅ Vos informations ont été envoyées avec succès !
+            </div>
+          </template>
+        </div>
+        <div v-if="errorMessage" class="text-red-500 mt-4">{{ errorMessage }}</div>
       </div>
     </main>
-    <footerComponant />
+
+    <AppFooter />
   </div>
 </template>
+
+
+
+
+
 
 <style scoped>
   .scrap-selection {
