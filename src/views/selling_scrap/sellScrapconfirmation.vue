@@ -40,7 +40,7 @@ const handleFormSubmit = async (formData: { fullName: string; email: string }) =
   const userType = localStorage.getItem("user_type") || '';
   const phone = localStorage.getItem("userPhone") || '';
 
-  if (!selectedCategoryId || !formData.email || !userType || !phone || !pickupAddress) {
+  if (!formData.email || !userType || !phone || !pickupAddress) {
     alert("Données obligatoires manquantes !");
     return;
   }
