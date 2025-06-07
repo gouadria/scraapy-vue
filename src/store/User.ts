@@ -76,7 +76,7 @@ const instance = createStore({
       return getters.isAuthenticated && state.user?.user_type === 'business'
     },
     isStaff(state, getters) {
-      return getters.isAuthenticated && state.user?.user_type === 'staff'
+      return getters.isAuthenticated && state.user?.user_type?.toLowerCase() === 'staff'
     },
     hasBusinessProfile(state, getters) {
       return getters.isAuthenticated && state.user?.business_profile !== null
