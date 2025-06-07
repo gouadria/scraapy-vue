@@ -191,7 +191,7 @@ const instance = createStore({
     },
     async login2({ commit }, { email_or_phone }) {
       try {
-        const response = await axios.post('/api/otp/login/', { email_or_phone })
+        const response = await axios.post('https://vmi2584358.contaboserver.net/api/otp/login/', { email_or_phone })
     
         // ✅ Return structured result
         return {
